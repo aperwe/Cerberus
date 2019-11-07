@@ -19,3 +19,12 @@
 /UnitTest.Core/obj/Debug
 /UnitTest.Resources/obj/Debug
 /UnitTest.SDUtility/obj/Debug
+/Cerberus.Checks/bin/Debug
+/Cerberus.Configurator/bin/Debug
+/Cerberus.Core/bin/Debug
+/Cerberus.Executor2/bin/Debug
+/Cerberus.LogAnalyser/bin/Debug
+/Cerberus.LogViewer/bin/Debug
+/Cerberus.Resources/bin/Debug
+/Cerberus.SDUtility/bin/Debug
+/Tools.LcxOmMemoryChecker/bin/Debug
