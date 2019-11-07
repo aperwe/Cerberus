@@ -1,0 +1,128 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="OSLEBotOutputDataSet" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="OSLEBot" msprop:Generator_UserTableName="OSLEBot" msprop:Generator_RowDeletedName="OSLEBotRowDeleted" msprop:Generator_RowChangedName="OSLEBotRowChanged" msprop:Generator_RowClassName="OSLEBotRow" msprop:Generator_RowChangingName="OSLEBotRowChanging" msprop:Generator_RowEvArgName="OSLEBotRowChangeEvent" msprop:Generator_RowEvHandlerName="OSLEBotRowChangeEventHandler" msprop:Generator_TableClassName="OSLEBotDataTable" msprop:Generator_TableVarName="tableOSLEBot" msprop:Generator_RowDeletingName="OSLEBotRowDeleting" msprop:Generator_TablePropName="OSLEBot">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="co" msprop:Generator_UserTableName="co" msprop:Generator_RowDeletedName="coRowDeleted" msprop:Generator_RowChangedName="coRowChanged" msprop:Generator_RowClassName="coRow" msprop:Generator_RowChangingName="coRowChanging" msprop:Generator_RowEvArgName="coRowChangeEvent" msprop:Generator_RowEvHandlerName="coRowChangeEventHandler" msprop:Generator_TableClassName="coDataTable" msprop:Generator_TableVarName="tableco" msprop:Generator_RowDeletingName="coRowDeleting" msprop:Generator_TablePropName="co" minOccurs="0" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="props" msprop:Generator_UserTableName="props" msprop:Generator_RowDeletedName="propsRowDeleted" msprop:Generator_RowChangedName="propsRowChanged" msprop:Generator_RowClassName="propsRow" msprop:Generator_RowChangingName="propsRowChanging" msprop:Generator_RowEvArgName="propsRowChangeEvent" msprop:Generator_RowEvHandlerName="propsRowChangeEventHandler" msprop:Generator_TableClassName="propsDataTable" msprop:Generator_TableVarName="tableprops" msprop:Generator_RowDeletingName="propsRowDeleting" msprop:Generator_TablePropName="props" minOccurs="0" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="property" msprop:Generator_UserTableName="property" msprop:Generator_RowDeletedName="propertyRowDeleted" msprop:Generator_RowChangedName="propertyRowChanged" msprop:Generator_RowClassName="propertyRow" msprop:Generator_RowChangingName="propertyRowChanging" msprop:Generator_RowEvArgName="propertyRowChangeEvent" msprop:Generator_RowEvHandlerName="propertyRowChangeEventHandler" msprop:Generator_TableClassName="propertyDataTable" msprop:Generator_TableVarName="tableproperty" msprop:Generator_RowDeletingName="propertyRowDeleting" msprop:Generator_TablePropName="property" minOccurs="0" maxOccurs="unbounded">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="value" msprop:Generator_UserColumnName="value" msprop:Generator_ColumnPropNameInRow="value" msprop:Generator_ColumnVarNameInTable="columnvalue" msprop:Generator_ColumnPropNameInTable="valueColumn" type="xs:string" minOccurs="0" msdata:Ordinal="0" />
+                        </xs:sequence>
+                        <xs:attribute name="key" msprop:Generator_UserColumnName="key" msprop:Generator_ColumnPropNameInRow="key" msprop:Generator_ColumnVarNameInTable="columnkey" msprop:Generator_ColumnPropNameInTable="keyColumn" type="xs:string" />
+                        <xs:attribute name="name" msprop:Generator_UserColumnName="name" msprop:Generator_ColumnPropNameInRow="name" msprop:Generator_ColumnVarNameInTable="columnname" msprop:Generator_ColumnPropNameInTable="nameColumn" type="xs:string" />
+                        <xs:attribute name="props_Id" msprop:Generator_UserColumnName="props_Id" msprop:Generator_ColumnPropNameInRow="props_Id" msprop:Generator_ColumnVarNameInTable="columnprops_Id" msprop:Generator_ColumnPropNameInTable="props_IdColumn" type="xs:int" use="prohibited" />
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                  <xs:attribute name="props_Id" msdata:AutoIncrement="true" msprop:Generator_UserColumnName="props_Id" msprop:Generator_ColumnPropNameInRow="props_Id" msprop:Generator_ColumnVarNameInTable="columnprops_Id" msprop:Generator_ColumnPropNameInTable="props_IdColumn" type="xs:int" msdata:AllowDBNull="false" use="prohibited" />
+                  <xs:attribute name="co_Id" msprop:Generator_UserColumnName="co_Id" msprop:Generator_ColumnPropNameInRow="co_Id" msprop:Generator_ColumnVarNameInTable="columnco_Id" msprop:Generator_ColumnPropNameInTable="co_IdColumn" type="xs:int" use="prohibited" />
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="rules" msprop:Generator_UserTableName="rules" msprop:Generator_RowDeletedName="rulesRowDeleted" msprop:Generator_RowChangedName="rulesRowChanged" msprop:Generator_RowClassName="rulesRow" msprop:Generator_RowChangingName="rulesRowChanging" msprop:Generator_RowEvArgName="rulesRowChangeEvent" msprop:Generator_RowEvHandlerName="rulesRowChangeEventHandler" msprop:Generator_TableClassName="rulesDataTable" msprop:Generator_TableVarName="tablerules" msprop:Generator_RowDeletingName="rulesRowDeleting" msprop:Generator_TablePropName="rules" minOccurs="0" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="rule" msprop:Generator_UserTableName="rule" msprop:Generator_RowDeletedName="ruleRowDeleted" msprop:Generator_RowChangedName="ruleRowChanged" msprop:Generator_RowClassName="ruleRow" msprop:Generator_RowChangingName="ruleRowChanging" msprop:Generator_RowEvArgName="ruleRowChangeEvent" msprop:Generator_RowEvHandlerName="ruleRowChangeEventHandler" msprop:Generator_TableClassName="ruleDataTable" msprop:Generator_TableVarName="tablerule" msprop:Generator_RowDeletingName="ruleRowDeleting" msprop:Generator_TablePropName="rule" minOccurs="0" maxOccurs="unbounded">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="item" msprop:Generator_UserTableName="item" msprop:Generator_RowDeletedName="itemRowDeleted" msprop:Generator_RowChangedName="itemRowChanged" msprop:Generator_RowClassName="itemRow" msprop:Generator_RowChangingName="itemRowChanging" msprop:Generator_RowEvArgName="itemRowChangeEvent" msprop:Generator_RowEvHandlerName="itemRowChangeEventHandler" msprop:Generator_TableClassName="itemDataTable" msprop:Generator_TableVarName="tableitem" msprop:Generator_RowDeletingName="itemRowDeleting" msprop:Generator_TablePropName="item" minOccurs="0" maxOccurs="unbounded">
+                            <xs:complexType>
+                              <xs:attribute name="result" msprop:Generator_UserColumnName="result" msprop:Generator_ColumnPropNameInRow="result" msprop:Generator_ColumnVarNameInTable="columnresult" msprop:Generator_ColumnPropNameInTable="resultColumn" type="xs:string" />
+                              <xs:attribute name="message" msprop:Generator_UserColumnName="message" msprop:Generator_ColumnPropNameInRow="message" msprop:Generator_ColumnVarNameInTable="columnmessage" msprop:Generator_ColumnPropNameInTable="messageColumn" type="xs:string" />
+                              <xs:attribute name="severity" msprop:Generator_UserColumnName="severity" msprop:Generator_ColumnPropNameInRow="severity" msprop:Generator_ColumnVarNameInTable="columnseverity" msprop:Generator_ColumnPropNameInTable="severityColumn" type="xs:string" />
+                              <xs:attribute name="rule_Id" msprop:Generator_UserColumnName="rule_Id" msprop:Generator_ColumnPropNameInRow="rule_Id" msprop:Generator_ColumnVarNameInTable="columnrule_Id" msprop:Generator_ColumnPropNameInTable="rule_IdColumn" type="xs:int" use="prohibited" />
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                        <xs:attribute name="checks" msprop:Generator_UserColumnName="checks" msprop:Generator_ColumnPropNameInRow="checks" msprop:Generator_ColumnVarNameInTable="columnchecks" msprop:Generator_ColumnPropNameInTable="checksColumn" type="xs:int" />
+                        <xs:attribute name="result" msprop:Generator_UserColumnName="result" msprop:Generator_ColumnPropNameInRow="result" msprop:Generator_ColumnVarNameInTable="columnresult" msprop:Generator_ColumnPropNameInTable="resultColumn" type="xs:string" />
+                        <xs:attribute name="name" msprop:Generator_UserColumnName="name" msprop:Generator_ColumnPropNameInRow="name" msprop:Generator_ColumnVarNameInTable="columnname" msprop:Generator_ColumnPropNameInTable="nameColumn" type="xs:string" />
+                        <xs:attribute name="severity" msprop:Generator_UserColumnName="severity" msprop:Generator_ColumnPropNameInRow="severity" msprop:Generator_ColumnVarNameInTable="columnseverity" msprop:Generator_ColumnPropNameInTable="severityColumn" type="xs:string" />
+                        <xs:attribute name="rule_Id" msdata:AutoIncrement="true" msprop:Generator_UserColumnName="rule_Id" msprop:Generator_ColumnPropNameInRow="rule_Id" msprop:Generator_ColumnVarNameInTable="columnrule_Id" msprop:Generator_ColumnPropNameInTable="rule_IdColumn" type="xs:int" msdata:AllowDBNull="false" use="prohibited" />
+                        <xs:attribute name="rules_Id" msprop:Generator_UserColumnName="rules_Id" msprop:Generator_ColumnPropNameInRow="rules_Id" msprop:Generator_ColumnVarNameInTable="columnrules_Id" msprop:Generator_ColumnPropNameInTable="rules_IdColumn" type="xs:int" use="prohibited" />
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                  <xs:attribute name="rules_Id" msdata:AutoIncrement="true" msprop:Generator_UserColumnName="rules_Id" msprop:Generator_ColumnPropNameInRow="rules_Id" msprop:Generator_ColumnVarNameInTable="columnrules_Id" msprop:Generator_ColumnPropNameInTable="rules_IdColumn" type="xs:int" msdata:AllowDBNull="false" use="prohibited" />
+                  <xs:attribute name="co_Id" msprop:Generator_UserColumnName="co_Id" msprop:Generator_ColumnPropNameInRow="co_Id" msprop:Generator_ColumnVarNameInTable="columnco_Id" msprop:Generator_ColumnPropNameInTable="co_IdColumn" type="xs:int" use="prohibited" />
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+            <xs:attribute name="key" msprop:Generator_UserColumnName="key" msprop:Generator_ColumnPropNameInRow="key" msprop:Generator_ColumnVarNameInTable="columnkey" msprop:Generator_ColumnPropNameInTable="keyColumn" type="xs:int" />
+            <xs:attribute name="co_Id" msdata:AutoIncrement="true" msprop:Generator_UserColumnName="co_Id" msprop:Generator_ColumnPropNameInRow="co_Id" msprop:Generator_ColumnVarNameInTable="columnco_Id" msprop:Generator_ColumnPropNameInTable="co_IdColumn" type="xs:int" msdata:AllowDBNull="false" use="prohibited" />
+            <xs:attribute name="OSLEBot_Id" msprop:Generator_UserColumnName="OSLEBot_Id" msprop:Generator_ColumnPropNameInRow="OSLEBot_Id" msprop:Generator_ColumnVarNameInTable="columnOSLEBot_Id" msprop:Generator_ColumnPropNameInTable="OSLEBot_IdColumn" type="xs:int" use="prohibited" />
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+      <xs:attribute name="version" msprop:Generator_UserColumnName="version" msprop:Generator_ColumnPropNameInRow="version" msprop:Generator_ColumnVarNameInTable="columnversion" msprop:Generator_ColumnPropNameInTable="versionColumn" type="xs:string" />
+      <xs:attribute name="start" msprop:Generator_UserColumnName="start" msprop:Generator_ColumnPropNameInRow="start" msprop:Generator_ColumnVarNameInTable="columnstart" msprop:Generator_ColumnPropNameInTable="startColumn" type="xs:string" />
+      <xs:attribute name="finish" msprop:Generator_UserColumnName="finish" msprop:Generator_ColumnPropNameInRow="finish" msprop:Generator_ColumnVarNameInTable="columnfinish" msprop:Generator_ColumnPropNameInTable="finishColumn" type="xs:string" />
+      <xs:attribute name="OSLEBot_Id" msdata:AutoIncrement="true" msprop:Generator_UserColumnName="OSLEBot_Id" msprop:Generator_ColumnPropNameInRow="OSLEBot_Id" msprop:Generator_ColumnVarNameInTable="columnOSLEBot_Id" msprop:Generator_ColumnPropNameInTable="OSLEBot_IdColumn" type="xs:int" msdata:AllowDBNull="false" use="prohibited" />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="OSLEBotOutputDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_UserDSName="OSLEBotOutputDataSet" msprop:Generator_DataSetName="OSLEBotOutputDataSet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element ref="OSLEBot" />
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="props_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//props" />
+      <xs:field xpath="@props_Id" />
+    </xs:unique>
+    <xs:unique name="rule_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//rule" />
+      <xs:field xpath="@rule_Id" />
+    </xs:unique>
+    <xs:unique name="rules_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//rules" />
+      <xs:field xpath="@rules_Id" />
+    </xs:unique>
+    <xs:unique name="co_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//co" />
+      <xs:field xpath="@co_Id" />
+    </xs:unique>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//OSLEBot" />
+      <xs:field xpath="@OSLEBot_Id" />
+    </xs:unique>
+    <xs:keyref name="OSLEBot_co" refer="Constraint1" msdata:IsNested="true" msprop:rel_Generator_UserRelationName="OSLEBot_co" msprop:rel_Generator_RelationVarName="relationOSLEBot_co" msprop:rel_Generator_UserChildTable="co" msprop:rel_Generator_UserParentTable="OSLEBot" msprop:rel_Generator_ParentPropName="OSLEBotRow" msprop:rel_Generator_ChildPropName="GetcoRows">
+      <xs:selector xpath=".//co" />
+      <xs:field xpath="@OSLEBot_Id" />
+    </xs:keyref>
+    <xs:keyref name="co_rules" refer="co_Constraint1" msdata:IsNested="true" msprop:rel_Generator_UserRelationName="co_rules" msprop:rel_Generator_RelationVarName="relationco_rules" msprop:rel_Generator_UserChildTable="rules" msprop:rel_Generator_UserParentTable="co" msprop:rel_Generator_ParentPropName="coRow" msprop:rel_Generator_ChildPropName="GetrulesRows">
+      <xs:selector xpath=".//rules" />
+      <xs:field xpath="@co_Id" />
+    </xs:keyref>
+    <xs:keyref name="rules_rule" refer="rules_Constraint1" msdata:IsNested="true" msprop:rel_Generator_UserRelationName="rules_rule" msprop:rel_Generator_RelationVarName="relationrules_rule" msprop:rel_Generator_UserChildTable="rule" msprop:rel_Generator_UserParentTable="rules" msprop:rel_Generator_ParentPropName="rulesRow" msprop:rel_Generator_ChildPropName="GetruleRows">
+      <xs:selector xpath=".//rule" />
+      <xs:field xpath="@rules_Id" />
+    </xs:keyref>
+    <xs:keyref name="rule_item" refer="rule_Constraint1" msdata:IsNested="true" msprop:rel_Generator_UserRelationName="rule_item" msprop:rel_Generator_RelationVarName="relationrule_item" msprop:rel_Generator_UserChildTable="item" msprop:rel_Generator_UserParentTable="rule" msprop:rel_Generator_ParentPropName="ruleRow" msprop:rel_Generator_ChildPropName="GetitemRows">
+      <xs:selector xpath=".//item" />
+      <xs:field xpath="@rule_Id" />
+    </xs:keyref>
+    <xs:keyref name="co_props" refer="co_Constraint1" msdata:IsNested="true" msprop:rel_Generator_UserRelationName="co_props" msprop:rel_Generator_RelationVarName="relationco_props" msprop:rel_Generator_UserChildTable="props" msprop:rel_Generator_UserParentTable="co" msprop:rel_Generator_ParentPropName="coRow" msprop:rel_Generator_ChildPropName="GetpropsRows">
+      <xs:selector xpath=".//props" />
+      <xs:field xpath="@co_Id" />
+    </xs:keyref>
+    <xs:keyref name="props_property" refer="props_Constraint1" msdata:IsNested="true" msprop:rel_Generator_UserRelationName="props_property" msprop:rel_Generator_RelationVarName="relationprops_property" msprop:rel_Generator_UserChildTable="property" msprop:rel_Generator_UserParentTable="props" msprop:rel_Generator_ParentPropName="propsRow" msprop:rel_Generator_ChildPropName="GetpropertyRows">
+      <xs:selector xpath=".//property" />
+      <xs:field xpath="@props_Id" />
+    </xs:keyref>
+  </xs:element>
+</xs:schema>

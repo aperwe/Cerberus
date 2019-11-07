@@ -1,0 +1,243 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="CheckConfiguration" targetNamespace="http://gęś.microsoft.com/CheckConfiguration.xsd" xmlns:mstns="http://gęś.microsoft.com/CheckConfiguration.xsd" xmlns="http://gęś.microsoft.com/CheckConfiguration.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="CheckConfiguration" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_UserDSName="CheckConfiguration" msprop:Generator_DataSetName="CheckConfiguration" msprop:EnableTableAdapterManager="true">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="Checks" msprop:Generator_UserTableName="Checks" msprop:Generator_RowDeletedName="ChecksRowDeleted" msprop:Generator_RowChangedName="ChecksRowChanged" msprop:Generator_RowClassName="ChecksRow" msprop:Generator_RowChangingName="ChecksRowChanging" msprop:Generator_RowEvArgName="ChecksRowChangeEvent" msprop:Generator_RowEvHandlerName="ChecksRowChangeEventHandler" msprop:Generator_TableClassName="ChecksDataTable" msprop:Generator_TableVarName="tableChecks" msprop:Generator_RowDeletingName="ChecksRowDeleting" msprop:Generator_TablePropName="Checks">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ID" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_UserColumnName="ID" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" type="xs:int" />
+              <xs:element name="Name" msprop:Generator_UserColumnName="Name" msprop:Generator_ColumnVarNameInTable="columnName" msprop:Generator_ColumnPropNameInRow="Name" msprop:Generator_ColumnPropNameInTable="NameColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="Description" msprop:Generator_UserColumnName="Description" msprop:Generator_ColumnPropNameInRow="Description" msprop:Generator_ColumnVarNameInTable="columnDescription" msprop:Generator_ColumnPropNameInTable="DescriptionColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="FilePath" msprop:Generator_UserColumnName="FilePath" msprop:Generator_ColumnVarNameInTable="columnFilePath" msprop:Generator_ColumnPropNameInRow="FilePath" msprop:Generator_ColumnPropNameInTable="FilePathColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="Comments" msprop:Generator_UserColumnName="Comments" msprop:Generator_ColumnPropNameInRow="Comments" msprop:Generator_ColumnVarNameInTable="columnComments" msprop:Generator_ColumnPropNameInTable="CommentsColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="Owners" msprop:Generator_UserColumnName="Owners" msprop:Generator_ColumnPropNameInRow="Owners" msprop:Generator_ColumnVarNameInTable="columnOwners" msprop:Generator_ColumnPropNameInTable="OwnersColumn" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Languages" msprop:Generator_UserTableName="Languages" msprop:Generator_RowDeletedName="LanguagesRowDeleted" msprop:Generator_RowChangedName="LanguagesRowChanged" msprop:Generator_RowClassName="LanguagesRow" msprop:Generator_RowChangingName="LanguagesRowChanging" msprop:Generator_RowEvArgName="LanguagesRowChangeEvent" msprop:Generator_RowEvHandlerName="LanguagesRowChangeEventHandler" msprop:Generator_TableClassName="LanguagesDataTable" msprop:Generator_TableVarName="tableLanguages" msprop:Generator_RowDeletingName="LanguagesRowDeleting" msprop:Generator_TablePropName="Languages">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ID" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_UserColumnName="ID" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" type="xs:int" />
+              <xs:element name="Name" msprop:Generator_UserColumnName="Name" msprop:Generator_ColumnVarNameInTable="columnName" msprop:Generator_ColumnPropNameInRow="Name" msprop:Generator_ColumnPropNameInTable="NameColumn" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Projects" msprop:Generator_UserTableName="Projects" msprop:Generator_RowDeletedName="ProjectsRowDeleted" msprop:Generator_RowChangedName="ProjectsRowChanged" msprop:Generator_RowClassName="ProjectsRow" msprop:Generator_RowChangingName="ProjectsRowChanging" msprop:Generator_RowEvArgName="ProjectsRowChangeEvent" msprop:Generator_RowEvHandlerName="ProjectsRowChangeEventHandler" msprop:Generator_TableClassName="ProjectsDataTable" msprop:Generator_TableVarName="tableProjects" msprop:Generator_RowDeletingName="ProjectsRowDeleting" msprop:Generator_TablePropName="Projects">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ID" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_UserColumnName="ID" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" type="xs:int" />
+              <xs:element name="Name" msprop:Generator_UserColumnName="Name" msprop:Generator_ColumnVarNameInTable="columnName" msprop:Generator_ColumnPropNameInRow="Name" msprop:Generator_ColumnPropNameInTable="NameColumn" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="LocGroups" msprop:Generator_UserTableName="LocGroups" msprop:Generator_RowDeletedName="LocGroupsRowDeleted" msprop:Generator_RowChangedName="LocGroupsRowChanged" msprop:Generator_RowClassName="LocGroupsRow" msprop:Generator_RowChangingName="LocGroupsRowChanging" msprop:Generator_RowEvArgName="LocGroupsRowChangeEvent" msprop:Generator_RowEvHandlerName="LocGroupsRowChangeEventHandler" msprop:Generator_TableClassName="LocGroupsDataTable" msprop:Generator_TableVarName="tableLocGroups" msprop:Generator_RowDeletingName="LocGroupsRowDeleting" msprop:Generator_TablePropName="LocGroups">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ID" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_UserColumnName="ID" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" type="xs:int" />
+              <xs:element name="Name" msprop:Generator_UserColumnName="Name" msprop:Generator_ColumnVarNameInTable="columnName" msprop:Generator_ColumnPropNameInRow="Name" msprop:Generator_ColumnPropNameInTable="NameColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="ProjectID" msprop:Generator_UserColumnName="ProjectID" msprop:Generator_ColumnVarNameInTable="columnProjectID" msprop:Generator_ColumnPropNameInRow="ProjectID" msprop:Generator_ColumnPropNameInTable="ProjectIDColumn" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="ConfigItems" msprop:Generator_UserTableName="ConfigItems" msprop:Generator_RowDeletedName="ConfigItemsRowDeleted" msprop:Generator_RowChangedName="ConfigItemsRowChanged" msprop:Generator_RowClassName="ConfigItemsRow" msprop:Generator_RowChangingName="ConfigItemsRowChanging" msprop:Generator_RowEvArgName="ConfigItemsRowChangeEvent" msprop:Generator_RowEvHandlerName="ConfigItemsRowChangeEventHandler" msprop:Generator_TableClassName="ConfigItemsDataTable" msprop:Generator_TableVarName="tableConfigItems" msprop:Generator_RowDeletingName="ConfigItemsRowDeleting" msprop:Generator_TablePropName="ConfigItems">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ID" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_UserColumnName="ID" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" type="xs:int" />
+              <xs:element name="LanguageID" msprop:Generator_UserColumnName="LanguageID" msprop:Generator_ColumnVarNameInTable="columnLanguageID" msprop:Generator_ColumnPropNameInRow="LanguageID" msprop:Generator_ColumnPropNameInTable="LanguageIDColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="CheckID" msprop:Generator_UserColumnName="CheckID" msprop:Generator_ColumnVarNameInTable="columnCheckID" msprop:Generator_ColumnPropNameInRow="CheckID" msprop:Generator_ColumnPropNameInTable="CheckIDColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="LocGroupID" msprop:Generator_UserColumnName="LocGroupID" msprop:Generator_ColumnVarNameInTable="columnLocGroupID" msprop:Generator_ColumnPropNameInRow="LocGroupID" msprop:Generator_ColumnPropNameInTable="LocGroupIDColumn" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Tags" msprop:Generator_UserTableName="Tags" msprop:Generator_RowDeletedName="TagsRowDeleted" msprop:Generator_RowChangedName="TagsRowChanged" msprop:Generator_RowClassName="TagsRow" msprop:Generator_RowChangingName="TagsRowChanging" msprop:Generator_RowEvArgName="TagsRowChangeEvent" msprop:Generator_RowEvHandlerName="TagsRowChangeEventHandler" msprop:Generator_TableClassName="TagsDataTable" msprop:Generator_TableVarName="tableTags" msprop:Generator_RowDeletingName="TagsRowDeleting" msprop:Generator_TablePropName="Tags">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ID" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_UserColumnName="ID" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" type="xs:int" />
+              <xs:element name="Tag" msprop:Generator_UserColumnName="Tag" msprop:Generator_ColumnVarNameInTable="columnTag" msprop:Generator_ColumnPropNameInRow="Tag" msprop:Generator_ColumnPropNameInTable="TagColumn" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="LanguageTags" msprop:Generator_UserTableName="LanguageTags" msprop:Generator_RowDeletedName="LanguageTagsRowDeleted" msprop:Generator_RowChangedName="LanguageTagsRowChanged" msprop:Generator_RowClassName="LanguageTagsRow" msprop:Generator_RowChangingName="LanguageTagsRowChanging" msprop:Generator_RowEvArgName="LanguageTagsRowChangeEvent" msprop:Generator_RowEvHandlerName="LanguageTagsRowChangeEventHandler" msprop:Generator_TableClassName="LanguageTagsDataTable" msprop:Generator_TableVarName="tableLanguageTags" msprop:Generator_RowDeletingName="LanguageTagsRowDeleting" msprop:Generator_TablePropName="LanguageTags">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ID" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_UserColumnName="ID" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" type="xs:int" />
+              <xs:element name="LanguageID" msprop:Generator_UserColumnName="LanguageID" msprop:Generator_ColumnVarNameInTable="columnLanguageID" msprop:Generator_ColumnPropNameInRow="LanguageID" msprop:Generator_ColumnPropNameInTable="LanguageIDColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="TagID" msprop:Generator_UserColumnName="TagID" msprop:Generator_ColumnVarNameInTable="columnTagID" msprop:Generator_ColumnPropNameInRow="TagID" msprop:Generator_ColumnPropNameInTable="TagIDColumn" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="CheckTags" msprop:Generator_UserTableName="CheckTags" msprop:Generator_RowDeletedName="CheckTagsRowDeleted" msprop:Generator_RowChangedName="CheckTagsRowChanged" msprop:Generator_RowClassName="CheckTagsRow" msprop:Generator_RowChangingName="CheckTagsRowChanging" msprop:Generator_RowEvArgName="CheckTagsRowChangeEvent" msprop:Generator_RowEvHandlerName="CheckTagsRowChangeEventHandler" msprop:Generator_TableClassName="CheckTagsDataTable" msprop:Generator_TableVarName="tableCheckTags" msprop:Generator_RowDeletingName="CheckTagsRowDeleting" msprop:Generator_TablePropName="CheckTags">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ID" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_UserColumnName="ID" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" type="xs:int" />
+              <xs:element name="CheckID" msprop:Generator_UserColumnName="CheckID" msprop:Generator_ColumnVarNameInTable="columnCheckID" msprop:Generator_ColumnPropNameInRow="CheckID" msprop:Generator_ColumnPropNameInTable="CheckIDColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="TagID" msprop:Generator_UserColumnName="TagID" msprop:Generator_ColumnVarNameInTable="columnTagID" msprop:Generator_ColumnPropNameInRow="TagID" msprop:Generator_ColumnPropNameInTable="TagIDColumn" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="ProjectTags" msprop:Generator_UserTableName="ProjectTags" msprop:Generator_RowDeletedName="ProjectTagsRowDeleted" msprop:Generator_RowChangedName="ProjectTagsRowChanged" msprop:Generator_RowClassName="ProjectTagsRow" msprop:Generator_RowChangingName="ProjectTagsRowChanging" msprop:Generator_RowEvArgName="ProjectTagsRowChangeEvent" msprop:Generator_RowEvHandlerName="ProjectTagsRowChangeEventHandler" msprop:Generator_TableClassName="ProjectTagsDataTable" msprop:Generator_TableVarName="tableProjectTags" msprop:Generator_RowDeletingName="ProjectTagsRowDeleting" msprop:Generator_TablePropName="ProjectTags">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ID" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_UserColumnName="ID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInTable="IDColumn" type="xs:int" />
+              <xs:element name="ProjectID" msprop:Generator_UserColumnName="ProjectID" msprop:Generator_ColumnPropNameInRow="ProjectID" msprop:Generator_ColumnVarNameInTable="columnProjectID" msprop:Generator_ColumnPropNameInTable="ProjectIDColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="TagID" msprop:Generator_UserColumnName="TagID" msprop:Generator_ColumnPropNameInRow="TagID" msprop:Generator_ColumnVarNameInTable="columnTagID" msprop:Generator_ColumnPropNameInTable="TagIDColumn" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="LanguageChecks" msprop:Generator_UserTableName="LanguageChecks" msprop:Generator_RowDeletedName="LanguageChecksRowDeleted" msprop:Generator_RowChangedName="LanguageChecksRowChanged" msprop:Generator_RowClassName="LanguageChecksRow" msprop:Generator_RowChangingName="LanguageChecksRowChanging" msprop:Generator_RowEvArgName="LanguageChecksRowChangeEvent" msprop:Generator_RowEvHandlerName="LanguageChecksRowChangeEventHandler" msprop:Generator_TableClassName="LanguageChecksDataTable" msprop:Generator_TableVarName="tableLanguageChecks" msprop:Generator_RowDeletingName="LanguageChecksRowDeleting" msprop:Generator_TablePropName="LanguageChecks">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ID" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_UserColumnName="ID" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" type="xs:int" />
+              <xs:element name="CheckID" msprop:Generator_UserColumnName="CheckID" msprop:Generator_ColumnVarNameInTable="columnCheckID" msprop:Generator_ColumnPropNameInRow="CheckID" msprop:Generator_ColumnPropNameInTable="CheckIDColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="LanguageID" msprop:Generator_UserColumnName="LanguageID" msprop:Generator_ColumnVarNameInTable="columnLanguageID" msprop:Generator_ColumnPropNameInRow="LanguageID" msprop:Generator_ColumnPropNameInTable="LanguageIDColumn" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="ProjectChecks" msprop:Generator_UserTableName="ProjectChecks" msprop:Generator_RowDeletedName="ProjectChecksRowDeleted" msprop:Generator_RowChangedName="ProjectChecksRowChanged" msprop:Generator_RowClassName="ProjectChecksRow" msprop:Generator_RowChangingName="ProjectChecksRowChanging" msprop:Generator_RowEvArgName="ProjectChecksRowChangeEvent" msprop:Generator_RowEvHandlerName="ProjectChecksRowChangeEventHandler" msprop:Generator_TableClassName="ProjectChecksDataTable" msprop:Generator_TableVarName="tableProjectChecks" msprop:Generator_RowDeletingName="ProjectChecksRowDeleting" msprop:Generator_TablePropName="ProjectChecks">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ID" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_UserColumnName="ID" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" type="xs:int" />
+              <xs:element name="CheckID" msprop:Generator_UserColumnName="CheckID" msprop:Generator_ColumnVarNameInTable="columnCheckID" msprop:Generator_ColumnPropNameInRow="CheckID" msprop:Generator_ColumnPropNameInTable="CheckIDColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="ProjectID" msprop:Generator_UserColumnName="ProjectID" msprop:Generator_ColumnVarNameInTable="columnProjectID" msprop:Generator_ColumnPropNameInRow="ProjectID" msprop:Generator_ColumnPropNameInTable="ProjectIDColumn" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="TagChecks" msprop:Generator_UserTableName="TagChecks" msprop:Generator_RowDeletedName="TagChecksRowDeleted" msprop:Generator_RowChangedName="TagChecksRowChanged" msprop:Generator_RowClassName="TagChecksRow" msprop:Generator_RowChangingName="TagChecksRowChanging" msprop:Generator_RowEvArgName="TagChecksRowChangeEvent" msprop:Generator_RowEvHandlerName="TagChecksRowChangeEventHandler" msprop:Generator_TableClassName="TagChecksDataTable" msprop:Generator_TableVarName="tableTagChecks" msprop:Generator_RowDeletingName="TagChecksRowDeleting" msprop:Generator_TablePropName="TagChecks">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ID" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_UserColumnName="ID" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" type="xs:int" />
+              <xs:element name="CheckID" msprop:Generator_UserColumnName="CheckID" msprop:Generator_ColumnVarNameInTable="columnCheckID" msprop:Generator_ColumnPropNameInRow="CheckID" msprop:Generator_ColumnPropNameInTable="CheckIDColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="TagID" msprop:Generator_UserColumnName="TagID" msprop:Generator_ColumnVarNameInTable="columnTagID" msprop:Generator_ColumnPropNameInRow="TagID" msprop:Generator_ColumnPropNameInTable="TagIDColumn" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint2">
+      <xs:selector xpath=".//mstns:Checks" />
+      <xs:field xpath="mstns:Name" />
+    </xs:unique>
+    <xs:unique name="PrimaryKeyChecks" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:Checks" />
+      <xs:field xpath="mstns:ID" />
+    </xs:unique>
+    <xs:unique name="PrimaryKeyLanguages" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:Languages" />
+      <xs:field xpath="mstns:ID" />
+    </xs:unique>
+    <xs:unique name="UniqueLanguageNameConstraint">
+      <xs:selector xpath=".//mstns:Languages" />
+      <xs:field xpath="mstns:Name" />
+    </xs:unique>
+    <xs:unique name="PrimaryKeyProjects" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:Projects" />
+      <xs:field xpath="mstns:ID" />
+    </xs:unique>
+    <xs:unique name="PrimaryKeyLocGroups" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:LocGroups" />
+      <xs:field xpath="mstns:ID" />
+    </xs:unique>
+    <xs:unique name="PrimaryKeyCheckItems" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:ConfigItems" />
+      <xs:field xpath="mstns:ID" />
+    </xs:unique>
+    <xs:unique name="UniqueKeyConfigItem">
+      <xs:selector xpath=".//mstns:ConfigItems" />
+      <xs:field xpath="mstns:LanguageID" />
+      <xs:field xpath="mstns:CheckID" />
+      <xs:field xpath="mstns:LocGroupID" />
+    </xs:unique>
+    <xs:unique name="PrimaryKeyTags" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:Tags" />
+      <xs:field xpath="mstns:ID" />
+    </xs:unique>
+    <xs:unique name="UniqueTagConstraint">
+      <xs:selector xpath=".//mstns:Tags" />
+      <xs:field xpath="mstns:Tag" />
+    </xs:unique>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:LanguageTags" />
+      <xs:field xpath="mstns:ID" />
+    </xs:unique>
+    <xs:unique name="UniqueLanguageTagConstraint">
+      <xs:selector xpath=".//mstns:LanguageTags" />
+      <xs:field xpath="mstns:LanguageID" />
+      <xs:field xpath="mstns:TagID" />
+    </xs:unique>
+    <xs:unique name="CheckTags_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:CheckTags" />
+      <xs:field xpath="mstns:ID" />
+    </xs:unique>
+    <xs:unique name="UniqueCheckTagConstraint">
+      <xs:selector xpath=".//mstns:CheckTags" />
+      <xs:field xpath="mstns:CheckID" />
+      <xs:field xpath="mstns:TagID" />
+    </xs:unique>
+    <xs:unique name="ProjectTags_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:ProjectTags" />
+      <xs:field xpath="mstns:ID" />
+    </xs:unique>
+    <xs:unique name="UniqueProjectTagConstraint">
+      <xs:selector xpath=".//mstns:ProjectTags" />
+      <xs:field xpath="mstns:ProjectID" />
+      <xs:field xpath="mstns:TagID" />
+    </xs:unique>
+    <xs:unique name="LanguageChecks_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:LanguageChecks" />
+      <xs:field xpath="mstns:ID" />
+    </xs:unique>
+    <xs:unique name="UniqueCheckLanguageCombinationConstraint">
+      <xs:selector xpath=".//mstns:LanguageChecks" />
+      <xs:field xpath="mstns:CheckID" />
+      <xs:field xpath="mstns:LanguageID" />
+    </xs:unique>
+    <xs:unique name="ProjectChecks_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:ProjectChecks" />
+      <xs:field xpath="mstns:ID" />
+    </xs:unique>
+    <xs:unique name="UniqueCheckProjectConstraint">
+      <xs:selector xpath=".//mstns:ProjectChecks" />
+      <xs:field xpath="mstns:CheckID" />
+      <xs:field xpath="mstns:ProjectID" />
+    </xs:unique>
+    <xs:unique name="TagChecks_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:TagChecks" />
+      <xs:field xpath="mstns:ID" />
+    </xs:unique>
+    <xs:unique name="TagChecks_UniqueCheckTagConstraint" msdata:ConstraintName="UniqueCheckTagConstraint">
+      <xs:selector xpath=".//mstns:TagChecks" />
+      <xs:field xpath="mstns:CheckID" />
+      <xs:field xpath="mstns:TagID" />
+    </xs:unique>
+  </xs:element>
+  <xs:annotation>
+    <xs:appinfo>
+      <msdata:Relationship name="Languages_LanguageChecks" msdata:parent="Languages" msdata:child="ConfigItems" msdata:parentkey="ID" msdata:childkey="LanguageID" msprop:Generator_UserRelationName="Languages_LanguageChecks" msprop:Generator_RelationVarName="relationLanguages_LanguageChecks" msprop:Generator_UserChildTable="ConfigItems" msprop:Generator_UserParentTable="Languages" msprop:Generator_ParentPropName="LanguagesRow" msprop:Generator_ChildPropName="GetConfigItemsRows" />
+      <msdata:Relationship name="Checks_LanguageChecks" msdata:parent="Checks" msdata:child="ConfigItems" msdata:parentkey="ID" msdata:childkey="CheckID" msprop:Generator_UserRelationName="Checks_LanguageChecks" msprop:Generator_RelationVarName="relationChecks_LanguageChecks" msprop:Generator_UserChildTable="ConfigItems" msprop:Generator_UserParentTable="Checks" msprop:Generator_ParentPropName="ChecksRow" msprop:Generator_ChildPropName="GetConfigItemsRows" />
+      <msdata:Relationship name="Projects_LocGroups" msdata:parent="Projects" msdata:child="LocGroups" msdata:parentkey="ID" msdata:childkey="ProjectID" msprop:Generator_UserRelationName="Projects_LocGroups" msprop:Generator_RelationVarName="relationProjects_LocGroups" msprop:Generator_UserChildTable="LocGroups" msprop:Generator_UserParentTable="Projects" msprop:Generator_ParentPropName="ProjectsRow" msprop:Generator_ChildPropName="GetLocGroupsRows" />
+      <msdata:Relationship name="LocGroups_LanguageChecks" msdata:parent="LocGroups" msdata:child="ConfigItems" msdata:parentkey="ID" msdata:childkey="LocGroupID" msprop:Generator_UserRelationName="LocGroups_LanguageChecks" msprop:Generator_RelationVarName="relationLocGroups_LanguageChecks" msprop:Generator_UserChildTable="ConfigItems" msprop:Generator_UserParentTable="LocGroups" msprop:Generator_ParentPropName="LocGroupsRow" msprop:Generator_ChildPropName="GetConfigItemsRows" />
+      <msdata:Relationship name="Languages_LanguageTags" msdata:parent="Languages" msdata:child="LanguageTags" msdata:parentkey="ID" msdata:childkey="LanguageID" msprop:Generator_UserRelationName="Languages_LanguageTags" msprop:Generator_RelationVarName="relationLanguages_LanguageTags" msprop:Generator_UserChildTable="LanguageTags" msprop:Generator_UserParentTable="Languages" msprop:Generator_ParentPropName="LanguagesRow" msprop:Generator_ChildPropName="GetLanguageTagsRows" />
+      <msdata:Relationship name="Tags_LanguageTags" msdata:parent="Tags" msdata:child="LanguageTags" msdata:parentkey="ID" msdata:childkey="TagID" msprop:Generator_UserRelationName="Tags_LanguageTags" msprop:Generator_RelationVarName="relationTags_LanguageTags" msprop:Generator_UserChildTable="LanguageTags" msprop:Generator_UserParentTable="Tags" msprop:Generator_ParentPropName="TagsRow" msprop:Generator_ChildPropName="GetLanguageTagsRows" />
+      <msdata:Relationship name="Checks_CheckTags" msdata:parent="Checks" msdata:child="CheckTags" msdata:parentkey="ID" msdata:childkey="CheckID" msprop:Generator_UserRelationName="Checks_CheckTags" msprop:Generator_RelationVarName="relationChecks_CheckTags" msprop:Generator_UserChildTable="CheckTags" msprop:Generator_UserParentTable="Checks" msprop:Generator_ParentPropName="ChecksRow" msprop:Generator_ChildPropName="GetCheckTagsRows" />
+      <msdata:Relationship name="Tags_CheckTags" msdata:parent="Tags" msdata:child="CheckTags" msdata:parentkey="ID" msdata:childkey="TagID" msprop:Generator_UserRelationName="Tags_CheckTags" msprop:Generator_RelationVarName="relationTags_CheckTags" msprop:Generator_UserChildTable="CheckTags" msprop:Generator_UserParentTable="Tags" msprop:Generator_ParentPropName="TagsRow" msprop:Generator_ChildPropName="GetCheckTagsRows" />
+      <msdata:Relationship name="Projects_ProjectTags" msdata:parent="Projects" msdata:child="ProjectTags" msdata:parentkey="ID" msdata:childkey="ProjectID" msprop:Generator_UserRelationName="Projects_ProjectTags" msprop:Generator_RelationVarName="relationProjects_ProjectTags" msprop:Generator_UserChildTable="ProjectTags" msprop:Generator_UserParentTable="Projects" msprop:Generator_ParentPropName="ProjectsRow" msprop:Generator_ChildPropName="GetProjectTagsRows" />
+      <msdata:Relationship name="Tags_ProjectTags" msdata:parent="Tags" msdata:child="ProjectTags" msdata:parentkey="ID" msdata:childkey="TagID" msprop:Generator_UserRelationName="Tags_ProjectTags" msprop:Generator_RelationVarName="relationTags_ProjectTags" msprop:Generator_UserChildTable="ProjectTags" msprop:Generator_UserParentTable="Tags" msprop:Generator_ParentPropName="TagsRow" msprop:Generator_ChildPropName="GetProjectTagsRows" />
+      <msdata:Relationship name="Checks_LanguageChecks1" msdata:parent="Checks" msdata:child="LanguageChecks" msdata:parentkey="ID" msdata:childkey="CheckID" msprop:Generator_UserRelationName="Checks_LanguageChecks1" msprop:Generator_RelationVarName="relationChecks_LanguageChecks1" msprop:Generator_UserChildTable="LanguageChecks" msprop:Generator_UserParentTable="Checks" msprop:Generator_ParentPropName="ChecksRow" msprop:Generator_ChildPropName="GetLanguageChecksRows" />
+      <msdata:Relationship name="Languages_LanguageChecks1" msdata:parent="Languages" msdata:child="LanguageChecks" msdata:parentkey="ID" msdata:childkey="LanguageID" msprop:Generator_UserRelationName="Languages_LanguageChecks1" msprop:Generator_RelationVarName="relationLanguages_LanguageChecks1" msprop:Generator_UserChildTable="LanguageChecks" msprop:Generator_UserParentTable="Languages" msprop:Generator_ParentPropName="LanguagesRow" msprop:Generator_ChildPropName="GetLanguageChecksRows" />
+      <msdata:Relationship name="Checks_ProjectChecks" msdata:parent="Checks" msdata:child="ProjectChecks" msdata:parentkey="ID" msdata:childkey="CheckID" msprop:Generator_UserRelationName="Checks_ProjectChecks" msprop:Generator_RelationVarName="relationChecks_ProjectChecks" msprop:Generator_UserChildTable="ProjectChecks" msprop:Generator_UserParentTable="Checks" msprop:Generator_ParentPropName="ChecksRow" msprop:Generator_ChildPropName="GetProjectChecksRows" />
+      <msdata:Relationship name="Projects_ProjectChecks" msdata:parent="Projects" msdata:child="ProjectChecks" msdata:parentkey="ID" msdata:childkey="ProjectID" msprop:Generator_UserRelationName="Projects_ProjectChecks" msprop:Generator_RelationVarName="relationProjects_ProjectChecks" msprop:Generator_UserChildTable="ProjectChecks" msprop:Generator_UserParentTable="Projects" msprop:Generator_ParentPropName="ProjectsRow" msprop:Generator_ChildPropName="GetProjectChecksRows" />
+      <msdata:Relationship name="Checks_TagChecks" msdata:parent="Checks" msdata:child="TagChecks" msdata:parentkey="ID" msdata:childkey="CheckID" msprop:Generator_UserRelationName="Checks_TagChecks" msprop:Generator_RelationVarName="relationChecks_TagChecks" msprop:Generator_UserChildTable="TagChecks" msprop:Generator_UserParentTable="Checks" msprop:Generator_ParentPropName="ChecksRow" msprop:Generator_ChildPropName="GetTagChecksRows" />
+      <msdata:Relationship name="Tags_TagChecks" msdata:parent="Tags" msdata:child="TagChecks" msdata:parentkey="ID" msdata:childkey="TagID" msprop:Generator_UserRelationName="Tags_TagChecks" msprop:Generator_RelationVarName="relationTags_TagChecks" msprop:Generator_UserChildTable="TagChecks" msprop:Generator_UserParentTable="Tags" msprop:Generator_ParentPropName="TagsRow" msprop:Generator_ChildPropName="GetTagChecksRows" />
+    </xs:appinfo>
+  </xs:annotation>
+</xs:schema>

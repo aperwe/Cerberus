@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Dictionary>
+  <Words>
+    <Unrecognized>
+      <Word>words that you don't recognize</Word>
+    </Unrecognized>
+    <Recognized>
+      <Word>words that you do recognize</Word>
+      <Word>Asimo</Word>
+      <Word>configurator</Word>
+    </Recognized>
+    <Deprecated>
+      <Term PreferredAlternate="Asimo">OSLEBot</Term>
+    </Deprecated>
+  </Words>
+  <Acronyms>
+    <CasingExceptions>
+      <Acronym>Lcx</Acronym>
+      <Acronym>Lcl</Acronym>
+      <Acronym>PSDB</Acronym>
+      <Acronym>PS</Acronym>
+      <Acronym>ps</Acronym>
+    </CasingExceptions>
+  </Acronyms>
+</Dictionary>

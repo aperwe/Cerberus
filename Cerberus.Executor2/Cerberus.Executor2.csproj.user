@@ -1,0 +1,6 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="Current">
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <StartArguments>-config=c:\Office\dev14\otools\bin\intl\Cerberus\Configuration.xml -response=c:\Office\Build\intl\OSLEBotUpdate\OSLEBotFileList.txt -output=c:\Office\Build\intl\OSLEBotUpdate\Run2Output.xml</StartArguments>
+    <StartWorkingDirectory>C:\Office\dev14\otools\bin\intl\Cerberus</StartWorkingDirectory>
+  </PropertyGroup>
+</Project>

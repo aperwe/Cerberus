@@ -1,0 +1,77 @@
+﻿<Application x:Class="Microsoft.Localization.LocSolutions.Cerberus.LogViewer.CerberusViewerApplication"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:xcdg="http://schemas.xceed.com/wpf/xaml/datagrid"
+    xmlns:local="clr-namespace:Microsoft.Localization.LocSolutions.Cerberus.LogViewer"
+    StartupUri="MainWindow.xaml">
+    <Application.Resources>
+
+        <Style x:Key="PB" TargetType="ProgressBar">
+            <Setter Property="Value">
+                <Setter.Value>
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetProperty="Value" From="0" To="1" Duration="0:0:10" RepeatBehavior="0:0:30">
+                            </DoubleAnimation>
+                        </Storyboard>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        
+        <!-- New view introduced in Xceed DataGrid 3.5. -->
+        <xcdg:TableflowView x:Key="tableFlowView" AreGroupsFlattened="True">
+            <xcdg:TableflowView.Theme>
+                <xcdg:WMP11Theme/>
+            </xcdg:TableflowView.Theme>
+        </xcdg:TableflowView>
+
+
+        <xcdg:TableView x:Key="tableView" ShowScrollTip="True">
+            <xcdg:TableView.Theme>
+                <xcdg:GlassTheme />
+            </xcdg:TableView.Theme>
+        </xcdg:TableView>
+
+        <xcdg:CompactCardView x:Key="compactCardView" ShowScrollTip="True">
+            <xcdg:CompactCardView.Theme>
+                <xcdg:GlassTheme/>
+            </xcdg:CompactCardView.Theme>
+        </xcdg:CompactCardView>
+        
+        <!-- We use this template to display configure cells in these columns that may contain very long strings, so that they displyay a tooltip.
+             The tooltip has the same content as the cell, so that the user can see the whole contents of the cell by hovering over it. -->
+        <DataTemplate x:Key="cellWithToolTip">
+            <TextBlock Text="{Binding Path=.}">
+                <TextBlock.ToolTip>
+				<StackPanel>
+				<TextBlock FontWeight="Bold" Foreground="#FFA2E812">
+					<TextBlock.Background>
+						<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+							<GradientStop Color="#FF262525" Offset="0"/>
+							<GradientStop Color="#FF720000" Offset="1"/>
+						</LinearGradientBrush>
+					</TextBlock.Background>Full content</TextBlock>
+                    <TextBlock MaxWidth="800" Text="{Binding Path=.}">
+                    	<TextBlock.Background>
+                    		<RadialGradientBrush>
+                    			<GradientStop Color="#FF0AE841"/>
+                    			<GradientStop Color="#FFE3E9F6" Offset="1"/>
+                    		</RadialGradientBrush>
+                    	</TextBlock.Background>
+                    </TextBlock>
+					
+					</StackPanel>
+                </TextBlock.ToolTip>
+            </TextBlock>
+        </DataTemplate>
+        
+        <!-- Progress indicator while OSLEBot output xml file is being loaded. This is shown to the user in the status bar to indicate that the program has not stopped responding.  -->
+        <DoubleAnimation x:Key="progress" From="0" To="1" Duration="0:0:5" RepeatBehavior="0:1:00"/>
+        
+        <!-- Progress bar for loading the new file. -->
+        <ProgressBar x:Key="loaderProgressBar" Width="200" Margin="5 1 5 1" Minimum="0" Maximum="1" Value="1"/>
+        
+        <!-- Progress stuff on a progress bar. -->
+        <StackPanel x:Key="BindingInProgress" Orientation="Horizontal"/>
+
+    </Application.Resources>
+</Application>

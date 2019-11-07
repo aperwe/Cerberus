@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="FastTrack">
+  <DataContextMoniker Name="/FastTrackDataContext" />
+  <nestedChildShapes>
+    <classShape Id="65d23f03-7fff-4ed9-b14d-395780ba3df2" absoluteBounds="0.75, 0.75, 2, 1.26050048828125">
+      <DataClassMoniker Name="/FastTrackDataContext/Run" />
+      <nestedChildShapes>
+        <elementListCompartment Id="7d280f36-3ce6-4919-844a-c3e55def2cc6" absoluteBounds="0.765, 1.21, 1.9700000000000002, 0.70050048828125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="6011520d-0e6d-4b9b-ab3d-8ec38a7c88ec" absoluteBounds="3.75, 0.75, 2, 1.4248478190104166">
+      <DataClassMoniker Name="/FastTrackDataContext/strResult" />
+      <nestedChildShapes>
+        <elementListCompartment Id="e3430fde-5216-4058-ac18-c0854674731b" absoluteBounds="3.765, 1.21, 1.9700000000000002, 0.86484781901041674" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="534a0e24-bc8b-4648-9e54-960d6b61fefe" absoluteBounds="0.75, 3.75, 2, 2.4109318033854166">
+      <DataClassMoniker Name="/FastTrackDataContext/strInfo" />
+      <nestedChildShapes>
+        <elementListCompartment Id="423535b0-c2af-48ff-8e4b-b2b3f7bdf62c" absoluteBounds="0.765, 4.21, 1.9700000000000002, 1.8509318033854165" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

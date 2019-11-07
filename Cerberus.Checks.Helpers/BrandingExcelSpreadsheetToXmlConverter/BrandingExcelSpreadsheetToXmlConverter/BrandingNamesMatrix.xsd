@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="BrandingNamesMatrix" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="http://tempuri.org/BrandingNamesMatrix.xsd"
+           elementFormDefault="qualified"
+           xmlns:bn="http://tempuri.org/BrandingNamesMatrix.xsd">
+  <xs:simpleType name="BrandingNameValue">
+    <xs:annotation>
+      <xs:documentation>Branding name value must contain at least one letter</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:pattern value=".*?[A-Za-z].*"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="BrandingNamesMatrix">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="BrandingName" minOccurs="0" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="LocalizedBrandingName" minOccurs="0" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:attribute name="Culture" type="xs:string" use="required" />
+                  <xs:attribute name="Translation" type="bn:BrandingNameValue" use="required"/>
+                  <xs:attribute name="RegularExpression" type="xs:string" use="optional" />
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+            <xs:attribute name="Value" type="bn:BrandingNameValue" />
+            <xs:attribute name="RegularExpression" type="xs:string" use="optional"/>
+          </xs:complexType>
+          <xs:key name="oneCultureEntryPerBrandingName">
+            <xs:annotation>
+              <xs:documentation>Only one translation per culture is allowed.</xs:documentation>
+            </xs:annotation>
+            <xs:selector xpath="bn:LocalizedBrandingName"/>
+            <xs:field xpath="@Culture"/>
+          </xs:key>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+    <xs:key name="oneBrandingNamePerMatrix">
+      <xs:annotation>
+        <xs:documentation>Only one Branding Name entry with the same value is allowed.</xs:documentation>
+      </xs:annotation>
+      <xs:selector xpath="bn:BrandingName"/>
+      <xs:field xpath="@Value"/>
+    </xs:key>
+  </xs:element>
+</xs:schema>

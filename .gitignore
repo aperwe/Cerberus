@@ -3,3 +3,19 @@
 ################################################################################
 
 /.vs
+/Backup
+/Cerberus.Configurator/obj/Debug
+/Cerberus.Checks/obj/Debug
+/Cerberus.Checks.Helpers/BrandingExcelSpreadsheetToXmlConverter/BrandingExcelSpreadsheetToXmlConverter/obj/Debug
+/Cerberus.Core/obj/Debug
+/Cerberus.Executor2/obj/Debug
+/Cerberus.LogAnalyser/obj/Debug
+/Cerberus.LogViewer/obj/Debug
+/Cerberus.Resources/obj/Debug
+/Cerberus.SDUtility/obj/Debug
+/Tools.LcxOmMemoryChecker/obj/Debug
+/UnitTest.Checks/obj/Debug
+/UnitTest.Configurator/obj/Debug
+/UnitTest.Core/obj/Debug
+/UnitTest.Resources/obj/Debug
+/UnitTest.SDUtility/obj/Debug

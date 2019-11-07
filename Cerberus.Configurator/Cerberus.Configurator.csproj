@@ -1,0 +1,203 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{05EF5AF2-51D8-4CC2-8945-85116B1A610A}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <UICulture>en-US</UICulture>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Microsoft.Localization.LocSolutions.Cerberus.Configurator</RootNamespace>
+    <AssemblyName>Cerberus.Configurator</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+    <ApplicationIcon>ResourceFiles\ApplicationLogo.ico</ApplicationIcon>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\Cerberus.Configurator.xml</DocumentationFile>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Release\Cerberus.Configurator.xml</DocumentationFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AssemblyResolver, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\lib\AssemblyResolver.dll</HintPath>
+    </Reference>
+    <Reference Include="Logger, Version=2.3.4.7, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\lib\Logger.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="UIAutomationProvider">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="PresentationCore">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="PresentationFramework">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="ConfiguratorApplication.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ResourceFiles\UIResources.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="SandboxForViews.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\generic.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Compile Include="ConfiguratorApplication.xaml.cs">
+      <DependentUpon>ConfiguratorApplication.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="LanguagePivotedCheck.cs" />
+    <Compile Include="CheckAssignmentViewHandler.cs" />
+    <Compile Include="ContextData.cs" />
+    <Compile Include="ContextType.cs" />
+    <Compile Include="DisplayableItem.cs" />
+    <Compile Include="ItemType.cs" />
+    <Compile Include="Language.cs" />
+    <Compile Include="LanguageGroupsViewHandler.cs" />
+    <Compile Include="CustomProjectTreeViewItemComparer.cs" />
+    <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="LanguageTagItem.cs" />
+    <Compile Include="MainCheckConfigurationViewHandler.cs" />
+    <Compile Include="NewSummaryViewHandler.cs" />
+    <Compile Include="NotImplementedViewHandler.cs" />
+    <Compile Include="PartialCheck.cs" />
+    <Compile Include="Project.cs" />
+    <Compile Include="ProjectPivotedCheck.cs" />
+    <Compile Include="DisplayableCheck.cs" />
+    <Compile Include="TileView.cs" />
+    <Compile Include="UserView.cs" />
+    <Compile Include="CheckEditorViewHandler.cs" />
+    <Compile Include="ViewOnChecksWithFilterHandler.cs" />
+    <Compile Include="EnlistmentAbstractViewHandler.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="TagEditorViewHandler.cs" />
+    <Compile Include="Themes\StandardTheme.cs" />
+    <Compile Include="Themes\WPFThemeBase.cs" />
+    <Compile Include="UIExtensions.cs" />
+    <Compile Include="ViewFactory.cs" />
+    <Compile Include="ViewHandler.cs" />
+    <Compile Include="ConfigurationSummaryViewHandler.cs" />
+    <Compile Include="ViewOnChecksHandler.cs" />
+    <Compile Include="ViewOnEnlistmentHandler.cs" />
+    <Compile Include="ViewOnProjectsHandler.cs" />
+    <Compile Include="ViewType.cs" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="app.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="ResourceFiles\ApplicationLogo.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Cerberus.Core\Cerberus.Core.csproj">
+      <Project>{AE3517DC-8A7B-483F-89CA-1C76888C1096}</Project>
+      <Name>Cerberus.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Cerberus.Resources\Cerberus.Resources.csproj">
+      <Project>{BDE42BCE-E8BE-4DC2-BA39-F5D88D521845}</Project>
+      <Name>Cerberus.Resources</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <CodeAnalysisDictionary Include="CodeAnalysisDictionary.xml" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

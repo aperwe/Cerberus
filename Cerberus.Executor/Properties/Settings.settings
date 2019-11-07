@@ -1,0 +1,15 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Microsoft.Localization.LocSolutions.Cerberus.Executor.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="SupportDetails" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">LocSolutions Support (lssup@microsoft.com)</Value>
+    </Setting>
+    <Setting Name="DocumentationLink" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">http://tfsvm05/Sites/Office Cerberus/default.aspx</Value>
+    </Setting>
+    <Setting Name="ChecksRelativePath" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">otools\bin\intl\Cerberus\Checks</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

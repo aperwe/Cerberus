@@ -1,0 +1,263 @@
+﻿<Application x:Class="Microsoft.Localization.LocSolutions.Cerberus.Configurator.ConfiguratorApplication"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:Microsoft.Localization.LocSolutions.Cerberus.Configurator"
+    StartupUri="MainWindow.xaml">
+    <Application.Resources>
+
+        <!-- This is a wrappable tooltip for the two data views below.-->
+        <TextBlock x:Key="WrappableTooltip" TextWrapping="Wrap" Text="{Binding Path=Tooltip}" MaxWidth="600">
+
+        </TextBlock>
+        
+        
+        <!-- This template is used in NewSummaryViewHandler to present languages and language groups. -->
+        <DataTemplate x:Key="LanguageListItemTemplate" DataType="DisplayableItem">
+            <StackPanel Orientation="Horizontal" ToolTip="{StaticResource WrappableTooltip}">
+                <ContentPresenter Content="{Binding Path=Icon}" Margin="4" VerticalAlignment="Center"/>
+                <TextBlock Text="{Binding Path=Name}" VerticalAlignment="Center"/>
+            </StackPanel>
+        </DataTemplate>
+
+        <!-- This template is used in NewSummaryViewHandler to present checks that are enabled for a selected language. -->
+        <DataTemplate x:Key="CheckItemTemplate" DataType="LanguagePivotedCheck">
+            <StackPanel Orientation="Horizontal" ToolTip="{StaticResource WrappableTooltip}">
+                <ContentPresenter Content="{Binding Path=Icon}" Margin="4" VerticalAlignment="Center"/>
+                <TextBlock Text="{Binding Path=Name}" VerticalAlignment="Center"/>
+            </StackPanel>
+        </DataTemplate>
+
+        <!-- CONTROL THEMES -->
+        <Style x:Key="ThemeButton" TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+            <Setter Property="MinWidth" Value="75"/>
+            <Setter Property="Padding" Value="4,1,4,1"/>
+            <Setter Property="Margin" Value="2"/>
+        </Style>
+
+        <Style x:Key="ThemeTextBlock" TargetType="TextBlock" BasedOn="{StaticResource {x:Type TextBlock}}">
+            <Setter Property="TextWrapping" Value="Wrap"/>
+            <Setter Property="Margin" Value="4,2,4,2"/>
+        </Style>
+
+        <Style x:Key="ThemeGroupBox" TargetType="GroupBox" BasedOn="{StaticResource {x:Type GroupBox}}">
+            <Setter Property="Margin" Value="2,2,2,1"/>
+            <Setter Property="Padding" Value="2,2,2,1"/>
+        </Style>
+
+
+        <!-- END OF CONTROL THEMES -->
+        
+        
+        
+        <!-- Grid used by the base class ViewHandler.
+             Created in its constructor.
+             This consists of two rows. The top one shows the optional info about the view purpose.
+             The bottom one shows the implementor's view itself.
+        -->
+        <Grid x:Key="ViewHandlerPrivateView" Tag="View handler master grid, child of MainWindow's grid">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+
+            <!-- This whole panel is hidden by default. It will be shown when the implementor provides ViewDescrption. -->
+            <Grid Name="InfoPanel" Grid.Row="0" Visibility="Collapsed">
+                <Grid.ColumnDefinitions>
+                    <!-- This will contain the info icon. -->
+                    <ColumnDefinition Width="0"/>
+                    <!-- This will contain view description text. -->
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+                
+                <Image Grid.Column="0" Source="{Binding x:Static{InfoIcon}}"/>
+                
+                <TextBlock Grid.Column="1" Text="{DynamicResource ViewDescription}"/>
+                
+            </Grid>
+            
+            <!-- View that is exposed by base ViewHandler to its implementors. -->
+            <Grid Name="ViewHandlerViewForImplementors" Grid.Row="1" Tag="View container visible to implementors."/>
+            
+        </Grid>
+        
+        <!-- This is a default "Not implemented" view displayed when the view implementor hasn't provided the resource. -->
+        <Grid x:Key="notImplementedUI" Background="Gray">
+            
+        </Grid>
+        
+        <!-- This resource is used to construct a check editor view used to add and remove checks in configuration. -->
+        <Grid x:Key="checkEditorView">
+
+            <!-- This is a sandbox file, not used by any of the logic. -->
+            <!-- It's pure puprpose is to design layouts for views using VS built in designer. -->
+            <!-- Once a view has been designed here, copy the whole contents and paste it as resource in ConfiguratorApplication.xaml. -->
+            <!-- You have to give it an x:Key attribute after pasting.-->
+
+            <Grid.ColumnDefinitions>
+
+                <!-- List of checks on the left -->
+                <ColumnDefinition Width="*"/>
+                <!-- List of environment variables on the right -->
+                <ColumnDefinition Width="*"/>
+
+            </Grid.ColumnDefinitions>
+
+            <GroupBox Grid.Column="0" Header="Checks" Style="{StaticResource ThemeGroupBox}">
+                <Grid>
+
+                    <Grid.RowDefinitions>
+                        <!-- List of existing checks -->
+                        <RowDefinition Height="*"/>
+                        <!-- Operational buttons for adding and removing checks -->
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <ListView Grid.Row="0" x:Name="ChecksList" ItemTemplate="{StaticResource CheckItemTemplate}"/>
+
+                    <StackPanel Grid.Row="1" Orientation="Horizontal">
+                        <Button x:Name="ButtonAdd" Content="Add" Style="{StaticResource ThemeButton}" />
+                        <Button x:Name="ButtonRemove" Content="Remove" Style="{StaticResource ThemeButton}"/>
+                    </StackPanel>
+                </Grid>
+            </GroupBox>
+
+            <GroupBox Grid.Column="1" Header="Environment variables" Style="{StaticResource ThemeGroupBox}">
+                <Grid>
+
+                    <Grid.RowDefinitions>
+
+                        <!-- Enabled environment variables -->
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition/>
+                        <!-- All environment variables available in current environment -->
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition/>
+
+                    </Grid.RowDefinitions>
+
+                    <!-- Enabled environment variables -->
+                    <TextBlock Grid.Row="0" Text="Enabled environment variables" Style="{StaticResource ThemeTextBlock}"/>
+                    <ListView Grid.Row="1" x:Name="EnabledVariables">
+                        <ListView.View>
+                            <GridView>
+                                <GridView.Columns>
+                                    <GridViewColumn Header="Name"/>
+                                </GridView.Columns>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+
+                    <!-- All environment variables available in current environment -->
+                    <TextBlock Grid.Row="2" Text="All available environment variables" Style="{StaticResource ThemeTextBlock}"/>
+                    <ListView Grid.Row="3" x:Name="AllVariables">
+                        <ListView.View>
+                            <GridView>
+                                <GridView.Columns>
+                                    <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Path=Key}"/>
+                                    <GridViewColumn Header="Value" DisplayMemberBinding="{Binding Path=Value}"/>
+                                </GridView.Columns>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+
+                </Grid>
+            </GroupBox>
+        </Grid>
+
+        <!-- This resource is used to construct a check configuration view used to enable or disable checks on projects and languages. -->
+        <Grid x:Key="mainCheckConfiguration" Background="Cyan">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="2*"/>
+            </Grid.ColumnDefinitions>
+            
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+            
+            <!-- Left side of the view. -->
+            <GroupBox Header="Select a check to configure" Grid.Column="0">
+                <ListView Name="checkList" ItemTemplate="{StaticResource CheckItemTemplate}"/>
+            </GroupBox>
+            
+            <!-- Right side of the view. -->
+            <Grid Name="rightSideView" Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <!-- Languages group control. -->
+                    <RowDefinition/>
+                    <!-- Languages control. -->
+                    <RowDefinition Height="3*"/>
+                    <!-- Projects control. -->
+                    <RowDefinition Height="4*"/>
+                    <!-- Description control. -->
+                    <RowDefinition Height="Auto"/>
+                    <!-- Owners control. -->
+                    <RowDefinition Height="Auto"/>
+
+                </Grid.RowDefinitions>
+
+                <GroupBox Header="Language groups" Grid.Row="0">
+                    <ListView Name="languagesGroupsList" MinHeight="40">
+                        <ListView.View>
+                            <local:TileView/>
+                        </ListView.View>
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal" Margin="4" Focusable="False">
+                                    <ContentPresenter Content="{Binding TagIcon}"/>
+                                    <CheckBox Content="{Binding Name}" VerticalAlignment="Center" Margin="4" MinWidth="90" IsThreeState="True">
+                                        <CheckBox.IsChecked>
+                                            <Binding Path="IsChecked" Mode="TwoWay" NotifyOnSourceUpdated="True" NotifyOnTargetUpdated="True"></Binding>
+                                        </CheckBox.IsChecked>
+                                    </CheckBox>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </GroupBox>
+                
+                <GroupBox Grid.Row="1">
+                    <GroupBox.Header>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Languages selected for the active check"/>
+                            <CheckBox Name="checkBoxAllLanguages" Content="All" IsThreeState="True" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </GroupBox.Header>
+                    <ListView Name="languagesList">
+                        <ListView.View>
+                            <local:TileView/>
+                        </ListView.View>
+                    </ListView>
+                </GroupBox>
+
+                <GroupBox Grid.Row="2">
+                    <GroupBox.Header>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Project selected for the active check"/>
+                            <CheckBox Name="checkBoxAllProjects" Content="All" IsThreeState="True" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </GroupBox.Header>
+                    <ListView Name="projectsList">
+                        <ListView.View>
+                            <local:TileView/>
+                        </ListView.View>
+                    </ListView>
+                </GroupBox>
+
+                <GroupBox Header="Check description" Grid.Row="3">
+                    <TextBox Name="descriptionBlock" MaxLines="4" TextWrapping="Wrap"
+                             AcceptsReturn="True"
+                             VerticalScrollBarVisibility="Auto"/>
+                </GroupBox>
+
+                <GroupBox Header="Check owners" Grid.Row="4">
+                    <TextBox Name="ownersBlock" MaxLines="4" TextWrapping="Wrap"
+                             AcceptsReturn="True"
+                             VerticalScrollBarVisibility="Auto"/>
+                </GroupBox>
+
+            </Grid>
+        </Grid>
+        
+    </Application.Resources>
+</Application>

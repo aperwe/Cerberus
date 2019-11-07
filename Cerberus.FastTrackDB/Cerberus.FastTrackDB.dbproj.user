@@ -1,0 +1,15 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <FileGroupsFileNames>
+      <FileGroupFileNameList Version="1" xmlns="">
+        <AllFileNames>
+          <FileGroupFileName>
+            <FileGroupName>PRIMARY</FileGroupName>
+            <FileGroupFileName>998d5bca-fbe5-4afc-b2f8-576cacab8d3a</FileGroupFileName>
+          </FileGroupFileName>
+        </AllFileNames>
+      </FileGroupFileNameList>
+    </FileGroupsFileNames>
+    <DesignDBName>Cerberus.FastTrackDB_DB_ab63c2d1-90c5-490c-b181-f7397d79e86a</DesignDBName>
+  </PropertyGroup>
+</Project>

@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TestLists xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <TestList name="User acceptance tests" id="1704120f-7c40-4ce2-a63a-db9ba52f0b51" parentListId="8c43106b-9dc1-4907-a29f-aa66a61bf5b6">
+    <Description>Tests that must pass because they have become part of user acceptance tests.</Description>
+  </TestList>
+  <TestList name="Log analyser" id="5460c776-f26c-4dde-bbe0-911ca0d1a797" parentListId="1704120f-7c40-4ce2-a63a-db9ba52f0b51">
+    <Description>Tests for log analyser that must pass</Description>
+    <TestLinks>
+      <TestLink id="6cb5c9e2-58b1-7738-8cdc-d6e3abf0df9a" name="ArgumentParser_CorrectParamaters_CleanUp" storage="unittest.checks\bin\release\unittest.checks.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel,   PublicKeyToken=b03f5f7f11d50a3a" />
+      <TestLink id="a3187ef2-290a-1c7f-60d7-1eff467db21a" name="ArgumentParser_OneArgumentHelp" storage="unittest.checks\bin\release\unittest.checks.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel,   PublicKeyToken=b03f5f7f11d50a3a" />
+      <TestLink id="ae4370f1-7906-8750-e657-ab460aac3039" name="ArgumentParser_OneArgumentNotHelp" storage="unittest.checks\bin\release\unittest.checks.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel,   PublicKeyToken=b03f5f7f11d50a3a" />
+      <TestLink id="a5deebfb-f202-ea86-3e3d-95d9771d6e5b" name="ArgumentParser_BothArgsInvalidUpload" storage="unittest.checks\bin\release\unittest.checks.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel,   PublicKeyToken=b03f5f7f11d50a3a" />
+      <TestLink id="e8e3dba1-f21f-8a17-7f65-ce3e8a5665cf" name="ArgumentParser_CorrectParamaters_Backup" storage="unittest.checks\bin\release\unittest.checks.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel,   PublicKeyToken=b03f5f7f11d50a3a" />
+      <TestLink id="ee6d89c4-3bfb-025e-c98f-9010b9d3b783" name="ArgumentParser_CorrectParamaters_Local" storage="unittest.checks\bin\release\unittest.checks.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel,   PublicKeyToken=b03f5f7f11d50a3a" />
+      <TestLink id="f3d99f0a-d373-061a-79a5-8df0740cbd3f" name="ArgumentParser_CorrectParamaters_FastTrack" storage="unittest.checks\bin\release\unittest.checks.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel,   PublicKeyToken=b03f5f7f11d50a3a" />
+      <TestLink id="43810726-f803-e532-a9b0-8f54365f4578" name="ArgumentParser_NoParamaters" storage="unittest.checks\bin\release\unittest.checks.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel,   PublicKeyToken=b03f5f7f11d50a3a" />
+      <TestLink id="a9ec3bc3-5ed9-5af2-d145-889d1ab4423f" name="ArgumentParser_BothArgsInvalidDir" storage="unittest.checks\bin\release\unittest.checks.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel,   PublicKeyToken=b03f5f7f11d50a3a" />
+    </TestLinks>
+  </TestList>
+  <TestList name="Iteration 1" id="5c93d21c-9f01-473f-a2d4-6de366401bbb" parentListId="1704120f-7c40-4ce2-a63a-db9ba52f0b51">
+    <Description>User acceptance tests made to pass in iteration 1</Description>
+    <TestLinks>
+      <TestLink id="0d10a06b-6021-4387-deaa-0229e8061676" name="TestFillingDataTablesInCheckConfigurationDataSet" storage="unittest.core\bin\release\unittest.core.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel,   PublicKeyToken=b03f5f7f11d50a3a" />
+      <TestLink id="44bfb5c7-61b6-1562-390a-292acb596b00" name="TestGettingListOfPathsToChecks" storage="unittest.core\bin\release\unittest.core.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel,   PublicKeyToken=b03f5f7f11d50a3a" />
+      <TestLink id="38d592da-1e92-343c-be76-370354f566a8" name="TestAccessToAllIcons" storage="unittest.resources\bin\release\unittest.resources.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel,   PublicKeyToken=b03f5f7f11d50a3a" />
+      <TestLink id="61a9ce52-658a-4e64-61e7-48b197eeba7a" name="TestFilteringOfFileSequence" storage="unittest.core\bin\release\unittest.core.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel,   PublicKeyToken=b03f5f7f11d50a3a" />
+    </TestLinks>
+  </TestList>
+  <TestList name="SDUtility" id="6e449e31-1483-4de2-92c6-b2bf44b94121" parentListId="a4329d2b-ee7a-48b9-b26f-1eaccceda193">
+    <Description>Tests on SDUtility</Description>
+    <TestLinks>
+      <TestLink id="440f8813-ab4c-7d17-47c3-293198f646d2" name="TestSyncingNonExistingCheckPointInFrFrStoreLanguage" storage="unittest.sdutility\bin\release\unittest.sdutility.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel,   PublicKeyToken=b03f5f7f11d50a3a" />
+      <TestLink id="40b1a272-6a03-aefe-a49c-47d8df5aa7c8" name="TestSyncingEsEsStoreLanguage" storage="unittest.sdutility\bin\release\unittest.sdutility.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel,   PublicKeyToken=b03f5f7f11d50a3a" />
+      <TestLink id="300f15ce-2aba-535c-35b4-c0af3835907e" name="TestSyncingEditedFile" storage="unittest.sdutility\bin\release\unittest.sdutility.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel,   PublicKeyToken=b03f5f7f11d50a3a" />
+      <TestLink id="8b264a92-8b40-dd97-b1bb-0077aa769cca" name="TestSyncingPlPlLanguage" storage="unittest.sdutility\bin\release\unittest.sdutility.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel,   PublicKeyToken=b03f5f7f11d50a3a" />
+      <TestLink id="eaa78ca0-5bc2-9dcd-d38c-8a4f5672aa98" name="TestShowUsage" storage="unittest.sdutility\bin\release\unittest.sdutility.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel,   PublicKeyToken=b03f5f7f11d50a3a" />
+      <TestLink id="dad09e7e-af7e-3934-c0b2-1cc2684e7821" name="TestInputForCore" storage="unittest.sdutility\bin\release\unittest.sdutility.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel,   PublicKeyToken=b03f5f7f11d50a3a" />
+    </TestLinks>
+  </TestList>
+  <TestList name="Iteration 3" id="84c8848c-6ea0-4208-96f3-ad9d3ea12f6a" parentListId="a4329d2b-ee7a-48b9-b26f-1eaccceda193">
+    <TestLinks>
+      <TestLink id="feb60c8a-b21b-a7f9-ef1e-70f101402e86" name="TestEnablingCheckOnLanguage" storage="unittest.configurator\bin\release\unittest.configurator.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel,   PublicKeyToken=b03f5f7f11d50a3a" />
+      <TestLink id="eaec3738-2170-ed57-0196-dbed1fbc3814" name="TestEnablingCheckOnProject" storage="unittest.configurator\bin\release\unittest.configurator.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel,   PublicKeyToken=b03f5f7f11d50a3a" />
+    </TestLinks>
+  </TestList>
+  <TestList name="Lists of Tests" id="8c43106b-9dc1-4907-a29f-aa66a61bf5b6">
+    <RunConfiguration id="29cd713c-5c60-4e4c-8620-a6507f29a1e7" name="Local Test Run" storage="localtestrun.testrunconfig" type="Microsoft.VisualStudio.TestTools.Common.TestRunConfiguration, Microsoft.VisualStudio.QualityTools.Common,   PublicKeyToken=b03f5f7f11d50a3a" />
+  </TestList>
+  <TestList name="Enlistment tests" id="a4329d2b-ee7a-48b9-b26f-1eaccceda193" parentListId="8c43106b-9dc1-4907-a29f-aa66a61bf5b6">
+    <Description>Tests that are dependent on the presence of enlistment, and most likely will fail in the lack of enlistment.</Description>
+    <TestLinks>
+      <TestLink id="44af27a9-0b5f-962f-418d-f2655f11060b" name="TestGettingLclFilesFromEnlistment" storage="unittest.core\bin\release\unittest.core.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel,   PublicKeyToken=b03f5f7f11d50a3a" />
+    </TestLinks>
+  </TestList>
+  <TestList name="Checks" id="d326eddd-3e4d-4acc-9669-d94740c9b2ae" parentListId="a4329d2b-ee7a-48b9-b26f-1eaccceda193">
+    <Description>Implementation of checks</Description>
+    <TestLinks>
+      <TestLink id="38453b79-5a79-4df4-9e3f-1829b1e3e91e" name="TestUrlCheck" storage="unittest.checks\bin\release\unittest.checks.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel,   PublicKeyToken=b03f5f7f11d50a3a" />
+      <TestLink id="178beed3-bca3-acef-39d1-5bb15c2c3c91" name="TestBrandingTokenCheck" storage="unittest.checks\bin\release\unittest.checks.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel,   PublicKeyToken=b03f5f7f11d50a3a" />
+      <TestLink id="c649992d-883a-3190-9c4f-c641fca4b6b2" name="TestAllRulesUsingSourceFiles" storage="unittest.checks\bin\release\unittest.checks.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel,   PublicKeyToken=b03f5f7f11d50a3a" />
+      <TestLink id="b324a93e-1178-bfc4-47c5-ad754a68043b" name="TestBrandingTranslationCheck" storage="unittest.checks\bin\release\unittest.checks.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel,   PublicKeyToken=b03f5f7f11d50a3a" />
+      <TestLink id="b26ed2cf-3345-7865-fd0b-23db01b28aed" name="TestKoreanPostPositionsCheck" storage="unittest.checks\bin\release\unittest.checks.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel,   PublicKeyToken=b03f5f7f11d50a3a" />
+      <TestLink id="06e88813-6eb9-94a8-66f2-d35a80490b57" name="TestOfficeOpenXML" storage="unittest.checks\bin\release\unittest.checks.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel,   PublicKeyToken=b03f5f7f11d50a3a" />
+      <TestLink id="6b7b5f73-b5d8-a376-18fb-98a63754b85a" name="TestPseudoCheck" storage="unittest.checks\bin\release\unittest.checks.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel,   PublicKeyToken=b03f5f7f11d50a3a" />
+      <TestLink id="01b0e48e-f0a0-7f67-e5bf-b5787d2d53ad" name="TestCopyrightsCheck" storage="unittest.checks\bin\release\unittest.checks.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel,   PublicKeyToken=b03f5f7f11d50a3a" />
+      <TestLink id="7f4cde5f-823f-9ae6-6826-f279b8800a05" name="TestKeytipCharactersCheck" storage="unittest.checks\bin\release\unittest.checks.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel,   PublicKeyToken=b03f5f7f11d50a3a" />
+      <TestLink id="6ffa0a3f-49e5-a410-88ed-dd3d406a03f6" name="TestJapanWorkProjectCheck" storage="unittest.checks\bin\release\unittest.checks.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel,   PublicKeyToken=b03f5f7f11d50a3a" />
+      <TestLink id="d6d4678e-5c8b-ae99-4e62-d3e422a980bc" name="TestAllRulesInADLL" storage="unittest.checks\bin\release\unittest.checks.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel,   PublicKeyToken=b03f5f7f11d50a3a" />
+      <TestLink id="6225b1ba-1600-13c4-04f0-300f9aeb2a08" name="TestRibbonOverrideCheck" storage="unittest.checks\bin\release\unittest.checks.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel,   PublicKeyToken=b03f5f7f11d50a3a" />
+      <TestLink id="b53dc83b-6bec-c4ee-6fa3-e102907a9a93" name="TestAllRightsReservedCheck" storage="unittest.checks\bin\release\unittest.checks.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel,   PublicKeyToken=b03f5f7f11d50a3a" />
+      <TestLink id="1af36592-4a1a-bbdf-954a-e70455aca550" name="TestEscapeCharsForXMLLocalBindingCheck" storage="unittest.checks\bin\release\unittest.checks.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel,   PublicKeyToken=b03f5f7f11d50a3a" />
+      <TestLink id="675040a5-76a0-00c3-2532-c3da447f30de" name="TestJapanKatakanaOnbikiCheck" storage="unittest.checks\bin\release\unittest.checks.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel,   PublicKeyToken=b03f5f7f11d50a3a" />
+      <TestLink id="e06b8e7e-a92d-5618-a4c9-2f2c0042bc86" name="TestPhoneticsymCheck" storage="unittest.checks\bin\release\unittest.checks.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel,   PublicKeyToken=b03f5f7f11d50a3a" />
+      <TestLink id="8220c407-cb33-0a71-7f67-86234285d4ce" name="TestChinesePunctuationCheck" storage="unittest.checks\bin\release\unittest.checks.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel,   PublicKeyToken=b03f5f7f11d50a3a" />
+      <TestLink id="94be5ed2-90c2-8156-8920-9be62490b0e5" name="TestVersioningCheck" storage="unittest.checks\bin\release\unittest.checks.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel,   PublicKeyToken=b03f5f7f11d50a3a" />
+      <TestLink id="a3190aac-695e-f8d7-7722-5c8fcd303a6f" name="TestBrandingCheck" storage="unittest.checks\bin\release\unittest.checks.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel,   PublicKeyToken=b03f5f7f11d50a3a" />
+      <TestLink id="676dae83-0410-4a96-c015-9d6f59229666" name="TestHybridPseudoCheck" storage="unittest.checks\bin\release\unittest.checks.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel,   PublicKeyToken=b03f5f7f11d50a3a" />
+      <TestLink id="e8dbcb65-9c3c-ea23-794b-9b80e125e618" name="TestExcelShortcutsCheck" storage="unittest.checks\bin\release\unittest.checks.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel,   PublicKeyToken=b03f5f7f11d50a3a" />
+      <TestLink id="e6a93e54-fcdf-c5b4-c7da-0a0a0f9d79d6" name="TestExcelLocaliseFuncCheck" storage="unittest.checks\bin\release\unittest.checks.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel,   PublicKeyToken=b03f5f7f11d50a3a" />
+    </TestLinks>
+  </TestList>
+</TestLists>

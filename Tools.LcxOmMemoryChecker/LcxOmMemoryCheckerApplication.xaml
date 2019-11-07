@@ -1,0 +1,15 @@
+﻿<Application x:Class="Microsoft.Localization.LocSolutions.Tools.LcxOmMemoryChecker.LcxOmMemoryCheckerApplication"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        
+        <!-- This template is used in NewSummaryViewHandler to present checks that are enabled for a selected language. -->
+        <DataTemplate x:Key="DupaBlada" DataType="LanguagePivotedCheck">
+            <StackPanel Orientation="Horizontal" ToolTip="Coś tam">
+                <TextBlock Text="{Binding Path=MessageType}" VerticalAlignment="Center"/>
+            </StackPanel>
+        </DataTemplate>
+
+    </Application.Resources>
+</Application>

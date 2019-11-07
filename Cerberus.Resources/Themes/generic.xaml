@@ -1,0 +1,8 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:Microsoft.Localization.LocSolutions.Cerberus.Resources">
+
+    <ImageBrush x:Key="{ComponentResourceKey TypeInTargetAssembly={x:Type local:ResourceHelper}, ResourceId=Add}" TileMode="None" ImageSource="pack://application:,,,/Cerberus.Resources;component/ResourceFiles/Add.ico"/>
+    <Image x:Key="{ComponentResourceKey TypeInTargetAssembly={x:Type local:ResourceHelper}, ResourceId=Basketball}" Source="pack://application:,,,/Cerberus.Resources;component/ResourceFiles/Basketball.ico"/>
+</ResourceDictionary>

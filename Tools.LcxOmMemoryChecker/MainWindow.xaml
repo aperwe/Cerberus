@@ -1,0 +1,48 @@
+﻿<Window
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:l="clr-namespace:Microsoft.Localization.LocSolutions.Tools.LcxOmMemoryChecker"
+    x:Class="Microsoft.Localization.LocSolutions.Tools.LcxOmMemoryChecker.MainWindow"
+    Title="LCX ObjectModel memory checker">
+    
+    <Grid>
+        
+    	<Grid.RowDefinitions>
+    		<RowDefinition Height="Auto"/>
+    		<RowDefinition/>
+    		<RowDefinition Height="Auto"/>
+    	</Grid.RowDefinitions>
+        
+    	<Menu VerticalAlignment="Top">
+            <MenuItem Header="File">
+                <MenuItem Header="Open">
+                    <MenuItem Header="OSLEBot file list" Click="LoadOsleBotResponseFile"/>
+                </MenuItem>
+            </MenuItem>
+        </Menu>
+        
+    	<ListView Grid.Row="1" Name="OutputList" ItemTemplate="{StaticResource DupaBlada}">
+    		<ListView.View>
+    			<GridView>
+                    <GridViewColumn Header="Type" Width="100" DisplayMemberBinding="{Binding Path=Type}"/>
+                    <GridViewColumn Header="File or message" Width="750" DisplayMemberBinding="{Binding Path=Content}"/>
+                    <GridViewColumn Header="Memory (working set)" Width="120" DisplayMemberBinding="{Binding Path=WorkingSetString}"/>
+                </GridView>
+    		</ListView.View>
+    	</ListView>
+        
+        <!-- Buttons at the bottom of the window. -->
+        <StackPanel Grid.Row="2" Orientation="Horizontal">
+            <Button Content="Close" Click="CloseButtonClicked">
+            	<Button.Background>
+            		<RadialGradientBrush>
+            			<GradientStop Color="#FFD6998C" Offset="1"/>
+            			<GradientStop Color="#FFEBEBEB"/>
+            		</RadialGradientBrush>
+            	</Button.Background>
+            </Button>
+        </StackPanel>
+    </Grid>
+</Window>

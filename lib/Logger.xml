@@ -1,0 +1,242 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Logger</name>
+    </assembly>
+    <members>
+        <member name="T:Microsoft.Localization.LocSolutions.Logger.ILogger">
+            <summary>
+            If you want to implement a custom logger, that receives log entries from <seealso cref="T:Microsoft.Localization.LocSolutions.Logger.LoggerSAP"/>, implement this interface in your class.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Localization.LocSolutions.Logger.ILogger.AcceptLogEntry(Microsoft.Localization.LocSolutions.Logger.LogLevel,System.String)">
+            <summary>
+            A new log entry has just arrived. Do something with it.
+            </summary>
+            <param name="entry">Log entry being added.</param>
+            <param name="logLevel">Severity of the message being recorded.</param>
+        </member>
+        <member name="T:Microsoft.Localization.LocSolutions.Logger.LoggerSAP">
+            <summary>
+            Accessor class for Logger objects.
+            Thread-safe as of 1.1.0.0.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Localization.LocSolutions.Logger.LoggerSAP.RegisterLogger(Microsoft.Localization.LocSolutions.Logger.ILogger)">
+            <summary>
+            Registers a new logger with the SAP. Note: Calling this method twice with the same logger object, will register two instances of it, causing every log entry to be sent to that logger twice.
+            </summary>
+            <param name="newLogger">New logger that will receive log entries</param>
+        </member>
+        <member name="M:Microsoft.Localization.LocSolutions.Logger.LoggerSAP.RegisterLogger(Microsoft.Localization.LocSolutions.Logger.ILogger,Microsoft.Localization.LocSolutions.Logger.LogLevel)">
+            <summary>
+            Registers a new logger with the SAP. Note: Calling this method twice with the same logger object, will register two instances of it, causing every log entry to be sent to that logger twice.
+            </summary>
+            <param name="newLogger">New logger that will receive log entries</param>
+            <param name="maxSeverity">Maximum severity of log entries this logger wants to listen to.</param>
+        </member>
+        <member name="M:Microsoft.Localization.LocSolutions.Logger.LoggerSAP.UnregisterLogger(Microsoft.Localization.LocSolutions.Logger.ILogger)">
+            <summary>
+            Unregisters an existing logger so that LoggerSAP stops sending log events to this logger.
+            </summary>
+            <param name="registeredLogger">Logger previously registered with LoggerSAP</param>
+            <exception cref="T:System.InvalidOperationException">Thrown when the specified logger is not registered.</exception>
+        </member>
+        <member name="M:Microsoft.Localization.LocSolutions.Logger.LoggerSAP.Log">
+            <summary>
+            A new log entry to be distributed to registered loggers. If no loggers are registered, the entry is discarded (nothing happens).
+            <para/>This overload creates a new empty-line log entry. Can be used for log formatting purposes.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Localization.LocSolutions.Logger.LoggerSAP.Log(System.String)">
+            <summary>
+            A new log entry to be distributed to registered loggers. If no loggers are registered, the entry is discarded (nothing happens).
+            </summary>
+            <param name="entry">String entry to be logged</param>
+        </member>
+        <member name="M:Microsoft.Localization.LocSolutions.Logger.LoggerSAP.Log(System.String,System.Object[])">
+            <summary>
+            A new log entry to be distributed to registered loggers. If no loggers are registered, the entry is discarded (nothing happens).
+            </summary>
+            <param name="entry">Format string for the log entry</param>
+            <param name="args">Parameters that will be used with the <paramref name="entry"/> format string to produce a full log entry</param>
+        </member>
+        <member name="M:Microsoft.Localization.LocSolutions.Logger.LoggerSAP.Log(Microsoft.Localization.LocSolutions.Logger.LogLevel,System.String)">
+            <summary>
+            New API in V2.3. Allows specifying the level of logging.
+            </summary>
+            <param name="logLevel">Severity of this log entry. Default is highest, Verbose (equivalent to Diagnostic) is lowest.</param>
+            <param name="entry">String entry to be logged</param>
+        </member>
+        <member name="M:Microsoft.Localization.LocSolutions.Logger.LoggerSAP.Log(Microsoft.Localization.LocSolutions.Logger.LogLevel,System.String,System.Object[])">
+            <summary>
+            New API in V2.3. Allows specifying the log level of logging.
+            <para/>A new log entry to be distributed to registered loggers. If no loggers are registered, the entry is discarded (nothing happens).
+            </summary>
+            <param name="entry">Format string for the log entry</param>
+            <param name="args">Parameters that will be used with the <paramref name="entry"/> format string to produce a full log entry</param>
+            <param name="logLevel">Severity of this log entry. Default is highest, Verbose (equivalent to Diagnostic) is lowest.</param>
+        </member>
+        <member name="M:Microsoft.Localization.LocSolutions.Logger.LoggerSAP.Trace(System.String,System.Object[])">
+            <summary>
+            A new log entry with Diagnostic severity to be distributed to registered loggers. If no loggers are registered, the entry is discarded (nothing happens).
+            </summary>
+            <param name="entry">Format string for the log entry</param>
+            <param name="args">Parameters that will be used with the <paramref name="entry"/> format string to produce a full log entry</param>
+        </member>
+        <member name="M:Microsoft.Localization.LocSolutions.Logger.LoggerSAP.Trace(System.String)">
+            <summary>
+            A new log entry with Diagnostic severity to be distributed to registered loggers. If no loggers are registered, the entry is discarded (nothing happens).
+            </summary>
+            <param name="entry">String entry to be logged</param>
+        </member>
+        <member name="M:Microsoft.Localization.LocSolutions.Logger.LoggerSAP.Trace">
+            <summary>
+            A new log entry with Diagnostic severity to be distributed to registered loggers. If no loggers are registered, the entry is discarded (nothing happens).
+            </summary>
+        </member>
+        <member name="M:Microsoft.Localization.LocSolutions.Logger.LoggerSAP.Warning(System.String,System.Object[])">
+            <summary>
+            A new log entry with Warning severity to be distributed to registered loggers. If no loggers are registered, the entry is discarded (nothing happens).
+            </summary>
+            <param name="entry">Format string for the log entry</param>
+            <param name="args">Parameters that will be used with the <paramref name="entry"/> format string to produce a full log entry</param>
+        </member>
+        <member name="M:Microsoft.Localization.LocSolutions.Logger.LoggerSAP.Warning(System.String)">
+            <summary>
+            A new log entry with Warning severity to be distributed to registered loggers. If no loggers are registered, the entry is discarded (nothing happens).
+            </summary>
+            <param name="entry">String entry to be logged</param>
+        </member>
+        <member name="M:Microsoft.Localization.LocSolutions.Logger.LoggerSAP.Warning">
+            <summary>
+            A new log entry with Warning severity to be distributed to registered loggers. If no loggers are registered, the entry is discarded (nothing happens).
+            </summary>
+        </member>
+        <member name="M:Microsoft.Localization.LocSolutions.Logger.LoggerSAP.Error(System.String,System.Object[])">
+            <summary>
+            A new log entry with Error severity to be distributed to registered loggers. If no loggers are registered, the entry is discarded (nothing happens).
+            </summary>
+            <param name="entry">Format string for the log entry</param>
+            <param name="args">Parameters that will be used with the <paramref name="entry"/> format string to produce a full log entry</param>
+        </member>
+        <member name="M:Microsoft.Localization.LocSolutions.Logger.LoggerSAP.Error(System.String)">
+            <summary>
+            A new log entry with Error severity to be distributed to registered loggers. If no loggers are registered, the entry is discarded (nothing happens).
+            </summary>
+            <param name="entry">String entry to be logged</param>
+        </member>
+        <member name="M:Microsoft.Localization.LocSolutions.Logger.LoggerSAP.Error">
+            <summary>
+            A new log entry with Error severity to be distributed to registered loggers. If no loggers are registered, the entry is discarded (nothing happens).
+            </summary>
+        </member>
+        <member name="M:Microsoft.Localization.LocSolutions.Logger.LoggerSAP.Critical(System.String,System.Object[])">
+            <summary>
+            A new log entry with Critical severity to be distributed to registered loggers. If no loggers are registered, the entry is discarded (nothing happens).
+            </summary>
+            <param name="entry">Format string for the log entry</param>
+            <param name="args">Parameters that will be used with the <paramref name="entry"/> format string to produce a full log entry</param>
+        </member>
+        <member name="M:Microsoft.Localization.LocSolutions.Logger.LoggerSAP.Critical(System.String)">
+            <summary>
+            A new log entry with Critical severity to be distributed to registered loggers. If no loggers are registered, the entry is discarded (nothing happens).
+            </summary>
+            <param name="entry">String entry to be logged</param>
+        </member>
+        <member name="M:Microsoft.Localization.LocSolutions.Logger.LoggerSAP.Critical">
+            <summary>
+            A new log entry with Critical severity to be distributed to registered loggers. If no loggers are registered, the entry is discarded (nothing happens).
+            </summary>
+        </member>
+        <member name="M:Microsoft.Localization.LocSolutions.Logger.LoggerSAP.Verbose(System.String,System.Object[])">
+            <summary>
+            A new log entry with Verbose severity to be distributed to registered loggers. If no loggers are registered, the entry is discarded (nothing happens).
+            </summary>
+            <param name="entry">Format string for the log entry</param>
+            <param name="args">Parameters that will be used with the <paramref name="entry"/> format string to produce a full log entry</param>
+        </member>
+        <member name="M:Microsoft.Localization.LocSolutions.Logger.LoggerSAP.Verbose(System.String)">
+            <summary>
+            A new log entry with Verbose severity to be distributed to registered loggers. If no loggers are registered, the entry is discarded (nothing happens).
+            </summary>
+            <param name="entry">String entry to be logged</param>
+        </member>
+        <member name="M:Microsoft.Localization.LocSolutions.Logger.LoggerSAP.Verbose">
+            <summary>
+            A new log entry with Verbose severity to be distributed to registered loggers. If no loggers are registered, the entry is discarded (nothing happens).
+            </summary>
+        </member>
+        <member name="F:Microsoft.Localization.LocSolutions.Logger.LoggerSAP.loggerList">
+            <summary>
+            List of registered loggers with their levels.
+            <para>Only registered loggers receive notifications about new log entries.</para>
+            </summary>
+        </member>
+        <member name="T:Microsoft.Localization.LocSolutions.Logger.LoggerWithLevel">
+            <summary>
+            Meta class holding data about registered ILogger objects that also tracks their maximum severity.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Localization.LocSolutions.Logger.LoggerWithLevel.#ctor(Microsoft.Localization.LocSolutions.Logger.ILogger,Microsoft.Localization.LocSolutions.Logger.LogLevel)">
+            <summary>
+            Creates a new LoggerWithLevel by specifying the logger and its associated maximum logging severity.
+            </summary>
+            <param name="logger">New logger object</param>
+            <param name="maxSeverity">Maximum severity which this logger wants to listen to.</param>
+        </member>
+        <member name="F:Microsoft.Localization.LocSolutions.Logger.LoggerWithLevel.Logger">
+            <summary>
+            Logger registered with LoggerSAP
+            </summary>
+        </member>
+        <member name="F:Microsoft.Localization.LocSolutions.Logger.LoggerWithLevel.MaxSeverity">
+            <summary>
+            Maximum level of logging to be sent to this logger.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Localization.LocSolutions.Logger.LogLevel">
+            <summary>
+            Level of log entry severity supported by a given ILogger.
+            <para/>Determines - from highest to lowest, what a specific ILogger wants to receive.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Localization.LocSolutions.Logger.LogLevel.Critical">
+            <summary>
+            Highest level of log severity.
+            <para/>Important message, such as about a processing error of failed operation. Indicates that this log entry is critically important to a person debugging your application.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Localization.LocSolutions.Logger.LogLevel.Error">
+            <summary>
+            Less severe than <see cref="F:Microsoft.Localization.LocSolutions.Logger.LogLevel.Critical"/>, reports a non-critical processing error in the application.
+            <para/>Error &gt; Critical.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Localization.LocSolutions.Logger.LogLevel.Warning">
+            <summary>
+            Less severe than <see cref="F:Microsoft.Localization.LocSolutions.Logger.LogLevel.Error"/>, warning about some major incident in the application.
+            <para/>Warning &gt; Error.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Localization.LocSolutions.Logger.LogLevel.Diagnostic">
+            <summary>
+            Informative message, lowest priority, provides verbose detail level. Used to trace execution of methods for debugging purposes.
+            <para/>Diagnostic > Warning.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Localization.LocSolutions.Logger.LogLevel.Verbose">
+            <summary>
+            Synonym of Diagnostic but more detailed. Provides most verbose level of log output.
+            <para/>Verbose > Diagnostic.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Localization.LocSolutions.Logger.LogLevel.Default">
+            <summary>
+            Lowest level of log entry. Provided for compatibility with pre 2.3 versions.
+            If no log level is specified by a client that creates a log entry, this Default level will be used, so that any logger will accept it (this was the default behavior in 2.2 and earlier versions of Logger.dll).
+            <para/>Default > Verbose.
+            </summary>
+        </member>
+    </members>
+</doc>

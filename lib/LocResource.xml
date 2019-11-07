@@ -1,0 +1,1084 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>LocResource</name>
+    </assembly>
+    <members>
+        <member name="T:Microsoft.Localization.OSLEBot.Misc.LocResourceHelpers">
+            <summary>
+            Helper methods for manipulating LocResource data.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Localization.OSLEBot.Misc.LocResourceHelpers.lcidToCultureInfo">
+            <summary>
+            Keys are LCID values that point to CultureInfo objects
+            </summary>
+        </member>
+        <member name="F:Microsoft.Localization.OSLEBot.Misc.LocResourceHelpers.llccToCultureInfo">
+            <summary>
+            Keys are LL-CC strings that point to CultureInfo objects
+            </summary>
+        </member>
+        <member name="F:Microsoft.Localization.OSLEBot.Misc.LocResourceHelpers.nativeLanguageAdjectiveList">
+            <summary>
+            List of native (localized) language adjectives, from .NET culture infos.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Localization.OSLEBot.Misc.LocResourceHelpers.englishLanguageAdjectiveList">
+            <summary>
+            List of English language adjectives, from .NET culture infos.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Misc.LocResourceHelpers.GetSourceString(Microsoft.Localization.LocItem)">
+            <summary>
+            Gets Source String from LocItem
+            </summary>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Misc.LocResourceHelpers.GetPreviousSourceString(Microsoft.Localization.LocItem)">
+            <summary>
+            Gets Previous Source String from LocItem
+            </summary>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Misc.LocResourceHelpers.GetTargetString(Microsoft.Localization.LocItem)">
+            <summary>
+            Gets TargetString from LocItem
+            </summary>
+            <param name="li"></param>
+            <returns>Returns empty string if LocItem has no string.</returns>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Misc.LocResourceHelpers.StripHotkeyFromTarget(Microsoft.Localization.LocSourceString)">
+            <summary>
+            Uses LocStudio logic to remove the hotkey from the target string.
+            </summary>
+            <param name="s">LocString to remove hotkey from. Safe to pass null as input.</param>
+            <returns>String without the hotkey. Empty string returned on null input.</returns>
+            <remarks>
+            If the string is not translated (in LocStudio you see target=source),
+            this method attempts to parse source string to remove hotkeys and return this source string.
+            </remarks>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Misc.LocResourceHelpers.StripHotkey(Microsoft.Localization.LocSourceString)">
+            <summary>
+            Uses LocStudio logic to remove the hotkey from the source string.
+            </summary>
+            <param name="s">LocString to remove hotkey from. Safe to pass null as input.</param>
+            <returns>String without the hotkey. Empty string returned on null input.</returns>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Misc.LocResourceHelpers.GetHotkey(Microsoft.Localization.LocSourceString,System.Boolean)">
+            <summary>
+            Gets hotkey from source string.
+            </summary>
+            <param name="s"></param>
+            <param name="getTarget">If true, target string is processed instead of source string.</param>
+            <returns>0 if there is no hotkey or string is null.</returns>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Misc.LocResourceHelpers.GetLocStatus(Microsoft.Localization.LocItem)">
+            <summary>
+            Get LocStatus from LocItem. Implements correct logic for string==null situations.
+            </summary>
+            <param name="li">LocItem to obtain the value from.</param>
+            <returns>Returns LocStatus.NotApplicable if LocItem has no string.</returns>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Misc.LocResourceHelpers.GetApprovalStatus(Microsoft.Localization.LocItem)">
+            <summary>
+            Gets ApprovalStatus from LocItem.
+            </summary>
+            <param name="li"></param>
+            <returns>Returns ApprovalStatus.NotApplicable if LocItem has no string.</returns>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Misc.LocResourceHelpers.GetTransOrigin(Microsoft.Localization.LocItem)">
+            <summary>
+            Get TransOrigin from LocItem. Implements correct logic for string==null situations.
+            </summary>
+            <param name="li">LocItem to obtain the value from.</param>
+            <returns>Returns TransOrigin.NotApplicable if LocItem has no string.</returns>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Misc.LocResourceHelpers.GetAutoCommentInfo(Microsoft.Localization.LocItem)">
+            <summary>
+             Attempts to return comments from TranslationPlatform for the specified LocItem.
+             If TransPlatform is not available (COM component registration failure or some libraries from TransPlatform missing)
+             then CommentInfo.Empty is returned.
+             The name of the comment is also empty.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Misc.LocResourceHelpers.ConvertInstructionsToStringList(Microsoft.Localization.LocItem)">
+            <summary>
+            Converts the Comments collection from a LocItem into a List of strings.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Misc.LocResourceHelpers.CountWords(System.String)">
+            <summary>
+            Temporary method for counting words.
+            Consider replacing with a Word wourdcounter or something closer to LocStudio logic.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Misc.LocResourceHelpers.GetLocationPath(Microsoft.Localization.LocItem)">
+            <summary>
+            Obtains path to the location of the LocItem with the displayable structure in LocStudio.
+            Unfortunately this is not equal to the structure of an LCX file, for example OSTRMan strings
+            belong to one huge table (Office String Table) in the LCX structure, but in LocStudio they are
+            devided into smaller tables.
+            As far as I am able to tell if LocItem.Display.DisplayPath is not null that means that the display
+            location is somewhat different than the LCX structure location.
+            The method tries to identify which is the case and return some meaningful path. At the moment it is
+            assumed that these paths will be used to compare objects if the belong to the same location so it does
+            not really matter what we return as long as it is consistent.
+            </summary>
+            <returns>Path to the location of the item within the LocStudio displayable structure.</returns>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Misc.LocResourceHelpers.GetLocationSeq(Microsoft.Localization.LocItem)">
+            <summary>
+            Item's sequence within its LocStudio displayable location.
+            As in the case of the location (above) this varies: in case of OSTRman like tables
+            each item has an Order value that defines the sequence.
+            In case of items belonging to a structure that matches the LCX structure we will have to count
+            the relative position as it is not explicitly available.
+            Again the value is meant to be used for comparison between to LocItems belonging to the same
+            displayable location in LocStudio.
+            </summary>
+            <returns>Sequence of the LocItem within the LocStudio displayable structure.</returns>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Misc.LocResourceHelpers.LRIsLocalizedOrUpdated(Microsoft.Localization.OSLEBot.ClassificationObjects.LocResource)">
+            <summary>
+            Method to be used as filter with LocResource.NeighboursWithFilter. Using this common method enables proper caching.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Misc.LocResourceHelpers.ContainsUnprotected_old(Microsoft.Localization.OSLEBot.ClassificationObjects.LocResource,System.String,System.Text.RegularExpressions.Regex[])">
+            <summary>
+            Checks if given string s is matched by one of the regular expressions in regexes.
+            If so, checks if the matching part is referenced by at least one LocVer rule assigned to the lr object.
+            </summary>
+            <param name="lr">LocResource object to test against.</param>
+            <param name="s">String to match regular expressions against.</param>
+            <param name="regexes">List of regular expressions to match against s.</param>
+            <returns>True if at least one regular expression matches s and the matching value is referenced by at least one LocVer rule contained in lr.</returns>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Misc.LocResourceHelpers.ContainsUnprotected(Microsoft.Localization.OSLEBot.ClassificationObjects.LocResource,System.String,System.Text.RegularExpressions.Regex[])">
+            <summary>
+            Checks if given string s is matched by one of the regular expressions in regexes.
+            If so, checks if the matching part is referenced by at least one LocVer rule assigned to the lr object.
+            </summary>
+            <param name="lr">LocResource object to test against.</param>
+            <param name="s">String to match regular expressions against.</param>
+            <param name="regexes">List of regular expressions to match against s.</param>
+            <returns>A collection of regular expression matches where the matching value is referenced by at least one LocVer rule contained in lr.</returns>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Misc.LocResourceHelpers.HasMatchingLocVer(Microsoft.Localization.OSLEBot.ClassificationObjects.LocResource,System.String,System.String[])">
+            <summary>
+            Checks if any of the LocVers assigned to the LocResource references the token as one of its parameters.
+            For example give a token "test" if there is a locver {Placeholder="test"} method will return true;
+            Method checks against two LocResource properties: Comments and AutoComment sinc they both can contain locver. If you want to target
+            AutoComment specifically use "AutoComment" in the cmtsList parameter.
+            </summary>
+            <param name="lr">LocResource object to test against.</param>
+            <param name="token">A string to be referenced by a LocVer.</param>
+            <param name="cmtsList">Optional list of Comment nodes to be searched. All nodes are searched if null is passed. Use "AutoComment" if you want to refer to AutoCommenting LocVer specifically.</param>
+            <returns>True if at least one LocVer references token.</returns>
+        </member>
+        <member name="T:Microsoft.Localization.OSLEBot.ClassificationObjects.LocResource">
+            <summary>
+            LocResource is an abstraction of a Localizable Resource.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.ClassificationObjects.LocResource.#ctor(Microsoft.Localization.OSLEBot.Core.DataSource.PropertyProvider)">
+            <summary>
+            Creates an instances of a LocResource with a Propety Provider that will be used to 
+            generate properties on demand.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.ClassificationObjects.LocResource.ToString">
+            <summary>
+            User friendly information that helps identify the object - used for debugging
+            </summary>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.ClassificationObjects.LocResource.SourceContainsUnprotected_old(System.Text.RegularExpressions.Regex[])">
+            <summary>
+            Checks if Source String is matched by one of the regular expressions in regexes.
+            If so, checks if the matching part is referenced by at least one LocVer rule assigned to the LocResource object.
+            </summary>
+            <param name="regexes">List of regular expressions to match against Source String.</param>
+            <returns>True if at least one regular expression matches source string and the matching value is referenced by at least one LocVer rule contained in the LocResource.</returns>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.ClassificationObjects.LocResource.SourceContainsUnprotected(System.Text.RegularExpressions.Regex[])">
+            <summary>
+            Checks if Source String is matched by one of the regular expressions in regexes.
+            If so, checks if the matching part is referenced by at least one LocVer rule assigned to the LocResource object.
+            </summary>
+            <param name="regexes">List of regular expressions to match against Source String.</param>
+            <returns>A collection of regular expression matches on source string where the matching value is referenced by at least one LocVer rule contained in the LocResource.</returns>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.ClassificationObjects.LocResource.GetDimensionIntersection(Microsoft.Localization.OSLEBot.Core.Engine.Properties.Property[])">
+            <summary>
+            Gets an intersection of multiple dimensions at coordinates specified by 
+            properties listed in params. For examlpe, to get all LocResource objects
+            that belong to the same table as the current resource and that are Updated, call:
+            this.GetIntersection(this.LocationPath, new SimpleProperty&lt;LocStatus&gt;("LocalizationStatus", LocStatus.Updated))
+            CACHING: Method uses result caching.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.ClassificationObjects.LocResource.FindSimilar(System.String[])">
+            <summary>
+            Find objects in space that are similar to the current object.
+            Similar means that the properties listed in parameter must be the same.
+            CACHING: Method uses result caching.
+            </summary>
+            <param name="propertyNames">List of properties that must match</param>
+            <returns>A list of objects that are similar. Empty list if none.</returns>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.ClassificationObjects.LocResource.FindSimilar(Microsoft.Localization.OSLEBot.Core.Engine.Properties.Property[])">
+            <summary>
+             Finds objects in space that are similar to the current object.
+             Similar means that the properties, whose names are given by <paramref name="properties"/> parameter must be the same.
+             CACHING: Method uses result caching.
+            </summary>
+             <param name="properties">List of properties that must match</param>
+             <returns>A list of objects that are similar. Empty list if none.</returns>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.ClassificationObjects.LocResource.FindDifferent(System.String[])">
+            <summary>
+            Opposite to FindSimilar(). Different means an object that has the listed properties different
+            than the current object. The rest of the properties must be the same
+            CACHING: Method uses result caching.
+            </summary>
+            <param name="propertyNames">List of properties that must differ.</param>
+            <returns>A list of different objects.</returns>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.ClassificationObjects.LocResource.FindDifferent(Microsoft.Localization.OSLEBot.Core.Engine.Properties.Property[])">
+            <summary>
+             Opposite to FindSimilar(). Different means an object that has the listed properties different
+             than the current object. The rest of the properties must be the same
+             CACHING: Method uses result caching.
+            </summary>
+            <param name="properties">List of properties that must differ</param>
+             <returns>A list of different objects.</returns>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.ClassificationObjects.LocResource.Next(System.String)">
+            <summary>
+            Gets objects present in x+1 point of the dimension, where x is the value of the dimension property
+            for this object.
+            </summary>
+            <param name="dimensionName">Name of the dimension</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.ClassificationObjects.LocResource.Next(System.String,System.UInt32)">
+            <summary>
+            Gets objects present in x+number point of the dimension, where x is the value of the dimension property
+            for this object.
+            </summary>
+            <param name="dimensionName">Name of the dimension</param>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.ClassificationObjects.LocResource.Previous(System.String)">
+            <summary>
+            Gets objects present in x-1 point of the dimension, where x is the value of the dimension property
+            for this object.
+            </summary>
+            <param name="dimensionName">Name of the dimension</param>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.ClassificationObjects.LocResource.Previous(System.String,System.UInt32)">
+            <summary>
+            Gets objects present in x-number point of the dimension, where x is the value of the dimension property
+            for this object.
+            </summary>
+            <param name="dimensionName">Name of the dimension</param>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.ClassificationObjects.LocResource.Range(System.String,System.Int32,System.Int32)">
+            <summary>
+            Gets objects present in the range of points (x+/-number) of the dimension, where x is the value of the dimension property
+            for this object.
+            CACHING: Method uses result caching.
+            </summary>
+            <param name="dimensionName">Name of the dimension</param>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.ClassificationObjects.LocResource.Neighbours">
+            <summary>
+            Obtains all LocResource objects that appear in the same LocStudio table as the current object.
+            Only the objects from the same Build and LocDocument are returned.
+            CACHING: Method uses result caching.
+            </summary>
+            <returns>LocResource objects from the same LocStudio table, minus the current object.</returns>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.ClassificationObjects.LocResource.Neighbours(System.Int32,System.Int32)">
+            <summary>
+            Returns LocResource objects that appear before and after this object in the same LocStudio table.
+            The purpose is to simulate what the user sees in LocStudio as the location of a string within the context
+            of other strings often is very important.
+            Important: only objects with the same BuildNumber property value are considered.
+            CACHING: Method uses result caching.
+            </summary>
+            <param name="before">Number of objects (strings) before this object.</param>
+            <param name="after">Number of objects after this object.</param>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.ClassificationObjects.LocResource.NeighboursWithFilter(System.Int32,System.Int32,Microsoft.Localization.OSLEBot.Core.Engine.COExpression{Microsoft.Localization.OSLEBot.ClassificationObjects.LocResource})">
+            <summary>
+            Returns LocResource objects that appear before and after this object in the same LocStudio table.
+            The purpose is to simulate what the user sees in LocStudio as the location of a string within the context
+            of other strings often is very important.
+            Objects not matching the filter are ignored and not included in the before/after count.
+            PERFORMANCE: Using this as compared to Neighbours() has a significant performance penalty.
+            CACHING: Method uses result caching.
+            </summary>
+            <param name="before">Number of objects (strings) before this object.</param>
+            <param name="after">Number of objects after this object.</param>
+            <param name="filter">Only the objects matching the filter will be considered</param>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.ClassificationObjects.LocResource.RegisterTypeForEngineCleanup(Microsoft.Localization.OSLEBot.Core.Engine.OSLEBotEngine)">
+            <summary>
+            Registers any LocResource specific cleanup methods with the EngineCleanup event
+            </summary>
+            <param name="host">OSLEBotEngine instance for which cleanup we want to listen.</param>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.ClassificationObjects.LocResource.LocResourceCleanup(System.Object,System.EventArgs)">
+            <summary>
+            Engine raises this event when it has finished a session run.
+            In reaction, we reinitialize Space.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.ClassificationObjects.LocResource.ResetTranslationPlatformCaches">
+            <summary>
+            Attempts to reset TranslationPlatform caches, but skips over quietly, when some of TranslationPlatform libraries
+            are missing (quiet, because in such a case the caches will be empty anyway).
+            </summary>
+        </member>
+        <member name="P:Microsoft.Localization.OSLEBot.ClassificationObjects.LocResource.PropertyIndexer">
+            <summary>
+            Provides an property index provider that points to array index for each property.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Localization.OSLEBot.ClassificationObjects.LocResource.EnabledProperties">
+            <summary>
+            a derrived class must provide a static field of type List string in which to store list of enabled properties
+            access to this static field is enabled by this property. the field will be filled out by ClassificationObject.EnabledProperties
+            </summary>
+        </member>
+        <member name="P:Microsoft.Localization.OSLEBot.ClassificationObjects.LocResource.SourceString">
+            <summary>
+            Source string of a LocItem. This string may contain hotkey.
+            If you need to work on a string without hotkey information, use
+            alternative <seealso cref="P:Microsoft.Localization.OSLEBot.ClassificationObjects.LocResource.SourceStringNoHK"/> property.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Localization.OSLEBot.ClassificationObjects.LocResource.SourceStringNoHK">
+            <summary>
+            Source string of a LocItem, but without hotkey information
+            </summary>
+        </member>
+        <member name="P:Microsoft.Localization.OSLEBot.ClassificationObjects.LocResource.SourceHotkey">
+            <summary>
+            Returns char that is used for hotkey in the source string.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Localization.OSLEBot.ClassificationObjects.LocResource.TargetString">
+            <summary>
+            Target string of a LocItem. This string may contain hotkey.
+            If you need to work on a string without hotkey information, use
+            alternative <seealso cref="P:Microsoft.Localization.OSLEBot.ClassificationObjects.LocResource.TargetStringNoHK"/> property.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Localization.OSLEBot.ClassificationObjects.LocResource.TargetStringNoHK">
+            <summary>
+            Target string of a LocItem, but without hotkey information
+            </summary>
+        </member>
+        <member name="P:Microsoft.Localization.OSLEBot.ClassificationObjects.LocResource.TargetHotkey">
+            <summary>
+            Returns char that is used for hotkey in the target string.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Localization.OSLEBot.ClassificationObjects.LocResource.PseudoString">
+            <summary>
+            PseudoString generated using TransPlatform, based on the settings associated with the LocDocument to which the object belongs.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Localization.OSLEBot.ClassificationObjects.LocResource.PreviousSourceString">
+            <summary>
+            Previous version of the source string. If the string has no previous version, this is empty string.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Localization.OSLEBot.ClassificationObjects.LocResource.StringCategory">
+            <summary>
+            StringCategory as specified in the LCX file.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Localization.OSLEBot.ClassificationObjects.LocResource.WordCount">
+            <summary>
+            WordCount of the source string.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Localization.OSLEBot.ClassificationObjects.LocResource.BuildNumber">
+            <summary>
+             Build number specified as parameter in <see cref="!:ConfigDicionary"/> data source.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Localization.OSLEBot.ClassificationObjects.LocResource.Project">
+            <summary>
+            Name of the Office project to which the LCX file belongs.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Localization.OSLEBot.ClassificationObjects.LocResource.Locgroup">
+            <summary>
+            Name of the Locgroup to which the LCX file belongs.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Localization.OSLEBot.ClassificationObjects.LocResource.LSResID">
+            <summary>
+            Full LocStudio Resource ID path is returned via .Value.
+            You can also use ItemId and ItemType to drill down deeper - this is based on LCX OM.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Localization.OSLEBot.ClassificationObjects.LocResource.UniqueResID">
+            <summary>
+            Represents a unique path to the resource, built from the following elements:
+            ProjectName, LocGroup, LcxFileName, LSResID.
+            The purpose of this is to uniquely identify a resource within the project structure; LocStudio
+            resource ID does not guarantee this.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Localization.OSLEBot.ClassificationObjects.LocResource.FriendlyID">
+            <summary>
+            A friendly string ID of a resource, i.e. a resource handle used to load a resource.
+            Most resources (i.e. ResT) have unique, meaningful handle names that are used in code to reference resource.
+            These tend to get lost in the full LSResID. The value of this property is equivalent to
+            LSResID.ItemID.StringID and can be empty for some resources
+            </summary>
+        </member>
+        <member name="P:Microsoft.Localization.OSLEBot.ClassificationObjects.LocResource.LocalizationStatus">
+            <summary>
+             Returns LocStatus of the specified LocResource.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Localization.OSLEBot.ClassificationObjects.LocResource.ApprovalStatus">
+            <summary>
+            Returns ApprovalStatus for the specified LocResource.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Localization.OSLEBot.ClassificationObjects.LocResource.TranslationOrigin">
+            <summary>
+             Returns TransOrigin property of the specified LocResource.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Localization.OSLEBot.ClassificationObjects.LocResource.UserSrcLocked">
+            <summary>
+             Returns UserSrcLocked flag (true or false) of the specified LocResource.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Localization.OSLEBot.ClassificationObjects.LocResource.UserTransLocked">
+            <summary>
+             Returns UserTransLocked flag (true or false) of the specified LocResource.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Localization.OSLEBot.ClassificationObjects.LocResource.DevLocked">
+            <summary>
+             Returns DevLocked flag (true or false) of the specified LocResource.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Localization.OSLEBot.ClassificationObjects.LocResource.Comments">
+            <summary>
+            A complex property consisting of parsed contenet of the Instructions field.
+            Comments are devided into sections based on the division in Instructions entry, i.e.:
+            "Dev", "Loc", etc.
+            Use .AllComments to access everything or use dictionary access (i.e. Comments["Dev"])
+            to access only part of the Instruction field.
+            This property DOES NOT contain AutoCommenting. Use AutoComments property to query for that.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Localization.OSLEBot.ClassificationObjects.LocResource.AutoComment">
+            <summary>
+            Returns AutoComment property contianing comments generated automatically by TransPlatform engine.
+            Note: this may be null or throw exceptions when LocResource module is not able to locate and load all libraries
+            necessary to access TransPlatform engine (which is part of LocStudio 6.1).
+            </summary>
+        </member>
+        <member name="P:Microsoft.Localization.OSLEBot.ClassificationObjects.LocResource.Document">
+            <summary>
+            Returns a reference to LocDocument from which the specified LocResource originates.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Localization.OSLEBot.ClassificationObjects.LocResource.FileName">
+            <summary>
+            The name of the source file to which the object belongs
+            </summary>
+        </member>
+        <member name="P:Microsoft.Localization.OSLEBot.ClassificationObjects.LocResource.LcxFileName">
+            <summary>
+            The name of the Lcx file from which the resource has been loaded.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Localization.OSLEBot.ClassificationObjects.LocResource.LocationPath">
+            <summary>
+            Location in the LocStudio display tree. Varies depending on table type, etc.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Localization.OSLEBot.ClassificationObjects.LocResource.LocationSequence">
+            <summary>
+            Order number within the Location Path. Varies depending on table type, etc.
+            This should be used to establish the location with the same table only.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Localization.OSLEBot.ClassificationObjects.LocResource.Modified">
+            <summary>
+            Modified information from LCX OM.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Localization.OSLEBot.ClassificationObjects.LocResource.DisplayIcon">
+            <summary>
+            The Icon Type that is used to display the item in LocStudio.
+            This gives a hint as to what type of resource we are dealing with.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Localization.OSLEBot.ClassificationObjects.LocResource.ParentDisplayIcon">
+            <summary>
+            The Icon Type that is used to display the parent of this item in LocStudio.
+            This can be used to check to what type of a control the item belongs to (i.e. Dialog, Menu, etc.)
+            </summary>
+        </member>
+        <member name="P:Microsoft.Localization.OSLEBot.ClassificationObjects.LocResource.HasBinaryData">
+            <summary>
+            LocResource contains binary data (such as dialog control coordinates, icons, bitmaps, etc.)
+            </summary>
+        </member>
+        <member name="P:Microsoft.Localization.OSLEBot.ClassificationObjects.LocResource.SourceCulture">
+            <summary>
+            SourceCulture object for this resource. This uses the Microsoft.Localization.LocCulture class
+            built on top of System.Globalization.CultureInfo which contains additional properties.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Localization.OSLEBot.ClassificationObjects.LocResource.TargetCulture">
+            <summary>
+            TargetCulture object for this resource. This uses the Microsoft.Localization.LocCulture class
+            built on top of System.Globalization.CultureInfo which contains additional properties.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Localization.OSLEBot.OSLEBotLCXHelper">
+            <summary>
+            Helper class containing convenience methods to work with LCX object model.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.OSLEBotLCXHelper.Reset">
+            <summary>
+            Resets static fields used internally for caching.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Localization.OSLEBot.OSLEBotLCXHelper.LocDocumentToPathMappings">
+            <summary>
+            Maps instances of loaded LocDocuments to their physical location on disk.
+            Otherwise it is not possible to get this from the LocDocument object and we need it
+            in logically separate components of oslebot, i.e. output writers
+            Uses unique HashCode id generated by System.Runtime.CompilerServices.RuntimeHelpers.GetHashcode() as key.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.OSLEBotLCXHelper.GetLcxPath(Microsoft.Localization.LocDocument)">
+            <summary>
+            Returns full path to the LCX file from which the document was loaded.
+            Throws an exception if the path is not available: LocDocument was not 
+            registered when it was loaded.
+            </summary>
+            <param name="ld">LocDocument</param>
+            <returns>full path to the Lcx file.</returns>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.OSLEBotLCXHelper.RegisterLcxPath(Microsoft.Localization.LocDocument,System.String)">
+            <summary>
+            Internally register the path to the LCX file from which LocDocument is created.
+            Later you will be able to use GetLcxPath to obtain it from another component.
+            Throws an exception if the instance of LocDocument is already registered with a different path.
+            </summary>
+            <param name="ld">LocDocument</param>
+            <param name="path">Full path to the LCX</param>
+        </member>
+        <member name="T:Microsoft.Localization.OSLEBot.DataSources.Lcx.Exceptions.LcxDataSourceException">
+            <summary>
+            Base type for exceptions thrown from within LocResource.dll.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.DataSources.Lcx.Exceptions.LcxDataSourceException.#ctor">
+            <summary>
+            Initializes a new instance of the LcxDataSourceException class.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.DataSources.Lcx.Exceptions.LcxDataSourceException.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the System.Exception class with a specified error message.
+            </summary>
+            <param name="message">The error message that explains the reason for the exception</param>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.DataSources.Lcx.Exceptions.LcxDataSourceException.#ctor(System.String,System.Exception)">
+            <summary>
+            Initializes a new instance of the System.Exception class with a specified error message and a reference to the inner exception that is the cause of this exception.
+            </summary>
+            <param name="message">The error message that explains the reason for the exception.</param>
+            <param name="innerException">The exception that is the cause of the current exception, or a null reference if no inner exception is specified</param>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.DataSources.Lcx.Exceptions.LcxDataSourceException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Initializes a new instance of the System.Exception class with serialized data.
+            </summary>
+            <param name="info">The SerializationInfo that holds the serialized object data about the exception being thrown</param>
+            <param name="context">The StreamingContext that contains contextual information about the source or destination</param>
+        </member>
+        <member name="T:Microsoft.Localization.OSLEBot.Output.LocResourcePerLCLOutputWriter">
+            <summary>
+            This specialized writer creates multiple XML output files: one file per input LCL file.
+            This writer is to be used only in certain scenarios where it makes more sense to ouput to several separate
+            XML files rather than one file, for example to OSLE "OSLEBotupdate" workflow.
+            This writer should only be used with Classification Objects of type LocResource or any other type that
+            contains the "LocDocument" property.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Localization.OSLEBot.Output.LocResourcePerLCLOutputWriter._outputXmls">
+            <summary>
+            index of output xmlwriters pointing to different xml files.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Localization.OSLEBot.Output.LocResourcePerLCLOutputWriter._outputXmlFiles">
+            <summary>
+            A list of all files created by the output writer.
+            Used in Finalize() to validate against schema.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Localization.OSLEBot.Output.LocResourcePerLCLOutputWriter.WriterSettings">
+            <summary>
+            Settings for all xmlwriters
+            </summary>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Output.LocResourcePerLCLOutputWriter.InitializeXmlWriter(System.Xml.XmlWriter,System.String)">
+            <summary>
+            Writes a header for a newly created output xml file.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Output.LocResourcePerLCLOutputWriter.WriteCOToXmlWriter(Microsoft.Localization.OSLEBot.Core.Output.OutputEntryForOneWholeCOWithAllRules,System.Xml.XmlWriter)">
+            <summary>
+            Writes a OutputEntryForOneWholeCOWithAllRules using an XmlWriter.
+            This should be used in the future to replace the currentl XmlDocument-based method in XmlOutputWriter.cs
+            </summary>
+            <param name="oe">Output Entry object describing the CO and the results of rules having been applied.</param>
+            <param name="xw">XmlWriter object to which write to.</param>
+        </member>
+        <member name="T:TPWorkAround.TPCOMHelper">
+            <summary>
+            Acts as interface or bridge to a 32 bit .NET assembly containing Translation Platform libraries.
+            This assembly is registered as a COM library and a COM+ application is created for it which hosts the 32 bit assembly.
+            This allows OSLEBot to run as a 64 bit application and use all available memory on 64-bit OS.
+            </summary>
+        </member>
+        <member name="M:TPWorkAround.TPCOMHelper.GetPseudoString(Microsoft.Localization.LocItem)">
+            <summary>
+            Pseudo localizes the given LocItem using TransPlatform assosiated with the LocDocument
+            to which it belongs.
+            </summary>
+        </member>
+        <member name="F:TPWorkAround.TPCOMHelper.ms">
+            <summary>
+            Used with LcxReaderWriter
+            </summary>
+        </member>
+        <member name="F:TPWorkAround.TPCOMHelper.lcxRW">
+            <summary>
+            Used to serialize LocItems with partial LocDocument
+            </summary>
+        </member>
+        <member name="F:TPWorkAround.TPCOMHelper.partialLds">
+            <summary>
+            Stores parial LocDocument instances used for serialization of LocItems
+            </summary>
+        </member>
+        <member name="F:TPWorkAround.TPCOMHelper.docItemsField">
+            <summary>
+            Used to hack a partial LocDocument to modify its list of items
+            </summary>
+        </member>
+        <member name="M:TPWorkAround.TPCOMHelper.WrapIntoLocDocumentAndSerialize(Microsoft.Localization.LocItem)">
+            <summary>
+            Works around the fact that LCX OM does not expose serialization methods for LocItem.
+            We cannot pass LocItem object to the COM+ application because we are running in 64-bit CLR and it is running in 32
+            </summary>
+            <param name="li"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TPWorkAround.TPCOMHelper.Reset">
+            <summary>
+            Resets any internal cached data, for example cached instances of Translation Platforms created
+            for different settings collections.
+            </summary>
+        </member>
+        <member name="P:TPWorkAround.TPCOMHelper.SAP">
+            <summary>
+            The singleton (multithread-safe)
+            </summary>
+        </member>
+        <member name="T:Microsoft.Localization.OSLEBot.DataSources.LcxDataSource">
+            <summary>
+            A data source provider that understands how to read data (LocResource properties) from LCX files (LCL, LCT, LCG).
+            </summary>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.DataSources.LcxDataSource.CreateDataSourceInstance(Microsoft.Localization.OSLEBot.Core.DataSource.DataSourcePackages.SourceLocation)">
+            <summary>
+            Creates a LocDocument instance that will be used to read instances of LocResource classification objects and their Properties.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Localization.OSLEBot.DataSources.LcxDataSource.DataSourceType">
+            <summary>
+            Returns the type of the underlying data source. For Lcx it will be the type of LocDocument.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Localization.OSLEBot.DataSources.ConfigDictionaryDataSource">
+            <summary>
+            A data source provider that understands how to read data (properties) from ConfigDictionary object (used as secondary data source).
+            </summary>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.DataSources.ConfigDictionaryDataSource.CreateDataSourceInstance(Microsoft.Localization.OSLEBot.Core.DataSource.DataSourcePackages.SourceLocation)">
+            <summary>
+            Creates a ConfigDictionary instance that will be used to read property values from the dictionary for each LocResource classification object returned from enumerator of LcxDataSource.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Localization.OSLEBot.DataSources.ConfigDictionaryDataSource.DataSourceType">
+            <summary>
+            Returns the type of the underlying data source. For ConfigDictionary it will be the type of ConfigDictionary.
+            </summary>
+        </member>
+        <member name="T:TPWorkAround.TPCOMWrapperRegistration">
+            <summary>
+            Contains methods to help register/unregister the TPCOMWrapper library for work with
+            TPCOMHelper class
+            </summary>
+        </member>
+        <member name="F:TPWorkAround.TPCOMWrapperRegistration.regasmTimeout">
+            <summary>
+            Timeout used to wait for the regasm.exe process to complete
+            </summary>
+        </member>
+        <member name="T:Microsoft.Localization.OSLEBot.DataSource.LocResourcePropertyAdapters.LocItemPropertyAdapter">
+            <summary>
+            Object adapter that transforms well-known properties of a LocItem (LCX resource)
+            into generic properties of OSLEBot <see cref="T:Microsoft.Localization.OSLEBot.Core.Engine.ClassificationObject"/>.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.DataSource.LocResourcePropertyAdapters.LocItemPropertyAdapter.GetLocItemProperty(System.String,Microsoft.Localization.LocItem)">
+            <summary>
+            Define the logic of how to provide each of the properties below
+            </summary>
+            <param name="propertyName">Name of the property for which to compute and return value.</param>
+            <param name="li"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Microsoft.Localization.OSLEBot.DataSource.LocResourcePropertyAdapters.ConfigDictPropertyAdapter">
+            <summary>
+            Property adapter that understands how to retrieve properties from <see cref="T:Microsoft.Localization.OSLEBot.Core.Misc.ConfigDictionary"/> object type.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.DataSource.LocResourcePropertyAdapters.ConfigDictPropertyAdapter.GetProperty(System.String,System.Object,Microsoft.Localization.OSLEBot.Core.Engine.Properties.Property@)">
+            <summary>
+            Attempts to return a property with the specified name.
+            </summary>
+            <returns>True if property retrieval was successful. False otherwise.</returns>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.DataSource.LocResourcePropertyAdapters.ConfigDictPropertyAdapter.GetConfigDictionaryProperty(System.String,Microsoft.Localization.OSLEBot.Core.Misc.ConfigDictionary)">
+            <summary>
+            Gets a value of of the property specified by name from ConfigDictionary.
+            </summary>
+            <param name="propertyName">Name of the property to retrieve.</param>
+            <param name="md">Dictionary (data source) containing the data for the property.</param>
+            <exception cref="T:Microsoft.Localization.OSLEBot.Exceptions.PropertyRetrievalException">Thrown when either data source is null or when the data source does not contain the string value for the specified property name.</exception>
+        </member>
+        <member name="P:Microsoft.Localization.OSLEBot.DataSource.LocResourcePropertyAdapters.ConfigDictPropertyAdapter.DataSourceType">
+            <summary>
+            Returns type of the supported underlying data source. Here it will be <see cref="T:Microsoft.Localization.OSLEBot.Core.Misc.ConfigDictionary"/>.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Localization.OSLEBot.DataSource.LocResourcePropertyAdapters.ConfigDictPropertyAdapter.ClassificationObjectType">
+            <summary>
+            Returns the type of the associated classification object, for which properties are retrieved (this is not the same as data source type).
+            </summary>
+        </member>
+        <member name="T:Microsoft.Localization.OSLEBot.DataSource.LocResourcePropertyAdapters.LocResourceSelfPropertyAdapter">
+            <summary>
+            A property adapter that creates LocResource properties based on other LocResource properties. The datasource for the adapter
+            is the LocResource object itself
+            </summary>
+        </member>
+        <member name="T:Microsoft.Localization.OSLEBot.ClassificationObjects.Properties.LocResourceProperties.LocStudioResourceIDProperty">
+            <summary>
+            A complex property collection representing all the bits of a LocStudio resource ID (LocUniqueID.
+            .Value returns the result of LocItem.Identify() which is a string representation of the full path.
+            The sub properties return the different parts like ItemType, etc.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.ClassificationObjects.Properties.LocResourceProperties.LocStudioResourceIDProperty.#ctor(System.String,Microsoft.Localization.LocItem)">
+            <summary>
+            Constructs a new instance of <see cref="T:Microsoft.Localization.OSLEBot.ClassificationObjects.Properties.LocResourceProperties.LocStudioResourceIDProperty"/> with the specified parameters.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Localization.OSLEBot.ClassificationObjects.Properties.LocResourceProperties.LocStudioResourceIDProperty.Value">
+            <summary>
+            Returns full path to the resource, as defined by LocItem.Identify().
+            Returns a StringProperty.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Localization.OSLEBot.ClassificationObjects.Properties.LocResourceProperties.LocStudioResourceIDProperty.ItemType">
+            <summary>
+            Returns ItemType chunk of full ID, as defined in LocItem.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Localization.OSLEBot.ClassificationObjects.Properties.LocResourceProperties.LocStudioResourceIDProperty.ItemID">
+            <summary>
+            Returns ItemID chunk of full ID, as defined in LocItem
+            </summary>
+        </member>
+        <member name="T:Microsoft.Localization.OSLEBot.ClassificationObjects.Properties.LocResourceProperties.LocVerInfo">
+            <summary>
+            Parsed information about a LocVer rule
+            </summary>
+        </member>
+        <member name="F:Microsoft.Localization.OSLEBot.ClassificationObjects.Properties.LocResourceProperties.LocVerInfo.LocVerType">
+            <summary>
+            LocVer name, i.e. "placeholder"
+            All lowercase.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Localization.OSLEBot.ClassificationObjects.Properties.LocResourceProperties.LocVerInfo.LocVerCall">
+            <summary>
+            The actual LocVer call, i.e. {Placeholder=%s}
+            All lowercase.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Localization.OSLEBot.ClassificationObjects.Properties.LocResourceProperties.LocVerInfo.LocVerParams">
+            <summary>
+            LocVer parameters.
+            All lowercase.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.ClassificationObjects.Properties.LocResourceProperties.LocVerInfo.#ctor(System.String,System.String,System.String)">
+            <summary>
+            Constructs a new <see cref="T:Microsoft.Localization.OSLEBot.ClassificationObjects.Properties.LocResourceProperties.LocVerInfo"/> object with the specified parameters.
+            </summary>
+            <param name="locVerType">LocVer name, i.e. "placeholder". All lowercase.</param>
+            <param name="locVerCall">The actual LocVer call, i.e. {Placeholder=%s}. All lowercase.</param>
+            <param name="locVerParams">LocVer parameters. All lowercase.</param>
+        </member>
+        <member name="P:Microsoft.Localization.OSLEBot.ClassificationObjects.Properties.LocResourceProperties.LocVerInfo.IsLocked">
+            <summary>
+            True if rule is some form of Locked rule
+            </summary>
+        </member>
+        <member name="P:Microsoft.Localization.OSLEBot.ClassificationObjects.Properties.LocResourceProperties.LocVerInfo.IsMaxlength">
+            <summary>
+            True if rule is some form of Maxlength rule
+            </summary>
+        </member>
+        <member name="T:Microsoft.Localization.OSLEBot.ClassificationObjects.Properties.LocResourceProperties.CommentInfo">
+            <summary>
+            Parsed information about a comment entry
+            </summary>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.ClassificationObjects.Properties.LocResourceProperties.CommentInfo.#cctor">
+            <summary>
+            Initializes static members of <see cref="T:Microsoft.Localization.OSLEBot.ClassificationObjects.Properties.LocResourceProperties.CommentInfo"/> class.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Localization.OSLEBot.ClassificationObjects.Properties.LocResourceProperties.CommentInfo.Empty">
+            <summary>
+            Represent an empty CommentInfo object.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.ClassificationObjects.Properties.LocResourceProperties.CommentInfo.#ctor(System.String,System.String)">
+            <summary>
+            Creates a CommentInfo instance by parsing the Instruction string into the appropriate fields.
+            </summary>
+            <param name="commentName">Name of this comment node. e.g. "Dev".</param>
+            <param name="commentText">Value of the comment as read from LCX LocItem object.</param>
+        </member>
+        <member name="F:Microsoft.Localization.OSLEBot.ClassificationObjects.Properties.LocResourceProperties.CommentInfo._locVers">
+            <summary>
+            List of LocVers extracted from the comment.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Localization.OSLEBot.ClassificationObjects.Properties.LocResourceProperties.CommentInfo._textComment">
+            <summary>
+            The entire comment string without the locver calls.
+            For examlpe if the full comment is "Do not remove this placeholder {Placeholder=%s}. Never ever." then
+            TextComment is "Do not remove this placeholder . Never ever.".
+            Allows easy queries against the dev comment while skipping locver entries
+            </summary>
+        </member>
+        <member name="F:Microsoft.Localization.OSLEBot.ClassificationObjects.Properties.LocResourceProperties.CommentInfo._fullComment">
+            <summary>
+            The original comment content.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.ClassificationObjects.Properties.LocResourceProperties.CommentInfo.ToString">
+            <summary>
+            Parses comment into free-flow comment, LocVer calls, etc.
+            </summary>
+            <param name="s">Content of Instructions field to parse.</param>
+            
+        </member>
+        <member name="P:Microsoft.Localization.OSLEBot.ClassificationObjects.Properties.LocResourceProperties.CommentInfo.CommentName">
+            <summary>
+            Comment name, for example, "Dev"
+            </summary>
+        </member>
+        <member name="P:Microsoft.Localization.OSLEBot.ClassificationObjects.Properties.LocResourceProperties.CommentInfo.LocVers">
+            <summary>
+            Information about LocVer included in the comment.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Localization.OSLEBot.ClassificationObjects.Properties.LocResourceProperties.CommentInfo.TextComment">
+            <summary>
+            The entire comment string without the locver calls.
+            For examlpe if the full comment is "Do not remove this placeholder {Placeholder=%s}. Never ever." then
+            TextComment is "Do not remove this placeholder . Never ever.".
+            Allows easy queries against the dev comment while skipping locver entries
+            </summary>
+        </member>
+        <member name="P:Microsoft.Localization.OSLEBot.ClassificationObjects.Properties.LocResourceProperties.CommentInfo.FullComment">
+            <summary>
+            The original comment string including both LocVer and TextComment
+            </summary>
+        </member>
+        <member name="T:Microsoft.Localization.OSLEBot.ClassificationObjects.Properties.LocResourceProperties.LocCommentsProperty">
+            <summary>
+            A complex property representing parsed comments present in LocStudio Instructions field.
+            It only contains the "static" comments and excludes AutoCommenting
+            </summary>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.ClassificationObjects.Properties.LocResourceProperties.LocCommentsProperty.#ctor(System.String,Microsoft.Localization.LocItem)">
+            <summary>
+            Constructs a new instance of <see cref="T:Microsoft.Localization.OSLEBot.ClassificationObjects.Properties.LocResourceProperties.LocCommentsProperty"/> with the specified parameters.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.ClassificationObjects.Properties.LocResourceProperties.LocCommentsProperty.GetHashCode">
+            <summary>
+            Hash code of the string representation (concatenated comments)
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Microsoft.Localization.OSLEBot.ClassificationObjects.Properties.LocResourceProperties.LocCommentsProperty.Item(System.String)">
+            <summary>
+            Enables to get a comment by its type.
+            </summary>
+            <param name="commentType">Type of comment to return, e.g. "Dev"</param>
+            <returns></returns>
+        </member>
+        <member name="P:Microsoft.Localization.OSLEBot.ClassificationObjects.Properties.LocResourceProperties.LocCommentsProperty.Value">
+            <summary>
+            Returns a list of all comments. Use dictionary access to drill down, for example:
+            .Comments["Dev"] to access dev comments only
+            </summary>
+        </member>
+        <member name="P:Microsoft.Localization.OSLEBot.ClassificationObjects.Properties.LocResourceProperties.LocCommentsProperty.AllComments">
+            <summary>
+            Returns a list of all comments. Use dictionary access to drill down, for example:
+            .Comments["Dev"] to access dev comments only. Same as .Value.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Localization.OSLEBot.ClassificationObjects.Properties.LocResourceProperties.LocCommentsProperty.AllLocVers">
+            <summary>
+            Gets all LocVers from all types of comments.
+            Equivalent of more complex expression involving .Comments.AllComments.SelectMany...
+            </summary>
+        </member>
+        <member name="P:Microsoft.Localization.OSLEBot.ClassificationObjects.Properties.LocResourceProperties.LocCommentsProperty.AllTextComments">
+            <summary>
+            Gets all text comments from all types of comments.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Localization.OSLEBot.ClassificationObjects.Properties.LocResourceProperties.LocCommentsProperty.Count">
+            <summary>
+            Gets the number of different comments assigned to the resource (i.e. "Dev", "Loc", etc.)
+            </summary>
+        </member>
+        <member name="P:Microsoft.Localization.OSLEBot.ClassificationObjects.Properties.LocResourceProperties.LocCommentsProperty.HasComments">
+            <summary>
+            Checks if the Comments collection contains at least one comment and that comment is not empty (contains something else than just
+            spaces)
+            </summary>
+        </member>
+        <member name="T:Microsoft.Localization.OSLEBot.ClassificationObjects.Properties.LocResourceProperties.LocationSequenceProperty">
+            <summary>
+            LocationSequence is a path to the display location string followed by a number that describes
+            the relative position within the display location, i.e. 
+             \ ;Menu \ ;Dummy \ 0 \ 1005 \ 4 \ 0 \ 2728 \ ;WIN_MENU \ 0;5
+            This requires a separate type (StringProperty was used originally) to obtain correct comparison
+            and sorting. StringComparer does not sort 1,2, 10 as expected in this case
+            </summary>
+        </member>
+        <member name="T:Microsoft.Localization.OSLEBot.ClassificationObjects.Properties.LocResourceProperties.LocationSequenceProperty.LocationSequenceValue">
+            <summary>
+            Contains location path and sequence number within that path.
+            This simulates the LocStudio display location.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.ClassificationObjects.Properties.LocResourceProperties.LocationSequenceProperty.LocationSequenceValue.#ctor(System.String,System.Int32)">
+            <summary>
+            Creates new instance of <see cref="T:Microsoft.Localization.OSLEBot.ClassificationObjects.Properties.LocResourceProperties.LocationSequenceProperty.LocationSequenceValue"/> with the specified parameters.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Localization.OSLEBot.ClassificationObjects.Properties.LocResourceProperties.LocModifiedProperty">
+            <summary>
+            Need a specialized type to store LCX's LocModified object.
+            Every LocItem has a separate instance of this object and it does not
+            expose an Equals method, so it is not possible to build a reliable
+            dimension on this when using SimpleProperty.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.ClassificationObjects.Properties.LocResourceProperties.LocModifiedProperty.GetHashCode">
+            <summary>
+            
+            </summary>
+            <returns>HashCode for the DateTime part only.</returns>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.ClassificationObjects.Properties.LocResourceProperties.LocModifiedProperty.ToString">
+            <summary>
+            Compares the .DateTime field of .Value (LocModified)
+            </summary>
+        </member>
+        <member name="T:Microsoft.Localization.OSLEBot.ClassificationObjects.Properties.LocResourceProperties.UniqueResID">
+            <summary>
+            Represents a unique path to the resource, built from the following elements:
+            ProjectName, LocGroup, LcxFileName, LSResID.
+            The purpose of this is to uniquely identify a resource within the project structure; LocStudio
+            resource ID does not guarantee this.
+            Fields of this struct are not accessible - the purpose is to use this as a unique location ID.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.KnowledgeBase.LocResourceRule.Check(Microsoft.Localization.OSLEBot.Core.Engine.COExpression{Microsoft.Localization.OSLEBot.ClassificationObjects.LocResource},System.String@)">
+            <summary>
+            Call this method from within your Run() method.
+            Each call to Check() produces one entry in the log.
+            </summary>
+            <param name="exp">Your rule's logic in form of a lambda expression</param>
+            <param name="message">Message to be written out to log. Passed as reference so exp can modify the message, if needed.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.KnowledgeBase.LocResourceRule.Check(Microsoft.Localization.OSLEBot.Core.Engine.COExpression{Microsoft.Localization.OSLEBot.ClassificationObjects.LocResource},System.String)">
+            <summary>
+            Call this method from within your Run() method.
+            Each call to Check() produces one entry in the log.
+            </summary>
+            <param name="exp">Your rule's logic in form of a lambda expression</param>
+            <param name="message">Message to be written out to log. Passed as value, so it cannot be modified by exp.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.KnowledgeBase.LocResourceRule.Check(Microsoft.Localization.OSLEBot.Core.Engine.COExpression{Microsoft.Localization.OSLEBot.ClassificationObjects.LocResource},Microsoft.Localization.OSLEBot.Core.KnowledgeBase.MessageCreator)">
+            <summary>
+            Call this method from within your Run() method.
+            Each call to Check() produces one entry in the log.
+            Use your customized message creator in order to build a dynamic message based on the execution of exp.
+            </summary>
+            <param name="exp"></param>
+            <param name="mc">Message creator is executed after exp executes. This gives you a chance to modify the content of the message in the exp by 
+            passing context information into mc and creating custom logic in your MC implementation of GetMessage().</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.KnowledgeBase.LocResourceRule.Check(Microsoft.Localization.OSLEBot.Core.Engine.COExpression{Microsoft.Localization.OSLEBot.ClassificationObjects.LocResource},Microsoft.Localization.OSLEBot.Core.KnowledgeBase.MessageCreator,Microsoft.Localization.OSLEBot.Core.KnowledgeBase.CheckSeverity)">
+            <summary>
+            Call this method from within your Run() method.
+            Each call to Check() produces one entry in the log.
+            Use your customized message creator in order to build a dynamic message based on the execution of exp.
+            </summary>
+            <param name="exp"></param>
+            <param name="mc">Message creator is executed after exp executes. This gives you a chance to modify the content of the message in the exp by 
+            passing context information into mc and creating custom logic in your MC implementation of GetMessage().</param>
+            <param name="severity">Specify the severity of the check.</param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

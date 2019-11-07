@@ -1,0 +1,78 @@
+﻿<Grid xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!-- This is a sandbox file, not used by any of the logic. -->
+    <!-- It's pure puprpose is to design layouts for views using VS built in designer. -->
+    <!-- Once a view has been designed here, copy the whole contents and paste it as resource in ConfiguratorApplication.xaml. -->
+    <!-- You have to give it an x:Key attribute after pasting.-->
+
+    <Grid.ColumnDefinitions>
+
+        <!-- List of checks on the left -->
+        <ColumnDefinition Width="*"/>
+        <!-- List of environment variables on the right -->
+        <ColumnDefinition Width="*"/>
+
+    </Grid.ColumnDefinitions>
+
+    <GroupBox Grid.Column="0" Header="Checks" Style="{StaticResource ThemeGroupBox}">
+        <Grid>
+
+            <Grid.RowDefinitions>
+                <!-- List of existing checks -->
+                <RowDefinition Height="*"/>
+                <!-- Operational buttons for adding and removing checks -->
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <ListView Grid.Row="0" x:Name="ChecksList" ItemTemplate="{StaticResource CheckItemTemplate}"/>
+
+            <StackPanel Grid.Row="1" Orientation="Horizontal">
+                <Button x:Name="ButtonAdd" Content="Add" Style="{StaticResource ThemeButton}" />
+                <Button x:Name="ButtonRemove" Content="Remove" Style="{StaticResource ThemeButton}"/>
+            </StackPanel>
+        </Grid>
+    </GroupBox>
+
+    <GroupBox Grid.Column="1" Header="Environment variables" Style="{StaticResource ThemeGroupBox}">
+        <Grid>
+
+            <Grid.RowDefinitions>
+
+                <!-- Enabled environment variables -->
+                <RowDefinition Height="Auto"/>
+                <RowDefinition/>
+                <!-- All environment variables available in current environment -->
+                <RowDefinition Height="Auto"/>
+                <RowDefinition/>
+
+            </Grid.RowDefinitions>
+
+            <!-- Enabled environment variables -->
+            <TextBlock Grid.Row="0" Text="Enabled environment variables" Style="{StaticResource ThemeTextBlock}"/>
+            <ListView Grid.Row="1" x:Name="EnabledVariables">
+                <ListView.View>
+                    <GridView>
+                        <GridView.Columns>
+                            <GridViewColumn Header="Name"/>
+                        </GridView.Columns>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+
+            <!-- All environment variables available in current environment -->
+            <TextBlock Grid.Row="2" Text="All available environment variables" Style="{StaticResource ThemeTextBlock}"/>
+            <ListView Grid.Row="3" x:Name="AllVariables">
+                <ListView.View>
+                    <GridView>
+                        <GridView.Columns>
+                            <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Path=Key}"/>
+                            <GridViewColumn Header="Value" DisplayMemberBinding="{Binding Path=Value}"/>
+                        </GridView.Columns>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+
+        </Grid>
+    </GroupBox>
+</Grid>

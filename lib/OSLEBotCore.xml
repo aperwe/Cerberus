@@ -1,0 +1,2984 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>OSLEBotCore</name>
+    </assembly>
+    <members>
+        <member name="T:Microsoft.Localization.OSLEBot.Core.KnowledgeBase.RuntimeRuleCompiler">
+            <summary>
+            Helper class used internally by OSLEBotCore to compile binary rules from source code (*.cs) files.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Localization.OSLEBot.Core.KnowledgeBase.RuntimeRuleCompiler._codeProvider">
+            <summary>
+            .Net framework object that enables to compile binary code from source C# code.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Localization.OSLEBot.Core.KnowledgeBase.RuntimeRuleCompiler._owningManager">
+            <summary>
+            Rule manager that owns this instance of <see cref="T:Microsoft.Localization.OSLEBot.Core.KnowledgeBase.RuntimeRuleCompiler"/>.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Localization.OSLEBot.Core.KnowledgeBase.RuntimeRuleCompiler._tempAssemblyDirectory">
+            <summary>
+            Path to a directory where compiled assemblies will be stored.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Localization.OSLEBot.Core.KnowledgeBase.RuntimeRuleCompiler._tempAssemblyPath">
+            <summary>
+            Path to a temporary assembly generated from source references. to be cleaned up
+            </summary>
+        </member>
+        <member name="F:Microsoft.Localization.OSLEBot.Core.KnowledgeBase.RuntimeRuleCompiler._binaryReferences">
+            <summary>
+            Using HashSet instead of List allows to eliminate duplicate references.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.KnowledgeBase.RuntimeRuleCompiler.AddBinaryReference(System.String)">
+            <summary>
+            Adds a reference to a binary file (dll) that is required for successful compilation of Rule source files (*.cs).
+            </summary>
+            <param name="path">Binary dll location (absolute or relative)</param>
+        </member>
+        <member name="F:Microsoft.Localization.OSLEBot.Core.KnowledgeBase.RuntimeRuleCompiler._sourceReferences">
+            <summary>
+            Using HashSet instead of List allows to eliminate duplicate references.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.KnowledgeBase.RuntimeRuleCompiler.AddSourceReference(System.String)">
+            <summary>
+            Adds an additional source code file that is required for successful compilation of the specified rule main file.
+            </summary>
+            <param name="path">Path to the additional source code.</param>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.KnowledgeBase.RuntimeRuleCompiler.CompileToAssembly(System.String,System.String,System.Boolean)">
+            <remarks>
+                <list type="ol"><listheader>External links:</listheader>
+                <item>http://www.dotnetjunkies.com/WebLog/kenbrubaker/archive/2007/08/10/compilecsharp30.aspx</item>
+                <item>http://blogs.msdn.com/lukeh/archive/2007/07/11/c-3-0-and-codedom.aspx</item>
+                </list>
+            </remarks>
+            <param name="sourceCode">Path to the rule.cs file that we want to compile</param>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.KnowledgeBase.RuntimeRuleCompiler.CompileToAssembly(System.String,System.String,System.Boolean,System.String[])">
+            <remarks>
+                <list type="ol"><listheader>External links:</listheader>
+                <item>http://www.dotnetjunkies.com/WebLog/kenbrubaker/archive/2007/08/10/compilecsharp30.aspx</item>
+                <item>http://blogs.msdn.com/lukeh/archive/2007/07/11/c-3-0-and-codedom.aspx</item>
+                </list>
+            </remarks>
+            <param name="sourceCode">Path to the rule.cs file that we want to compile</param>
+            <param name="additionalSources">Additional files on which the sourceCode is dependent for successful compilation</param>
+            <param name="targetName">Suggested full path to the target dll file to produce. May be relative or absolute. Note: It may be substituted by alternate file name if the suggested file exists and cannot be deleted.</param>
+        </member>
+        <member name="T:Microsoft.Localization.OSLEBot.Core.KnowledgeBase.CheckSeverity">
+            <summary>
+            Used to describe severity of a particular check.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.Engine.ClassificationObject.FindSimilar(System.String[])">
+            <summary>
+            Find objects in space that are similar to the current object.
+            Similar means that the properties listed in parameter must be the same.
+            CACHING: Method uses result caching.
+            </summary>
+            <param name="propertyNames">List of properties that must match</param>
+            <returns>A list of objects that are similar, excluding this object. Empty list if none.</returns>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.Engine.ClassificationObject._FindSimilar(System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            CACHING: Method uses result caching.
+            </summary>
+            <param name="propertyNames"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.Engine.ClassificationObject.GetObjectsAt(Microsoft.Localization.OSLEBot.Core.Engine.Properties.Property)">
+            <summary>
+            Gets objects from Space with the specified value of Property.
+            </summary>
+            <param name="p"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.Engine.ClassificationObject.GetDimensionIntersection(Microsoft.Localization.OSLEBot.Core.Engine.Properties.Property[])">
+            <summary>
+            Gets an intersection of multiple dimensions at coordinates specified by 
+            properties listed in params.
+            CACHING: Method uses result caching.
+            </summary>
+            <param name="properties"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.Engine.ClassificationObject.FindDifferent(System.String[])">
+            <summary>
+            Opposite to FindSimilar(). Different means an object that has the listed properties different
+            than the current object. The rest of the properties must be the same
+            CACHING: Method uses result caching.
+            </summary>
+            <param name="propertyNames">List of properties that must differ.</param>
+            <returns>A list of different objects.</returns>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.Engine.ClassificationObject.Next(System.String)">
+            <summary>
+            Gets objects present in x+1 point of the dimension, where x is the value of the dimension property
+            for this object.
+            </summary>
+            <param name="dimensionName">Name of the dimension</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.Engine.ClassificationObject.Next(System.String,System.UInt32)">
+            <summary>
+            Gets objects present in x+number point of the dimension, where x is the value of the dimension property
+            for this object.
+            </summary>
+            <param name="dimensionName">Name of the dimension</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.Engine.ClassificationObject.Previous(System.String)">
+            <summary>
+            Gets objects present in x-1 point of the dimension, where x is the value of the dimension property
+            for this object.
+            </summary>
+            <param name="dimensionName">Name of the dimension</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.Engine.ClassificationObject.Previous(System.String,System.UInt32)">
+            <summary>
+            Gets objects present in x-number point of the dimension, where x is the value of the dimension property
+            for this object.
+            </summary>
+            <param name="dimensionName">Name of the dimension</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.Engine.ClassificationObject.Range(System.String,System.Int32,System.Int32)">
+            <summary>
+            Gets objects present in the range of points (x+/-number) of the dimension, where x is the value of the dimension property
+            for this object.
+            CACHING: Method uses result caching.
+            </summary>
+            <param name="dimensionName">Name of the dimension</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.Engine.ClassificationObject.GetPreviousPropertyValue(System.String)">
+            <summary>
+            Gets a Property value to the left of the current location of the 
+            object in the propertie's dimension.
+            Example: if this object's property X has value "1" and the dimension for X
+            has the following points: 0, 1, 2
+            this will return a property object for 0
+            </summary>
+            <param name="propertyName">The name of the property for which to return the value.</param>
+            <returns>Returns null if there are no points to the left of the object on the Property's dimension</returns>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.Engine.ClassificationObject.GetNextPropertyValue(System.String)">
+            <summary>
+            Gets a Property value to the right of the current location of the 
+            object in the propertie's dimension.
+            Example: if this object's property X has value "1" and the dimension for X
+            has the following points: 0, 1, 2
+            this will return a property object for 2
+            </summary>
+            <param name="propertyName">The name of the property for which to return the value.</param>
+            <returns>Returns null if there are no points to the right of the object on the Property's dimension</returns>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.Engine.ClassificationObject.RegisterTypeForEngineCleanup(Microsoft.Localization.OSLEBot.Core.Engine.OSLEBotEngine)">
+            <summary>
+            Make sure to call base implementation first, as it may perform some cleanup for the base class. 
+            OSLEBotEngine calls this method once
+            for each type when the first instance of the type is loaded. In this method
+            you can register any cleanup code you want to run with the OSLEBotEngine.EngineCleanup event.
+            This cleanup code IS NOT for instances of Classification Objects but for the entire type - i.e.
+            if you have static fields that cache data you may want to register them for cleanup so in case engine
+            runs multiple times they can be reset between the multiple runs.
+            </summary>
+            <param name="engine">OSLEBotEngine instance for which cleanup we want to listen.</param>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.Engine.ClassificationObject.GetCachedResult``1(System.Object,System.Object[],System.Func{``0})">
+            <summary>
+            Allows access to the underlying MethodCache manager stored in the Space object.
+            This method can be used to execute any code (provided in logic delegate) and store the result in cache.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="callingInstance">Object calling the method. Place null for static methods.</param>
+            <param name="methodParameters">Parameters provided to the method. This, in combination with callingInstance, is used to generate unique key to be used by the cache. A call by the same instance with the same parameters will generate a successful cache hit.</param>
+            <param name="logic">The actual code used to generate results if cache call results in a miss.</param>
+            <returns></returns>
+        </member>
+        <member name="F:Microsoft.Localization.OSLEBot.Core.Engine.ClassificationObject.output">
+            <summary>
+            Results of all the rules are stored here.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Localization.OSLEBot.Core.Engine.ClassificationObject.propertyProvider">
+            <summary>
+            This stores the property provider object that contains property adapters and data sources
+            for this instance of Classification Object
+            </summary>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.Engine.ClassificationObject.Equals(System.Object)">
+            <summary>
+            Compare the list of Enabled Properties vs. the Properties dictionary.
+            Log to Logger properties that are either unknown or have value of null.
+            This is meant to be used in a constructor of a Classification Object derrived class after obtaining properties.
+            </summary>
+            <returns>Returns true if everything is OK. False if at least one property is invalid.</returns>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.Engine.ClassificationObject.CompareCOs(Microsoft.Localization.OSLEBot.Core.Engine.ClassificationObject,Microsoft.Localization.OSLEBot.Core.Engine.ClassificationObject)">
+            <summary>
+            Checks whether two COs are physically different objects in any respect.
+            </summary>
+            <param name="o1">Left CO</param>
+            <param name="o2">Right CO</param>
+            <returns>True if the objects look the same from all aspects (that is they reside in the same point in abstract space).
+            False if they are different points in our abstract space.</returns>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.Engine.ClassificationObject.GetHashCode">
+            <summary>
+            Gets hashcode of the key of the ClassificationObject
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="F:Microsoft.Localization.OSLEBot.Core.Engine.ClassificationObject.fHasHashCode">
+            <summary>
+            Computes a cached value of hash code for this CO. That is the hash code value is computed a maximum of one times.
+            If GetHashCode is called second time or more times, the cached value is returned.
+            DEPRECATED: Now that Classification Objects have keys that are unique during the session, no point in 
+            calculating expensive HashCodes from properties
+            </summary>
+            <returns>Hash value based on the values of all properties of the CO</returns>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.Engine.ClassificationObject.GetEnabledProperties(System.Type)">
+            <summary>
+            Provides a sorted list of properties enabled for the object
+            </summary>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.Engine.ClassificationObject.GetEnabledProperties``1">
+            <summary>
+            Provides a sorted list of properties enabled for objects of the specified type.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.Engine.ClassificationObject.GetPropertyIndexer(System.Type)">
+            <summary>
+            Return an instance of a property indexer for your type. Typically call this in the static
+            constructor in order to be stored in a static field.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.Engine.ClassificationObject.GetPropertyIndexer``1">
+            <summary>
+            Return an instance of a property indexer for your type. Typically call this in the static
+            constructor in order to be stored in a static field.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.Engine.ClassificationObject.EngineCleanupHandler(Microsoft.Localization.OSLEBot.Core.Engine.OSLEBotEngine)">
+            <summary>
+            Engine calls this method to tell this type that it has loaded this type.
+            The type should hook up to BotCleanup event so that when that event is called, this type can flush all resources it has cached.
+            Engine raises this event when it has finished a session run.
+            </summary>
+            <param name="host">Host, whose BotCleanup event which we should handle when this type should reinitialize</param>
+        </member>
+        <member name="P:Microsoft.Localization.OSLEBot.Core.Engine.ClassificationObject.Key">
+            <summary>
+            Unique key. Introduced to optimize accessing objects in space
+            </summary>
+        </member>
+        <member name="P:Microsoft.Localization.OSLEBot.Core.Engine.ClassificationObject.ObjectSpace">
+            <summary>
+            Object Space to which this CO belongs.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Localization.OSLEBot.Core.Engine.ClassificationObject.EnabledProperties">
+            <summary>
+            a derrived class must provide a static field of type List string in which to store list of enabled properties
+            access to this static field is enabled by this property. the field will be filled out by ClassificationObject.EnabledProperties
+            </summary>
+        </member>
+        <member name="P:Microsoft.Localization.OSLEBot.Core.Engine.ClassificationObject.PropertyIndexer">
+            <summary>
+            Provides an property index provider that points to array index for each property.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Localization.OSLEBot.Core.Engine.ClassificationObject.PropertyCollection.properties">
+            <summary>
+            WARNING: Properties may be accessed recursively, i.e. in order to create a property it may be necessary
+            to access another property. MultiThreadOneLevelDictionary supports recursive obtaining of Write locks, i.e.
+            if the current thread is the owner of the write lock it can write and read from the dictionary without obtaining locks.
+            Should the dictionary type be changed, it's important to remember that recursion has to be supported.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Localization.OSLEBot.Core.Engine.ClassificationObject.PropertyCollection.writerThread">
+            <summary>
+            to support recursion
+            </summary>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.Engine.ClassificationObject.PropertyCollection.GetPropertySet(System.String[])">
+            <summary>
+            Returns a collection of property values matching the names provided
+            </summary>
+            <param name="propertyNames">List of property names to retrieve.</param>
+            <returns></returns>
+        </member>
+        <member name="T:Microsoft.Localization.OSLEBot.Core.Misc.ObjectCache`1">
+            <summary>
+            A thread-safe reference type cache, mimicing the the String.Intern and String.IsInterened behavior.
+            As opposed to the CLR's string cache, this one can be created and destroyed within the AppDomain
+            which allows you to control how much it grows. Because of this no assumptions should be made regarding
+            the persistance of the cache, i.e. no reference comparisons between objects can be guaranteed to work correctly
+            if some code cleans destroys the cache during the session.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.Misc.ObjectCache`1.Intern(`0)">
+            <summary>
+            Works the same as String.Intern. Thread safe.
+            </summary>
+            <param name="o"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.Misc.ObjectCache`1.Intern(`0@)">
+            <summary>
+            Works the same as String.Intern but takes para by ref. Thread safe.
+            </summary>
+            <param name="o"></param>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.Misc.ObjectCache`1.Intern(`0[])">
+            <summary>
+            Use this if you want to intern a bunch of strings at the same time.
+            This method will reduce the number of times thread lock needs to be aquired.
+            </summary>
+            <param name="inArray">The items in the array will be replaced references to cached objects, or left untouched if cache misses.</param>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.Misc.ObjectCache`1.IsInterned(`0)">
+            <summary>
+            Works the same as String.Interned
+            </summary>
+            <param name="o"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.Misc.ObjectCache`1.Clear">
+            <summary>
+            Clears the content of the cache. Thread safe.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Localization.OSLEBot.Core.Misc.COHashTable`1">
+            <summary>
+            Provides collection of ClassificationObjects with hash table access.
+            Also enables some set operators like Intersect, Exclude, etc.
+            </summary>
+            <typeparam name="T">ClassificationObject or derrived class</typeparam>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.Misc.COHashTable`1.Add(`0)">
+            <summary>
+            Checks if object already exists and skips it.
+            </summary>
+            <param name="co"></param>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.Misc.COHashTable`1.Contains(`0)">
+            <summary>
+            True if table contains the object.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.Misc.COHashTable`1.Clone">
+            <summary>
+            Creates a shallow copy of the object.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.Misc.COHashTable`1.Intersect(Microsoft.Localization.OSLEBot.Core.Misc.COHashTable{`0})">
+            <summary>
+            Intersects two COHashTables and produces a collection.
+            </summary>
+            <param name="otherTable">Hashtable to intersect with</param>
+            <returns>Returns empty if no common object exist.</returns>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.Misc.COHashTable`1.IntersectToHashTable(Microsoft.Localization.OSLEBot.Core.Misc.COHashTable{`0})">
+            <summary>
+            Intersects two COHashTables and produces a COHashTable.
+            </summary>
+            <param name="otherTable">Hashtable to intersect with</param>
+            <returns>Returns empty if no common object exist.</returns>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.Misc.COHashTable`1.Intersect(System.Collections.Generic.ICollection{`0})">
+            <summary>
+            Works faster because it does not create a new COHashTable.
+            To be used when you don't need to run heavy set operations on the return set.
+            </summary>
+            <param name="otherTable"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.Misc.COHashTable`1.IntersectAndRemove(Microsoft.Localization.OSLEBot.Core.Misc.COHashTable{`0})">
+            <summary>
+            Creates intersection by removing from this table. Fast, because modifies the existing table.
+            </summary>
+            <param name="otherTable"></param>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.Misc.COHashTable`1.Except(Microsoft.Localization.OSLEBot.Core.Misc.COHashTable{`0})">
+            <summary>
+            Excludes elements of otherTable from this table. Actually faster than removing from existing hashtable
+            </summary>
+            <param name="otherTable">Table with elements to remove from this table.</param>
+            <returns>Objects contained in this table minus the ones in otherTable</returns>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.Misc.COHashTable`1.ExceptAndRemove(Microsoft.Localization.OSLEBot.Core.Misc.COHashTable{`0})">
+            <summary>
+            Excludes elements from this table by removing them. Actually slower than adding to a new list.
+            </summary>
+            <param name="otherTable"></param>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.Misc.COHashTable`1.Union(Microsoft.Localization.OSLEBot.Core.Misc.COHashTable{`0}[])">
+            <summary>
+            Union of two or more COHashtables
+            </summary>
+            <param name="otherTables"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.Misc.COHashTable`1.Remove(`0)">
+            <summary>
+            Removes a CO from the table.
+            </summary>
+            <param name="co"></param>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.Misc.COHashTable`1.Clear">
+            <summary>
+            Removes content of hash table.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Localization.OSLEBot.Core.Misc.COHashTable`1.Objects">
+            <summary>
+            Returns objects contained in the hash
+            </summary>
+        </member>
+        <member name="P:Microsoft.Localization.OSLEBot.Core.Misc.COHashTable`1.Count">
+            <summary>
+            Number of COs stored
+            </summary>
+        </member>
+        <member name="T:Microsoft.Localization.OSLEBot.Core.KnowledgeBase.RuleManager">
+            <summary>
+            Object used for managing rules available to OSLEBot engine.
+            It is responsible for registering rules, passing classification objects to rules,
+            compiling rules from source code.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.KnowledgeBase.RuleManager.#ctor(Microsoft.Localization.OSLEBot.Core.Engine.OSLEBotEngine)">
+            <summary>
+            Internally available constructor.
+            </summary>
+            <param name="owner">Engine that owns this instance of <see cref="T:Microsoft.Localization.OSLEBot.Core.KnowledgeBase.RuleManager"/></param>
+        </member>
+        <member name="F:Microsoft.Localization.OSLEBot.Core.KnowledgeBase.RuleManager._rrc">
+            <summary>
+            Runtime compiler used to compile RuleContainers
+            </summary>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.KnowledgeBase.RuleManager.Initialize">
+            <summary>
+            RuleManager initialization routine. Called from constructor.
+            </summary>
+            <remarks>
+            Do NOT confuse this method with rule initialization.
+            Rule initialization takes place when the manager raises <see cref="E:Microsoft.Localization.OSLEBot.Core.KnowledgeBase.RuleManager.RulesInitializationEvent"/> event via InitializeRules().
+            </remarks>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.KnowledgeBase.RuleManager.OnRulesInitializationEvent">
+            <summary>
+            Engine thread 3 calls this method to raise <see cref="E:Microsoft.Localization.OSLEBot.Core.KnowledgeBase.RuleManager.RulesInitializationEvent"/>.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.KnowledgeBase.RuleManager.OnRulesCleanupEvent">
+            <summary>
+            Engine thread 3 calls this method to raise <see cref="E:Microsoft.Localization.OSLEBot.Core.KnowledgeBase.RuleManager.RulesCleanupEvent"/>.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Localization.OSLEBot.Core.KnowledgeBase.RuleManager._noOfRulesRunning">
+            <summary>
+            Number of rules that are currently processing objects.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.KnowledgeBase.RuleManager.LoadRulesFromContainer(Microsoft.Localization.OSLEBot.Core.Engine.RuleContainer)">
+            <summary>
+            Loads rules from a container: either a module (.dll) or source file (.cs).
+            Also compiles a filtering expression, if provided for a rule
+            </summary>
+            <param name="containerDef">Container definition: provides path to container (.dll or .cs) and an optional filtering expression
+            to be applied to all the rules
+            </param>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.KnowledgeBase.RuleManager.CompileRuleSourceFile(System.String)">
+            <summary>
+            Attempts to compile the source code and returns the resulting Assembly object
+            </summary>
+            <param name="ruleCSharpSourceCodeFile">Path to a C# source code file with the code.</param>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.KnowledgeBase.RuleManager.LoadRulesFromModule(System.String)">
+            <summary>
+            Loads the binary dll file and looks for Rule implementation classes to be registered with RuleManager.
+            </summary>
+            <param name="pathToModule">Path to compiled rule.dll file</param>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.KnowledgeBase.RuleManager.AddRulesFromAssembly(System.Reflection.Assembly,System.String)">
+            <summary>
+            Identifies any public classes looking like Rule implementation, calls their appropriate constructors,
+            and registers the constructed objects with this RuleManager.
+            </summary>
+            <param name="ruleModule">Either the module loaded from a rule.dll file on disk, or an Assembly compiled from the source code</param>
+            <param name="filteringExpression">Filtering expression to be applied to objects before processing. Empty string means all objects should be
+            processed - no filtering.</param>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.KnowledgeBase.RuleManager.LoadRulesFromSourceFile(System.String)">
+            <summary>
+            Attempts to compile the source code and register the compiled rule with RuleManager
+            </summary>
+            <param name="ruleCSharpSourceCodeFile">Source code file of your rule</param>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.KnowledgeBase.RuleManager.DisableRule(System.String)">
+            <summary>
+            Finds a registered rule with the specified full type name (including namespaces) and unregisters it
+            from RuleManager
+            </summary>
+            <param name="ruleTypeName">Name of rule type to disable</param>
+        </member>
+        <member name="E:Microsoft.Localization.OSLEBot.Core.KnowledgeBase.RuleManager.RulesInitializationEvent">
+            <summary>
+            This is an event that is happening before the engine runs on any classification object.
+            <para/>This event gives rules a chance to initialize context before being executed on the first classification object.
+            </summary>
+        </member>
+        <member name="E:Microsoft.Localization.OSLEBot.Core.KnowledgeBase.RuleManager.RulesCleanupEvent">
+            <summary>
+            This is an event that is happening just after the engine runs on the last classification object.
+            <para/>This event gives rules a chance to cleanup any static memory allocations
+            (remember it is possible that OSLEBot, with its rules, may be loaded and run many times by a single exe.
+            </summary>
+        </member>
+        <member name="E:Microsoft.Localization.OSLEBot.Core.KnowledgeBase.RuleManager.CollectionOfCOsForClassification">
+            <summary>
+            This event is fired in the multi-thread scenario: each rule runs only on one thread - rules are not thread safe
+            </summary>
+        </member>
+        <member name="P:Microsoft.Localization.OSLEBot.Core.KnowledgeBase.RuleManager.OutputWriter">
+            <summary>
+            Output writer that is responsible for writing each output of each rule to some persistent storage (such as log file).
+            </summary>
+        </member>
+        <member name="P:Microsoft.Localization.OSLEBot.Core.KnowledgeBase.RuleManager.RuleCount">
+            <summary>
+            Number of rules currently registered with RuleManager
+            </summary>
+        </member>
+        <member name="F:Microsoft.Localization.OSLEBot.Core.KnowledgeBase.RuleManager.RulePerformance._lastStart">
+            <summary>
+            Used to measure the current time quant.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Localization.OSLEBot.Core.Engine.DiskTxtLogger">
+            <summary>
+            Logs output to disk file.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.Engine.DiskTxtLogger.AcceptLogEntry(Microsoft.Localization.LocSolutions.Logger.LogLevel,System.String)">
+            <summary>
+            A new log entry has just arrived. Do something with it.
+            </summary>
+            <param name="entry">Log entry being added.</param>
+            <param name="logLevel">Severity of the message being recorded.</param>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.Engine.DiskTxtLogger.#ctor(System.String)">
+            <summary>
+            Construcs a new disk logger and creates the disk file.
+            </summary>
+            <param name="pathToLog">Path to disk file where log entries are to be written.</param>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.Engine.DiskTxtLogger.CloseDiskFile">
+            <summary>
+            Makes sure the disk file is flushed and is closed so that another Asimo instance can overwrite it.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.Engine.DiskTxtLogger.Dispose">
+            <summary>
+            Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Localization.OSLEBot.Core.Engine.ClassifyCOEventHandler">
+            <summary>
+            Delegate used to execute Rules on Classification objects
+            </summary>
+            <param name="co">Classification Object to execute rules on.</param>
+            <param name="outputEntries">List of output entries created by each rule that ran on the CO. Each rule must append its output, if any, to the list.</param>
+        </member>
+        <member name="T:Microsoft.Localization.OSLEBot.Core.Engine.ClassifyCollectionOfCOsEventHandler">
+            <summary>
+            Delegate used in the multi-thread scenario to allow each rule to process all COs on one thread.
+            </summary>
+            <param name="cos"></param>
+        </member>
+        <member name="T:Microsoft.Localization.OSLEBot.Exceptions.OSLEBotException">
+            <summary>
+            Base exeption for OSLEBot core. All internal specific exeptions must derive from this exception
+            so that they are organized into a hierarchy.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Exceptions.OSLEBotException.#ctor">
+            <summary>
+            Initializes a new instance of the OSLEBotException class.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Exceptions.OSLEBotException.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the System.Exception class with a specified error message.
+            </summary>
+            <param name="message">The error message that explains the reason for the exception</param>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Exceptions.OSLEBotException.#ctor(System.String,System.Exception)">
+            <summary>
+            Initializes a new instance of the System.Exception class with a specified error message and a reference to the inner exception that is the cause of this exception.
+            </summary>
+            <param name="message">The error message that explains the reason for the exception.</param>
+            <param name="innerException">The exception that is the cause of the current exception, or a null reference if no inner exception is specified</param>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Exceptions.OSLEBotException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Initializes a new instance of the System.Exception class with serialized data.
+            </summary>
+            <param name="info">The SerializationInfo that holds the serialized object data about the exception being thrown</param>
+            <param name="context">The StreamingContext that contains contextual information about the source or destination</param>
+        </member>
+        <member name="T:Microsoft.Localization.OSLEBot.Exceptions.OSLEBotEngineInitializationException">
+            <summary>
+            Initialization of OSLEBotEngine failed due to incorrect config or other reasons.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Exceptions.OSLEBotEngineInitializationException.#ctor">
+            <summary>
+            Initializes a new instance of the RuleManagerException class.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Exceptions.OSLEBotEngineInitializationException.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the System.Exception class with a specified error message.
+            </summary>
+            <param name="message">The error message that explains the reason for the exception</param>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Exceptions.OSLEBotEngineInitializationException.#ctor(System.String,System.Exception)">
+            <summary>
+            Initializes a new instance of the System.Exception class with a specified error message and a reference to the inner exception that is the cause of this exception.
+            </summary>
+            <param name="message">The error message that explains the reason for the exception.</param>
+            <param name="innerException">The exception that is the cause of the current exception, or a null reference if no inner exception is specified</param>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Exceptions.OSLEBotEngineInitializationException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Initializes a new instance of the System.Exception class with serialized data.
+            </summary>
+            <param name="info">The SerializationInfo that holds the serialized object data about the exception being thrown</param>
+            <param name="context">The StreamingContext that contains contextual information about the source or destination</param>
+        </member>
+        <member name="T:Microsoft.Localization.OSLEBot.Exceptions.OSLEBotEngineConfigException">
+            <summary>
+            OSLEBot config is incorrect.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Exceptions.OSLEBotEngineConfigException.#ctor">
+            <summary>
+            Initializes a new instance of the RuleManagerException class.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Exceptions.OSLEBotEngineConfigException.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the System.Exception class with a specified error message.
+            </summary>
+            <param name="message">The error message that explains the reason for the exception</param>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Exceptions.OSLEBotEngineConfigException.#ctor(System.String,System.Exception)">
+            <summary>
+            Initializes a new instance of the System.Exception class with a specified error message and a reference to the inner exception that is the cause of this exception.
+            </summary>
+            <param name="message">The error message that explains the reason for the exception.</param>
+            <param name="innerException">The exception that is the cause of the current exception, or a null reference if no inner exception is specified</param>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Exceptions.OSLEBotEngineConfigException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Initializes a new instance of the System.Exception class with serialized data.
+            </summary>
+            <param name="info">The SerializationInfo that holds the serialized object data about the exception being thrown</param>
+            <param name="context">The StreamingContext that contains contextual information about the source or destination</param>
+        </member>
+        <member name="T:Microsoft.Localization.OSLEBot.Exceptions.RuleManagerException">
+            <summary>
+            Exception specific to events happening in RuleManager section.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Exceptions.RuleManagerException.#ctor">
+            <summary>
+            Initializes a new instance of the RuleManagerException class.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Exceptions.RuleManagerException.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the System.Exception class with a specified error message.
+            </summary>
+            <param name="message">The error message that explains the reason for the exception</param>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Exceptions.RuleManagerException.#ctor(System.String,System.Exception)">
+            <summary>
+            Initializes a new instance of the System.Exception class with a specified error message and a reference to the inner exception that is the cause of this exception.
+            </summary>
+            <param name="message">The error message that explains the reason for the exception.</param>
+            <param name="innerException">The exception that is the cause of the current exception, or a null reference if no inner exception is specified</param>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Exceptions.RuleManagerException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Initializes a new instance of the System.Exception class with serialized data.
+            </summary>
+            <param name="info">The SerializationInfo that holds the serialized object data about the exception being thrown</param>
+            <param name="context">The StreamingContext that contains contextual information about the source or destination</param>
+        </member>
+        <member name="T:Microsoft.Localization.OSLEBot.Exceptions.RuntimeRuleCompilerException">
+            <summary>
+            Exception occurring during attempts to compile a rule assembly from rule source code.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Exceptions.RuntimeRuleCompilerException.#ctor">
+            <summary>
+            Initializes a new instance of the RuntimeRuleCompilerException class.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Exceptions.RuntimeRuleCompilerException.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the System.Exception class with a specified error message.
+            </summary>
+            <param name="message">The error message that explains the reason for the exception</param>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Exceptions.RuntimeRuleCompilerException.#ctor(System.String,System.Exception)">
+            <summary>
+            Initializes a new instance of the System.Exception class with a specified error message and a reference to the inner exception that is the cause of this exception.
+            </summary>
+            <param name="message">The error message that explains the reason for the exception.</param>
+            <param name="innerException">The exception that is the cause of the current exception, or a null reference if no inner exception is specified</param>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Exceptions.RuntimeRuleCompilerException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Initializes a new instance of the System.Exception class with serialized data.
+            </summary>
+            <param name="info">The SerializationInfo that holds the serialized object data about the exception being thrown</param>
+            <param name="context">The StreamingContext that contains contextual information about the source or destination</param>
+        </member>
+        <member name="T:Microsoft.Localization.OSLEBot.Exceptions.OutputException">
+            <summary>
+            Root for exceptions in Output subsystem.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Exceptions.OutputException.#ctor">
+            <summary>
+            Initializes a new instance of the OutputException class.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Exceptions.OutputException.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the System.Exception class with a specified error message.
+            </summary>
+            <param name="message">The error message that explains the reason for the exception</param>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Exceptions.OutputException.#ctor(System.String,System.Exception)">
+            <summary>
+            Initializes a new instance of the System.Exception class with a specified error message and a reference to the inner exception that is the cause of this exception.
+            </summary>
+            <param name="message">The error message that explains the reason for the exception.</param>
+            <param name="innerException">The exception that is the cause of the current exception, or a null reference if no inner exception is specified</param>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Exceptions.OutputException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Initializes a new instance of the System.Exception class with serialized data.
+            </summary>
+            <param name="info">The SerializationInfo that holds the serialized object data about the exception being thrown</param>
+            <param name="context">The StreamingContext that contains contextual information about the source or destination</param>
+        </member>
+        <member name="T:Microsoft.Localization.OSLEBot.Exceptions.OutputInconsistencyException">
+            <summary>
+            Thrown when output thread detected it is in inconsistent state.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Exceptions.OutputInconsistencyException.#ctor">
+            <summary>
+            Initializes a new instance of the OutputInconsistencyException class.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Exceptions.OutputInconsistencyException.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the System.Exception class with a specified error message.
+            </summary>
+            <param name="message">The error message that explains the reason for the exception</param>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Exceptions.OutputInconsistencyException.#ctor(System.String,System.Exception)">
+            <summary>
+            Initializes a new instance of the System.Exception class with a specified error message and a reference to the inner exception that is the cause of this exception.
+            </summary>
+            <param name="message">The error message that explains the reason for the exception.</param>
+            <param name="innerException">The exception that is the cause of the current exception, or a null reference if no inner exception is specified</param>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Exceptions.OutputInconsistencyException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Initializes a new instance of the System.Exception class with serialized data.
+            </summary>
+            <param name="info">The SerializationInfo that holds the serialized object data about the exception being thrown</param>
+            <param name="context">The StreamingContext that contains contextual information about the source or destination</param>
+        </member>
+        <member name="T:Microsoft.Localization.OSLEBot.Exceptions.RequiredDataSourceMissing">
+            <summary>
+            Exception specific to events happening in ObjectFactory section (input side of OSLEBot).
+            </summary>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Exceptions.RequiredDataSourceMissing.#ctor">
+            <summary>
+            Initializes a new instance of the RequiredDataSourceMissing class.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Exceptions.RequiredDataSourceMissing.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the System.Exception class with a specified error message.
+            </summary>
+            <param name="message">The error message that explains the reason for the exception</param>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Exceptions.RequiredDataSourceMissing.#ctor(System.String,System.Exception)">
+            <summary>
+            Initializes a new instance of the System.Exception class with a specified error message and a reference to the inner exception that is the cause of this exception.
+            </summary>
+            <param name="message">The error message that explains the reason for the exception.</param>
+            <param name="innerException">The exception that is the cause of the current exception, or a null reference if no inner exception is specified</param>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Exceptions.RequiredDataSourceMissing.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Initializes a new instance of the System.Exception class with serialized data.
+            </summary>
+            <param name="info">The SerializationInfo that holds the serialized object data about the exception being thrown</param>
+            <param name="context">The StreamingContext that contains contextual information about the source or destination</param>
+        </member>
+        <member name="T:Microsoft.Localization.OSLEBot.Exceptions.ErrorRetrievingObjectFactory">
+            <summary>
+            Exception specific to events happening in ObjectFactory section (input side of OSLEBot).
+            </summary>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Exceptions.ErrorRetrievingObjectFactory.#ctor">
+            <summary>
+            Initializes a new instance of the ErrorRetrievingObjectFactory class.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Exceptions.ErrorRetrievingObjectFactory.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the System.Exception class with a specified error message.
+            </summary>
+            <param name="message">The error message that explains the reason for the exception</param>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Exceptions.ErrorRetrievingObjectFactory.#ctor(System.String,System.Exception)">
+            <summary>
+            Initializes a new instance of the System.Exception class with a specified error message and a reference to the inner exception that is the cause of this exception.
+            </summary>
+            <param name="message">The error message that explains the reason for the exception.</param>
+            <param name="innerException">The exception that is the cause of the current exception, or a null reference if no inner exception is specified</param>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Exceptions.ErrorRetrievingObjectFactory.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Initializes a new instance of the System.Exception class with serialized data.
+            </summary>
+            <param name="info">The SerializationInfo that holds the serialized object data about the exception being thrown</param>
+            <param name="context">The StreamingContext that contains contextual information about the source or destination</param>
+        </member>
+        <member name="T:Microsoft.Localization.OSLEBot.Exceptions.PropertyProviderNotAvailableException">
+            <summary>
+            Exception specific to events happening in ObjectFactory section (input side of OSLEBot).
+            </summary>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Exceptions.PropertyProviderNotAvailableException.#ctor">
+            <summary>
+            Initializes a new instance of the PropertyProviderNotAvailableException class.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Exceptions.PropertyProviderNotAvailableException.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the System.Exception class with a specified error message.
+            </summary>
+            <param name="message">The error message that explains the reason for the exception</param>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Exceptions.PropertyProviderNotAvailableException.#ctor(System.String,System.Exception)">
+            <summary>
+            Initializes a new instance of the System.Exception class with a specified error message and a reference to the inner exception that is the cause of this exception.
+            </summary>
+            <param name="message">The error message that explains the reason for the exception.</param>
+            <param name="innerException">The exception that is the cause of the current exception, or a null reference if no inner exception is specified</param>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Exceptions.PropertyProviderNotAvailableException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Initializes a new instance of the System.Exception class with serialized data.
+            </summary>
+            <param name="info">The SerializationInfo that holds the serialized object data about the exception being thrown</param>
+            <param name="context">The StreamingContext that contains contextual information about the source or destination</param>
+        </member>
+        <member name="T:Microsoft.Localization.OSLEBot.Exceptions.ErrorRetrievingSpaceFactoryException">
+            <summary>
+            Exception specific to events happening in SpaceFactory section (object organization side of OSLEBot).
+            </summary>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Exceptions.ErrorRetrievingSpaceFactoryException.#ctor">
+            <summary>
+            Initializes a new instance of the ErrorRetrievingSpaceFactoryException class.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Exceptions.ErrorRetrievingSpaceFactoryException.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the System.Exception class with a specified error message.
+            </summary>
+            <param name="message">The error message that explains the reason for the exception</param>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Exceptions.ErrorRetrievingSpaceFactoryException.#ctor(System.String,System.Exception)">
+            <summary>
+            Initializes a new instance of the System.Exception class with a specified error message and a reference to the inner exception that is the cause of this exception.
+            </summary>
+            <param name="message">The error message that explains the reason for the exception.</param>
+            <param name="innerException">The exception that is the cause of the current exception, or a null reference if no inner exception is specified</param>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Exceptions.ErrorRetrievingSpaceFactoryException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Initializes a new instance of the System.Exception class with serialized data.
+            </summary>
+            <param name="info">The SerializationInfo that holds the serialized object data about the exception being thrown</param>
+            <param name="context">The StreamingContext that contains contextual information about the source or destination</param>
+        </member>
+        <member name="T:Microsoft.Localization.OSLEBot.Exceptions.PropertyRetrievalException">
+            <summary>
+            Thrown by a property adapter when it fails to retrieve value of a specified property.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Exceptions.PropertyRetrievalException.#ctor">
+            <summary>
+            Initializes a new instance of the PropertyRetrievalException class.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Exceptions.PropertyRetrievalException.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the System.Exception class with a specified error message.
+            </summary>
+            <param name="message">The error message that explains the reason for the exception</param>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Exceptions.PropertyRetrievalException.#ctor(System.String,System.Exception)">
+            <summary>
+            Initializes a new instance of the System.Exception class with a specified error message and a reference to the inner exception that is the cause of this exception.
+            </summary>
+            <param name="message">The error message that explains the reason for the exception.</param>
+            <param name="innerException">The exception that is the cause of the current exception, or a null reference if no inner exception is specified</param>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Exceptions.PropertyRetrievalException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Initializes a new instance of the System.Exception class with serialized data.
+            </summary>
+            <param name="info">The SerializationInfo that holds the serialized object data about the exception being thrown</param>
+            <param name="context">The StreamingContext that contains contextual information about the source or destination</param>
+        </member>
+        <member name="T:Microsoft.Localization.OSLEBot.Exceptions.RuleException">
+            <summary>
+            Root exception for more specific exceptions happening when executing individual rules.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Exceptions.RuleException.#ctor">
+            <summary>
+            Initializes a new instance of the RuleException class.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Exceptions.RuleException.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the System.Exception class with a specified error message.
+            </summary>
+            <param name="message">The error message that explains the reason for the exception</param>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Exceptions.RuleException.#ctor(System.String,System.Exception)">
+            <summary>
+            Initializes a new instance of the System.Exception class with a specified error message and a reference to the inner exception that is the cause of this exception.
+            </summary>
+            <param name="message">The error message that explains the reason for the exception.</param>
+            <param name="innerException">The exception that is the cause of the current exception, or a null reference if no inner exception is specified</param>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Exceptions.RuleException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Initializes a new instance of the System.Exception class with serialized data.
+            </summary>
+            <param name="info">The SerializationInfo that holds the serialized object data about the exception being thrown</param>
+            <param name="context">The StreamingContext that contains contextual information about the source or destination</param>
+        </member>
+        <member name="T:Microsoft.Localization.OSLEBot.Exceptions.ExecutingRuleException">
+            <summary>
+            General exception detected by RuleManager when executing <seealso cref="T:Microsoft.Localization.OSLEBot.Core.KnowledgeBase.Rule"/>'s run method.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Exceptions.ExecutingRuleException.#ctor">
+            <summary>
+            Initializes a new instance of the ExecutingRuleFailed class.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Exceptions.ExecutingRuleException.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the System.Exception class with a specified error message.
+            </summary>
+            <param name="message">The error message that explains the reason for the exception</param>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Exceptions.ExecutingRuleException.#ctor(System.String,System.Exception)">
+            <summary>
+            Initializes a new instance of the System.Exception class with a specified error message and a reference to the inner exception that is the cause of this exception.
+            </summary>
+            <param name="message">The error message that explains the reason for the exception.</param>
+            <param name="innerException">The exception that is the cause of the current exception, or a null reference if no inner exception is specified</param>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Exceptions.ExecutingRuleException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Initializes a new instance of the System.Exception class with serialized data.
+            </summary>
+            <param name="info">The SerializationInfo that holds the serialized object data about the exception being thrown</param>
+            <param name="context">The StreamingContext that contains contextual information about the source or destination</param>
+        </member>
+        <member name="T:Microsoft.Localization.OSLEBot.Exceptions.InitializingRuleException">
+            <summary>
+            Exception during Rule initialization phase.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Exceptions.InitializingRuleException.#ctor">
+            <summary>
+            Initializes a new instance of the InitializingRuleException class.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Exceptions.InitializingRuleException.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the System.Exception class with a specified error message.
+            </summary>
+            <param name="message">The error message that explains the reason for the exception</param>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Exceptions.InitializingRuleException.#ctor(System.String,System.Exception)">
+            <summary>
+            Initializes a new instance of the System.Exception class with a specified error message and a reference to the inner exception that is the cause of this exception.
+            </summary>
+            <param name="message">The error message that explains the reason for the exception.</param>
+            <param name="innerException">The exception that is the cause of the current exception, or a null reference if no inner exception is specified</param>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Exceptions.InitializingRuleException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Initializes a new instance of the System.Exception class with serialized data.
+            </summary>
+            <param name="info">The SerializationInfo that holds the serialized object data about the exception being thrown</param>
+            <param name="context">The StreamingContext that contains contextual information about the source or destination</param>
+        </member>
+        <member name="T:Microsoft.Localization.OSLEBot.Exceptions.RuleContainerException">
+            <summary>
+            Rule container could not be loaded
+            </summary>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Exceptions.RuleContainerException.#ctor">
+            <summary>
+            Initializes a new instance of the ExecutingRuleFailed class.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Exceptions.RuleContainerException.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the System.Exception class with a specified error message.
+            </summary>
+            <param name="message">The error message that explains the reason for the exception</param>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Exceptions.RuleContainerException.#ctor(System.String,System.Exception)">
+            <summary>
+            Initializes a new instance of the System.Exception class with a specified error message and a reference to the inner exception that is the cause of this exception.
+            </summary>
+            <param name="message">The error message that explains the reason for the exception.</param>
+            <param name="innerException">The exception that is the cause of the current exception, or a null reference if no inner exception is specified</param>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Exceptions.RuleContainerException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Initializes a new instance of the System.Exception class with serialized data.
+            </summary>
+            <param name="info">The SerializationInfo that holds the serialized object data about the exception being thrown</param>
+            <param name="context">The StreamingContext that contains contextual information about the source or destination</param>
+        </member>
+        <member name="T:Microsoft.Localization.OSLEBot.Core.DataSource.DataSourcePackages.DataSourceInfo">
+            <summary>
+            Information about a single data source that is part of a data package.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.DataSource.DataSourcePackages.DataSourceInfo.#ctor">
+            <summary>
+            To enable serialization.
+            <para/>Initializes SourceLocation member so that it can execute ReadXml().
+            </summary>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.DataSource.DataSourcePackages.DataSourceInfo.#ctor(System.String,Microsoft.Localization.OSLEBot.Core.DataSource.DataSourcePackages.SourceLocation)">
+            <summary>
+            Constructs a new data source info with type and location information.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Localization.OSLEBot.Core.DataSource.DataSourcePackages.DataSourceInfo.SourceType">
+            <summary>
+            The data source type. This is a string representation of <seealso cref="T:System.Type"/>.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Localization.OSLEBot.Core.DataSource.DataSourcePackages.DataSourceInfo.IsPrimary">
+            <summary>
+            Indicates that this data source is to be treated as primary.
+            <para/>The data source marked as 'primary' is used by OSLEBot system as a provider of enumeration over the whole collection
+            of Classification Objects in the data source package.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Localization.OSLEBot.Core.DataSource.DataSourcePackages.DataSourceInfo.SourceLocation">
+            <summary>
+            this is the location of our data source. a pointer to the datasource
+            the same datasource can be provided in many different ways to the application,
+            for example an LCL file could be provided as a path to file or as an already opened LocDocument
+            </summary>
+        </member>
+        <member name="F:Microsoft.Localization.OSLEBot.Core.DataSource.DataSourcePackages.DataSourceInfo.sourceInstance">
+            <summary>
+            Source instance is an already opened data source that will be used by Classification Object providers
+            to load objecs and properties. The purpose of this class is to manage and prepare datasources for
+            lower levels in the Engine.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.DataSource.DataSourcePackages.DataSourceInfo.Initialize(Microsoft.Localization.OSLEBot.Core.DataSource.IDataSourceProvider)">
+            <summary>
+            If sourceInstance is null attempt to create a SourceInstance from SourceLocation
+            </summary>
+            <exception cref="T:Microsoft.Localization.OSLEBot.Exceptions.OSLEBotException">Thrown when data source instance could not be initialized properly. This could happen - for example - if a file comprising the datasource does not exist.</exception>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.DataSource.DataSourcePackages.DataSourceInfo.ToString">
+            <summary>
+            Shows data source type and location.
+            <para/>If source type is not set, it displays "Source  type not set" text instead.
+            <para/>If location is not set, it displays "Location not set" text instead.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.DataSource.DataSourcePackages.DataSourceInfo.SetSourceType(System.Type)">
+            <summary>
+            Sets the data source type to the full name of the specified type.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.DataSource.DataSourcePackages.DataSourceInfo.SetSourceType``1">
+            <summary>
+            Sets the data source type to the full name of the specified type.
+            </summary>
+            <typeparam name="T">Native type of data source that provides classification objects</typeparam>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.DataSource.DataSourcePackages.DataSourceInfo.SetSourceLocation(System.Object)">
+            <summary>
+            Sets source location information.
+            <para/>Currently, you can specify either a <see cref="T:System.String"/> value to indicate file path of an LCL file, or <see cref="!:ConfigDictionary"/> to specify property dictionary with custom property values.
+            </summary>
+            <param name="locationDetails">Currently, either <see cref="T:System.String"/> or <see cref="!:ConfigDictionary"/>.</param>
+        </member>
+        <member name="P:Microsoft.Localization.OSLEBot.Core.DataSource.DataSourcePackages.DataSourceInfo.SourceInstance">
+            <summary>
+            Source instance is an already opened data source that will be used by Classification Object providers
+            to load objecs and properties. The purpose of this class is to manage and prepare datasources for
+            lower levels in the Engine.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Localization.OSLEBot.Core.DataSource.DataSourcePackages.DataSourceInfo.SourceInstanceType">
+            <summary>
+            Gets the System.Type of the source instance. this type is constructed dynamically at runtime.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Localization.OSLEBot.Core.Plugins.OSLEBotGAC">
+            <summary>
+            OSLEBotGAC stands for "OSLEBot Global Assembly Cache"
+            </summary>
+        </member>
+        <member name="T:Microsoft.Localization.OSLEBot.Core.Engine.Dimension`1">
+            <summary>
+            Dimension is a hashtable index using property values as keys and COs as values.
+            Dimension is build on one selected property. THe purpose is to enable quicker selection
+            of COs with same value of property.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Localization.OSLEBot.Core.Engine.Dimension`1.name">
+            <summary>
+            Should be the same as the name of ClassificationObject property that the dimension is build on.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Localization.OSLEBot.Core.Engine.Dimension`1.mapping">
+            <summary>
+            Mapping of property values to COs.
+            Keys are values of the property, values are ClassificationObjects
+            </summary>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.Engine.Dimension`1.#ctor(System.String,System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            Build a dimension from a CO collection using the property "name" as base
+            </summary>
+            <param name="name">Name of CO property to be used as base</param>
+            <param name="coCollection">Collection of COs to build from</param>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.Engine.Dimension`1.GetPropertyIndex(Microsoft.Localization.OSLEBot.Core.Engine.Properties.Property)">
+            <summary>
+            Returns the LinkendListNode object corresponding to the properties location in the Dimension.
+            This can be used to move along the Dimension relatively to the given property.
+            </summary>
+            <param name="p"></param>
+            <returns>Null if property does not exist in the dimension.</returns>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.Engine.Dimension`1.GetObjectsAt(Microsoft.Localization.OSLEBot.Core.Engine.Properties.Property)">
+            <summary>
+            Gets a set of Classification Objects that have the same value of the property.
+            </summary>
+            <param name="p"></param>
+            <returns>Empty set if property does not exist in the dimension.</returns>
+        </member>
+        <member name="P:Microsoft.Localization.OSLEBot.Core.Engine.Dimension`1.Count">
+            <summary>
+            Number of "Points" in the Dimension, i.e. distinct property values.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Localization.OSLEBot.Core.Engine.Dimension`1.PropertyEntry">
+            <summary>
+            Stores the Hashtable with references to Classification Objects
+            as well as a ref to LinkedListNode object for efficient dimension indexing
+            </summary>
+        </member>
+        <member name="T:Microsoft.Localization.OSLEBot.Core.Engine.COExpression`1">
+            <summary>
+            A predicate expression that takes Classification Object and returns true or false.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="co"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Microsoft.Localization.OSLEBot.Core.Engine.BotEngineBase">
+            <summary>
+            Abstract class being a base for any bot engine implementation.
+            Contains essential interface of a bot.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.Engine.BotEngineBase.InitLogging">
+            <summary>
+            Initializes logging subsystem for this bot instance.
+            Should be called when an instance of bot is created (preferrably in constructor).
+            </summary>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.Engine.BotEngineBase.Cleanup">
+            <summary>
+            Cleans up the instance of bot. Used to flush all referenced objects to make sure memory doesn't grow 
+            indefinitely (known bug) when multiple instances of bot are created in the same process.
+            This method is to be called by the bot client.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.Engine.BotEngineBase.StartRun">
+            <summary>
+            Starts executing the engine based on the config data provided in the constructor. Returns immediately with false if engine is already running.
+            If the engine could not be started for any other reason, an exception should be thrown by this method.
+            NOTE: This should start the bot asynchronously.
+            </summary>
+            <returns>True if engine has been started. False if engine was already running.</returns>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.Engine.BotEngineBase.WaitForJobFinish">
+            <summary>
+            Waits for all processing threads started by an instance of bot to complete.
+            <list type="ol"><listheader>This includes:</listheader>
+            <item>Waiting for all rules to finish processing</item>
+            <item>Waiting for all output writers to complete output and flush it to backing store</item>
+            </list>
+            </summary>
+        </member>
+        <member name="T:Microsoft.Localization.OSLEBot.Core.KnowledgeBase.MessageCreator">
+            <summary>
+            You can extend this class to provide customized messages for Checks.
+            This is useful if you want to keep relatively simple Rule syntax and provide customized messages that
+            change depending on results (check) of each check.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.KnowledgeBase.MessageCreator.#ctor">
+            <summary>
+            Creates a default instance of the <see cref="T:Microsoft.Localization.OSLEBot.Core.KnowledgeBase.MessageCreator"/> with an empty message.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.KnowledgeBase.MessageCreator.#ctor(System.String)">
+            <summary>
+            Creates an instance of the <see cref="T:Microsoft.Localization.OSLEBot.Core.KnowledgeBase.MessageCreator"/> with the specified message.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.KnowledgeBase.MessageCreator.SetInit(System.String)">
+            <summary>
+            This method should be called to set the default message for the check.
+            </summary>
+            <param name="newBaseMessage">Reinitializes the <see cref="T:Microsoft.Localization.OSLEBot.Core.KnowledgeBase.MessageCreator"/> with this message.</param>
+            <returns>Returns instance of self to simplify syntax; this method can be called inside a call to a Check() method.</returns>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.KnowledgeBase.MessageCreator.GetFullMessage">
+            <summary>
+            This method will be called by rule manager to obtain the message.
+            Implement your logic to build message based on any contex info you provide. Use _baseMessage field
+            to obtain the base/default message and combine it with context.
+            Base implementation simply returns the default string.
+            This method is called if Check call resolved as true.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.KnowledgeBase.MessageCreator.GetBaseMessage">
+            <summary>
+            Gets only the base message. This method is called if Check call resolved as false
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Microsoft.Localization.OSLEBot.Core.KnowledgeBase.StringAppendMessageCreator">
+            <summary>
+            This class implements a generic message creator that accepts collections of strings as _context
+            and returns a message that is a concatenation of default message and the _context strings separated by '; '
+            </summary>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.KnowledgeBase.StringAppendMessageCreator.#ctor">
+            <summary>
+            Creates a default instance of the <see cref="T:Microsoft.Localization.OSLEBot.Core.KnowledgeBase.StringAppendMessageCreator"/> with an empty message.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.KnowledgeBase.StringAppendMessageCreator.#ctor(System.String)">
+            <summary>
+            Creates an instance of the <see cref="T:Microsoft.Localization.OSLEBot.Core.KnowledgeBase.StringAppendMessageCreator"/> with the specified message.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Localization.OSLEBot.Core.KnowledgeBase.StringAppendMessageCreator._context">
+            <summary>
+            Context for the init message to be concatenated with.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.KnowledgeBase.StringAppendMessageCreator.ResetContext">
+            <summary>
+            Resets the context of the message creator.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.KnowledgeBase.StringAppendMessageCreator.SetContext(System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Replace existing _context with new collection of strings.
+            </summary>
+            <returns>Returns newContext in order to enable simple syntax and wrapping around collections.</returns>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.KnowledgeBase.StringAppendMessageCreator.SetContext(System.String)">
+            <summary>
+            Replace existing _context with new collection of strings.
+            </summary>
+            <returns>Returns newContext in order to enable simple syntax and wrapping around collections.</returns>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.KnowledgeBase.StringAppendMessageCreator.AddContext(System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Add a collection of strings to the existing context, if any.
+            </summary>
+            <returns>Returns additionalContext in order to enable simple syntax and wrapping around collections.</returns>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.KnowledgeBase.StringAppendMessageCreator.GetFullMessage">
+            <summary>
+            Concatenate the default message, if any, with available context.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Localization.OSLEBot.Core.Engine.Properties.Property">
+            <summary>
+            An individual property of a classification object.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.Engine.Properties.Property.GetValue">
+            <summary>
+            The property value. This should only be used internally by the Property class to offer generic methods for comparison, hashcode, etc.
+            Boxing occurs if the implemented class stores a value object instead of a reference object.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.Engine.Properties.Property.ToString">
+            <summary>
+            This allows us to call Property.ToString() instead of Property.Value.ToString() in output writes.
+            So we can control how we want to write a particular property in its definition without changing outputwriters.
+            Some more complex properties may want to do fancier stuff than just value.ToString();
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.Engine.Properties.Property.Equals(Microsoft.Localization.OSLEBot.Core.Engine.Properties.Property)">
+            <summary>
+            Override in your property implementation. The desired logic is to compare Values of two Property objects even if these objects
+            refer to different properties. So for example comparing a SourceString property against TargetString should return true if values
+            are the same.
+            </summary>
+            <returns>True if Values are equal</returns>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.Engine.Properties.Property.Equals(System.Object)">
+            <summary>
+            Override in your property implementation. The desired logic is to compare Value of the property against the object.
+            </summary>
+            <param name="obj">Object to compare against</param>
+            <returns>True if obj is the same type and Properties are equal</returns>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.Engine.Properties.Property.CanBeCompared(Microsoft.Localization.OSLEBot.Core.Engine.Properties.Property)">
+            <summary>
+            Checks if you can compare the values of this property against "otherProperty".
+            Returns false if Property types are different or "otherProperty" is null or if property Names are different
+            </summary>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.Engine.Properties.Property.op_Equality(Microsoft.Localization.OSLEBot.Core.Engine.Properties.Property,Microsoft.Localization.OSLEBot.Core.Engine.Properties.Property)">
+            <summary>
+            Uses Property.Equals overriden by the Property implementation. The correct logic is comparing
+            the Values of the two Properties. Lookup Property.Equals(Property) for more details.
+            </summary>
+            <param name="x"></param>
+            <param name="y"></param>
+            <returns>True if values of the two proprties are equal.</returns>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.Engine.Properties.Property.op_Inequality(Microsoft.Localization.OSLEBot.Core.Engine.Properties.Property,Microsoft.Localization.OSLEBot.Core.Engine.Properties.Property)">
+            <summary>
+            Uses Property.Equals overriden by the Property implementation. The correct logic is comparing
+            the Values of the two Properties. Lookup Property.Equals(Property) for more details.
+            </summary>
+            <param name="x"></param>
+            <param name="y"></param>
+            <returns>True if values of the two proprties are different.</returns>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.Engine.Properties.Property.op_Equality(Microsoft.Localization.OSLEBot.Core.Engine.Properties.Property,System.Object)">
+            <summary>
+            Uses Property.Equals overriden by the Property implementation. The correct logic is comparing
+            the Value of the Property with the object. Lookup Property.Equals(object) for more details.
+            </summary>
+            <param name="x"></param>
+            <param name="y"></param>
+            <returns>True if value of the property is equal to the object.</returns>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.Engine.Properties.Property.op_Inequality(Microsoft.Localization.OSLEBot.Core.Engine.Properties.Property,System.Object)">
+            <summary>
+            Uses Property.Equals overriden by the Property implementation. The correct logic is comparing
+            the Value of the Property with the object. Lookup Property.Equals(object) for more details.
+            </summary>
+            <param name="x"></param>
+            <param name="y"></param>
+            <returns>True if value of the property is not equal to the object.</returns>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.Engine.Properties.Property.GetHashCode">
+            <summary>
+            Gets hash code based on property name and value.
+            </summary>
+            <returns>Hashcode of the Value object in Property</returns>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.Engine.Properties.Property.CompareTo(Microsoft.Localization.OSLEBot.Core.Engine.Properties.Property)">
+            <summary>
+            Compares the Value objects of two properties.
+            Relies on the implementation of the IComparable in Value types.
+            If your value type does not implement IComparable, override this method
+            </summary>
+            <param name="other"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Microsoft.Localization.OSLEBot.Core.Engine.Properties.Property.Name">
+            <summary>
+            Name of the property.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Localization.OSLEBot.Core.Engine.Properties.Property.RefComparer">
+            <summary>
+            Instance of a Property comparer that compares by reference.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Localization.OSLEBot.Core.Engine.Properties.Property.NameAndValueComparer">
+            <summary>
+            Instance of a Property Comparer that compares both Name and Value of the property.
+            Name comparison is an Ordinal string comparison.
+            Value comparison is done through call to Property.Equals(Property) that must be implemented by each Property derrived class.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Localization.OSLEBot.Core.Engine.Properties.Property.PropertyRefEqualityComparer">
+            <summary>
+            Used to compare two Property objects by reference.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Localization.OSLEBot.Core.Engine.Properties.Property.PropertyNameAndValueEqualityComparer">
+            <summary>
+            Used to compare two Property objects by looking at property name and property value.
+            This differs from the default Equals implementation which only looks at value.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Localization.OSLEBot.Core.Engine.Properties.SimpleProperty`1">
+            <summary>
+            A basic property with no specific methods, operators.
+            </summary>
+            <typeparam name="T">Type of value to be stored in property.</typeparam>
+        </member>
+        <member name="T:Microsoft.Localization.OSLEBot.Core.Engine.Properties.StringProperty">
+            <summary>
+            A property that is a string. Provides convenience methods to operate on strings.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.Engine.Properties.StringProperty.RegExp(System.Text.RegularExpressions.Regex[])">
+            <summary>
+            Check if regular expression matches against the string. 
+            If more than one regex is provided applies OR logic.
+            </summary>
+            <param name="regexes">Regular expression objects. Create a static object to reuse the same object in all calls.</param>
+            <returns>True if at least one regular expression matches the string.</returns>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.Engine.Properties.StringProperty.RegExpAnd(System.Text.RegularExpressions.Regex[])">
+            <summary>
+            Check if regular expression matches against the string. 
+            If more than one regex is provided applies AND logic.
+            </summary>
+            <param name="regexes">One or more regular expressions to evaluate. AND logic is applied.</param>
+            <returns>True if all of the regular expression match the string.</returns>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.Engine.Properties.StringProperty.Contains(System.StringComparison,System.String[])">
+            <summary>
+            Checks if this string contains at least one of the strings.
+            </summary>
+            <param name="comparisonType">Type of string comparison to be used.</param>
+            <param name="strings">Strings to check against.</param>
+            <returns>True if at least one string is contained in this string.</returns>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.Engine.Properties.StringProperty.Contains(System.String[])">
+            <summary>
+            Checks if this string contains at least one of the strings. Uses default Ordinal comparison.
+            </summary>
+            <param name="strings">Strings to check against.</param>
+            <returns>True if at least one string is contained in this string.</returns>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.Engine.Properties.StringProperty.ContainsAnd(System.StringComparison,System.String[])">
+            <summary>
+            Checks if this string contains all of the strings.
+            </summary>
+            <param name="comparisonType">Type of string comparison to be used.</param>
+            <param name="strings">Strings to check against.</param>
+            <returns>True if all of the strings are contained in this string.</returns>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.Engine.Properties.StringProperty.ContainsAnd(System.String[])">
+            <summary>
+            Checks if this string contains all of the strings. Uses default Ordinal comparison.
+            </summary>
+            <param name="strings">Strings to check against.</param>
+            <returns>True if all of the strings are contained in this string.</returns>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.Engine.Properties.StringProperty.Equals(System.StringComparison,System.String[])">
+            <summary>
+            Checks if this string equals any of the strings provided.
+            </summary>
+            <param name="comparisonType">Type of string comparison to be used.</param>
+            <param name="strings">Strings to check against.</param>
+            <returns>True if at least one of the strings are equal to this string.</returns>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.Engine.Properties.StringProperty.Equals(System.String[])">
+            <summary>
+            Checks if this string equals any of the strings provided. Uses default Ordinal comparison.
+            </summary>
+            <param name="strings">Strings to check against.</param>
+            <returns>True if at least one of the strings are equal to this string.</returns>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.Engine.Properties.StringProperty.CountOccurences(System.Text.RegularExpressions.Regex)">
+            <summary>
+            Counts occurences of regular expression matches in the string.
+            </summary>
+            <param name="pattern">This regex will be evaluated against the string.</param>
+            <returns> Number of successful matches is returned.</returns>
+        </member>
+        <member name="P:Microsoft.Localization.OSLEBot.Core.Engine.Properties.StringProperty.Length">
+            <summary>
+            Gets length of the undelying string.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Localization.OSLEBot.Core.Engine.Properties.NumberProperty">
+            <summary>
+            A property that is a floating number value. Provides convenience methods to operate on numbers.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.Engine.Properties.NumberProperty.WithinRange(System.Single,System.Single)">
+            <summary>
+            Value is within the range specified. Range is inclusive of n and m.
+            </summary>
+            <param name="n"></param>
+            <param name="m"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Microsoft.Localization.OSLEBot.Core.Engine.Properties.BoolProperty">
+            <summary>
+            Property representing bool value. Adds convenience methods for clearer rules.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Localization.OSLEBot.Core.Engine.Properties.BoolProperty.IsTrue">
+            <summary>
+            Returns true if property value is true
+            </summary>
+        </member>
+        <member name="P:Microsoft.Localization.OSLEBot.Core.Engine.Properties.BoolProperty.IsFalse">
+            <summary>
+            Returns true if property value is false
+            </summary>
+        </member>
+        <member name="T:Microsoft.Localization.OSLEBot.Core.DataSource.DataSourcePackages.DataSourcePackage">
+            <summary>
+            Class holding a definition of data.
+            One package may reference one or more data sources.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Localization.OSLEBot.Core.DataSource.DataSourcePackages.DataSourcePackage.AllDataSources">
+            <summary>
+            The array that stores all data sources (primary and secondary).
+            </summary>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.DataSource.DataSourcePackages.DataSourcePackage.#ctor">
+            <summary>
+            Default constructor required for serialization.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.DataSource.DataSourcePackages.DataSourcePackage.Initialize(System.Collections.Generic.IDictionary{System.String,Microsoft.Localization.OSLEBot.Core.DataSource.IDataSourceProvider})">
+            <summary>
+            Initializes all data sources belonging to the package.
+            This makes sure that instances of data source objects are created.
+            </summary>
+            <exception cref="T:Microsoft.Localization.OSLEBot.Exceptions.OSLEBotException">Thrown when expected data source provider is not available or where there is no primary data source.</exception>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.DataSource.DataSourcePackages.DataSourcePackage.ToString">
+            <summary>
+            Lists data source type and location for all data sources.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.DataSource.DataSourcePackages.DataSourcePackage.SetCOTypeName(System.String)">
+            <summary>
+            Sets the name of ClassificationObject that is being provided by this data source package.
+            <para/>LCX example: Microsoft.Localization.OSLEBot.ClassificationObjects.LocResource
+            </summary>
+            <param name="typeName">Fully specified name - including namespaces - of the CO type implemented by this data package.</param>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.DataSource.DataSourcePackages.DataSourcePackage.SetCOType(System.Type)">
+            <summary>
+            Sets the type of ClassificationObject that is being provided by this data source package.
+            <para/>LCX example: Microsoft.Localization.OSLEBot.ClassificationObjects.LocResource
+            </summary>
+            <param name="coType">Type of the ClassificationObject implemented by this data package.</param>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.DataSource.DataSourcePackages.DataSourcePackage.SetCOType``1">
+            <summary>
+            Sets the type of ClassificationObject that is being provided by this data source package.
+            <para/>LCX example: Microsoft.Localization.OSLEBot.ClassificationObjects.LocResource
+            </summary>
+            <typeparam name="COType">Type of the ClassificationObject implemented by this data package</typeparam>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.DataSource.DataSourcePackages.DataSourcePackage.AddDataSource(Microsoft.Localization.OSLEBot.Core.DataSource.DataSourcePackages.DataSourceInfo)">
+            <summary>
+            Adds a new definition of data source to this package.
+            <para/>If it is the first package to be added, it is set as primary.
+            </summary>
+            <param name="newDataSource">New data source to be added to the package</param>
+        </member>
+        <member name="P:Microsoft.Localization.OSLEBot.Core.DataSource.DataSourcePackages.DataSourcePackage.SecondaryDataSources">
+            <summary>
+            Gets an enumeration of 0 or more data sources that are not marked as primary.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Localization.OSLEBot.Core.DataSource.DataSourcePackages.DataSourcePackage.PrimaryDataSource">
+            <summary>
+            Gets the single instance of a data source which is marked as primary.
+            <para/>If more than 1 data source is marked as primary, an exception will be thrown.
+            <para/>If 0 data sources are marked as primary, null is returned.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.DataSource.DataSourcePackages.DataSourcePackageListExtension.Normalize(System.Collections.Generic.List{Microsoft.Localization.OSLEBot.Core.DataSource.DataSourcePackages.DataSourcePackage})">
+            <summary>
+            If two DataSourcePackages contain the same DataSourceInfo then
+            link them to single DataSourceInfo. Otherwise two instances of the same DataSourceInstance
+            will be created when these packages are accessed.
+            </summary>
+            <param name="packageList">List of DataSourcePackages to normalize</param>
+        </member>
+        <member name="T:Microsoft.Localization.OSLEBot.Core.DataSource.DataSourcePackages.UnknownClassificationObjectType">
+            <summary>
+            Exception thrown when the Classification Object passed into a rule is of
+            an incompatible type, so the rule is not able to examine this object.
+            <para/>This usually indicates an error in the logic of OSLEBot engine configuration
+            that is allowing wrong type of Classification Object to be passed to a rule
+            that does not expect such Classification Objects.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Localization.OSLEBot.Core.Output.OutputWriterConfig.Kind">
+            <summary>
+            Type, corresponding to the typename of specific IOutputWriter class,
+            to which this config entry pertains.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Localization.OSLEBot.Core.Output.OutputWriterConfig.Path">
+            <summary>
+            Stores the output path that the specific IOutputWriter should write to.
+            </summary>
+            <remarks>
+            If your IOutputWriter does not write to a file, this element may be ignored,
+            so it is not mandatory to support this value.
+            </remarks>
+        </member>
+        <member name="F:Microsoft.Localization.OSLEBot.Core.Output.OutputWriterConfig.Schema">
+            <summary>
+            Path to the XML Schema file to be used to validate the output against.
+            Can be empty - validation won't be performed.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Localization.OSLEBot.Core.Output.OutputWriterConfig.PropertiesToInclude">
+            <summary>
+            An optional list of CO properties to be included in output.
+            If nothing is provided, all properties are displayed.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.Output.OutputWriterConfig.AddPropertyToIncludeInOutput(System.String)">
+            <summary>
+            Allows specifying explicitly, which properties are to be included in the output produced by this output writer.
+            <para/>If no properties are specified (default), then all available properties will be written to output.
+            </summary>
+            <param name="propertyName">Name of the property whose value is to be written to output</param>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.Output.OutputWriterConfig.SetDataSourceProvider(System.Type)">
+            <summary>
+            Defines the type of the output writer class that will handle
+            writing output of OSLEBot to external storage (such as XML file).
+            Assembly name will be guessed from the type information contained in <paramref name="outputWriterType"/>.
+            </summary>
+            <param name="outputWriterType">Type inheriting from IOutputWriter class. Must be instantiable</param>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.Output.OutputWriterConfig.SetDataSourceProvider``1">
+            <summary>
+            Defines the type of the output writer class that will handle
+            writing output of OSLEBot to external storage (such as XML file).
+            Assembly name will be guessed from the type information contained in <typeparamref name="T"/>.
+            </summary>
+            <typeparam name="T">Type inheriting from IOutputWriter class. Must be instantiable.</typeparam>
+        </member>
+        <member name="T:Microsoft.Localization.OSLEBot.Core.DataSource.PropertyAdapter">
+            <summary>
+            Property adapter creates a Property object based on a data source object and/or based on existing
+            properties in a Classification Object.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.DataSource.PropertyAdapter.GetProperty(System.String,System.Object,Microsoft.Localization.OSLEBot.Core.Engine.Properties.Property@)">
+            <summary>
+            Given property name and datasource returns true or false if this property can be created using this provider.
+            </summary>
+            <param name="propertyName">Name of property to create.</param>
+            <param name="dataSource">Data source to obtain the property from.</param>
+            <param name="returnValue">If property can be created, the value is placed here.</param>
+            <returns>True if property can be successfully obtained.</returns>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.DataSource.PropertyAdapter.PropertyIsSupported(System.String,System.Object)">
+            <summary>
+            Checks if the property is supported by this provider.
+            </summary>
+            <param name="propertyName"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Microsoft.Localization.OSLEBot.Core.DataSource.PropertyAdapter.SupportedProperties">
+            <summary>
+            Stores names of properties that this provider provides
+            </summary>
+        </member>
+        <member name="P:Microsoft.Localization.OSLEBot.Core.DataSource.PropertyAdapter.DataSourceType">
+            <summary>
+            Returns the type of datasource that this provider uses to obtain properties from.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Localization.OSLEBot.Core.DataSource.PropertyAdapter.ClassificationObjectType">
+            <summary>
+            Returns the type of Classification Object that this provider creates properties for.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Localization.OSLEBot.Core.DataSource.PropertyProvider">
+            <summary>
+            Property Provider contains a set of PropertyAdapter - DataSource pairs that it uses to deliver a property specified by name.
+            Instances of Property Providers are created by IDataAdapters when creating Classification Objects.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Localization.OSLEBot.Core.DataSource.PropertyProvider.AdapterDataSourcePair.DataSource">
+            <summary>
+            The source of information about classification objects.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.DataSource.PropertyProvider.AdapterDataSourcePair.#ctor(Microsoft.Localization.OSLEBot.Core.DataSource.PropertyAdapter,System.Object)">
+            <summary>
+            Initializes a new instance of Adapter-DataSource pair.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Localization.OSLEBot.Core.DataSource.IDataSourceProvider">
+            <summary>
+            Takes the parameters of datasource and creates an instance of datasource (i.e. opens a file, obtains recordset from database, etc.)
+            </summary>
+        </member>
+        <member name="P:Microsoft.Localization.OSLEBot.Core.DataSource.IDataSourceProvider.DataSourceType">
+            <summary>
+            The data source type that the provider creates
+            </summary>
+        </member>
+        <member name="T:Microsoft.Localization.OSLEBot.Core.DataSource.ClassificationObjectAdapter">
+            <summary>
+            Initiates object instances based on the DataSourcePackage configuration.
+            Initiation creates an instance of a CO based on the main data source and assigns PropertyProvider
+            that will later provide properties from the configured data sources.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.DataSource.ClassificationObjectAdapter.#ctor(System.Collections.Generic.IDictionary{System.Type,System.Collections.Generic.IList{Microsoft.Localization.OSLEBot.Core.DataSource.PropertyAdapter}})">
+            <summary>
+            Creates an instance of classification object adapter, using the specified collection of property adapters.
+            </summary>
+            <param name="propertyAdapters"></param>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.DataSource.ClassificationObjectAdapter.ValidateTypes(Microsoft.Localization.OSLEBot.Core.DataSource.DataSourcePackages.DataSourcePackage)">
+            <summary>
+            Checks that CO type, Primary Data Source Type and Secondary Data Source types match between the DataSourcePackage
+            and the DataAdapter. Throws exceptions if one of the types doesn't match. Returns true if everythings fine.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.DataSource.ClassificationObjectAdapter.PackageIsSupported(Microsoft.Localization.OSLEBot.Core.DataSource.DataSourcePackages.DataSourcePackage)">
+            <summary>
+            Checks if the adapter can initialize classification objects from the provided data source package.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Localization.OSLEBot.Core.DataSource.ClassificationObjectAdapter.ClassificationObjectType">
+            <summary>
+            Returns the type of Classification Object that the DataAdapter produces.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Localization.OSLEBot.Core.DataSource.ClassificationObjectAdapter.PrimaryDataSource">
+            <summary>
+            The primary data source from which the objects are initialized
+            </summary>
+        </member>
+        <member name="P:Microsoft.Localization.OSLEBot.Core.DataSource.ClassificationObjectAdapter.SecondaryDataSources">
+            <summary>
+            Secondary datasources are used to create some or all properties of the CO but not to initialize instances of objects.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Localization.OSLEBot.Core.Misc.OSLEBotToolbox">
+            <summary>
+            Toolbox methods to make usage of OSLEBot core easier.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.Misc.OSLEBotToolbox.GetExceptionDetails(System.Exception,System.Boolean)">
+            <summary>
+            Builds a string describing the details of the exception: type, message
+            all inner exceptions (recusively) and (inner-most) stack trace, if specified.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.Misc.OSLEBotToolbox.RegExp(System.String,System.Text.RegularExpressions.Regex[])">
+            <summary>
+            Check if regular expression matches against the string. 
+            If more than one regex is provided applies OR logic.
+            </summary>
+            <param name="s"></param>
+            <param name="regexes">One or more regular expressions to evaluate. OR logic is applied.</param>
+            <returns>True if at least one regular expression matches the string.</returns>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.Misc.OSLEBotToolbox.RegExpAnd(System.String,System.Text.RegularExpressions.Regex[])">
+            <summary>
+            Check if regular expression matches against the string. 
+            If more than one regex is provided applies AND logic.
+            </summary>
+            <param name="s"></param>
+            <param name="regexes">One or more regular expressions to evaluate. AND logic is applied.</param>
+            <returns>True if all of the regular expression match the string.</returns>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.Misc.OSLEBotToolbox.RegExpMatches(System.String,System.Text.RegularExpressions.Regex[])">
+            <summary>
+            Uses Regex.Matches() method to retrieve all Matches by the regex on the strings and returns a collection of matches.
+            </summary>
+            <param name="s"></param>
+            <param name="regexes">One or more regular expressions to evaluate. AND logic is applied.</param>
+            <returns>An collection containing matches. Empty collection if nothing matched</returns>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.Misc.OSLEBotToolbox.RegExpMatches_old(System.String,System.String@,System.Text.RegularExpressions.Regex[])">
+            <summary>
+            Uses Regex.Matches() method to retrieve all Matches by the regex on the strings and appends all match values to the message variable.
+            </summary>
+            <param name="s"></param>
+            <param name="message">A variable to which the resulting match values will be appended, if any. Only the matches from the first successful Regex will be included.</param>
+            <param name="regexes">One or more regular expressions to evaluate. AND logic is applied.</param>
+            <returns>True if at least one of the regular expression matches.</returns>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.Misc.OSLEBotToolbox.CountOccurences(System.String,System.Text.RegularExpressions.Regex)">
+            <summary>
+            Counts occurences of regular expression matches in the string.
+            </summary>
+            <param name="s"></param>
+            <param name="regex">This regex will be evaluated against the string.</param>
+            <returns> Number of successful matches is returned.</returns>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.Misc.OSLEBotToolbox.Contains(System.String,System.StringComparison,System.String[])">
+            <summary>
+            Checks if this string contains at least one of the strings.
+            </summary>
+            <param name="s"></param>
+            <param name="comparisonType">Type of string comparison to be used.</param>
+            <param name="strings">Strings to check against.</param>
+            <returns>True if at least one string is contained in this string.</returns>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.Misc.OSLEBotToolbox.ContainsAnd(System.String,System.StringComparison,System.String[])">
+            <summary>
+            Checks if this string contains all of the strings.
+            </summary>
+            <param name="s"></param>
+            <param name="comparisonType">Type of string comparison to be used.</param>
+            <param name="strings">Strings to check against.</param>
+            <returns>True if all of the strings are contained in this string.</returns>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.Misc.OSLEBotToolbox.Equals(System.String,System.StringComparison,System.String[])">
+            <summary>
+            Checks if this string equals any of the strings provided.
+            </summary>
+            <param name="s"></param>
+            <param name="comparisonType">Type of string comparison to be used.</param>
+            <param name="strings">Strings to check against.</param>
+            <returns>True if at least one of the strings are equal to this string.</returns>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.Misc.OSLEBotToolbox.StartsWith(System.String,System.StringComparison,System.String[])">
+            <summary>
+            Checks if string starts with any of the strings provided.
+            </summary>
+            <param name="s"></param>
+            <param name="comparisonType">Type of string comparison to be used.</param>
+            <param name="strings">Strings to check against.</param>
+            <returns>True if at least one of the strings equals to the begining of this string.</returns>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.Misc.OSLEBotToolbox.EndsWith(System.String,System.StringComparison,System.String[])">
+            <summary>
+            Checks if string ends with any of the strings provided.
+            </summary>
+            <param name="s"></param>
+            <param name="comparisonType">Type of string comparison to be used.</param>
+            <param name="strings">Strings to check against.</param>
+            <returns>True if at least one of the strings equals to the ending of this string.</returns>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.Misc.OSLEBotToolbox.ToInt(System.String,System.Int32@)">
+            <summary>
+            Equivalent of Int32.TryParse. Converts a string to an int. Conversion can fail.
+            </summary>
+            <param name="s"></param>
+            <param name="i">The "out" variable that has to be declared earlier in the code.</param>
+            <returns>Returns true if converting to int succeeded. Returns false if it failde; in this case the 
+            value of "i" will be 0.
+            </returns>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.Misc.OSLEBotToolbox.IsTrue(System.Boolean)">
+            <summary>
+            Convenience method with self-explanatory meaning.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.Misc.OSLEBotToolbox.IsFalse(System.Boolean)">
+            <summary>
+            Convenience method with self-explanatory meaning.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.Misc.OSLEBotToolbox.AllAndNonEmpty``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Boolean})">
+            <summary>
+            Same as IEnumerable.All but returns false if set is empty.
+            </summary>
+            <typeparam name="TSource"></typeparam>
+            <param name="source"></param>
+            <param name="predicate"></param>
+            <returns>True if all elements satisfy condition in predicate. False otherwise or if set is empty.</returns>
+        </member>
+        <member name="F:Microsoft.Localization.OSLEBot.Core.Misc.OSLEBotToolbox.StringHasOnlyValidXmlCharacters">
+            <summary>
+            String contains only valid XML characters
+            </summary>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.Misc.OSLEBotToolbox.GetConfigSchemaStream">
+            <summary>
+            Returns a stream reader that points to the contents of OSLEBOTEngineConfig.xsd.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Localization.OSLEBot.Core.Misc.OSLEBotToolbox.ConfigSchemaNameSpace">
+            <summary>
+            Gets the namespace that configuration XML schema uses.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Localization.OSLEBot.Core.Misc.OSLEBotToolbox.RegexPerfMonitor">
+            <summary>
+            THREAD UNSAFE!
+            </summary>
+        </member>
+        <member name="T:Microsoft.Localization.OSLEBot.Core.DataSource.DataSourcePackages.SourceLocation">
+            <summary>
+            Indicates location of a data source.
+            For example, for physical files it would contain a path to physical file on disk.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.DataSource.DataSourcePackages.SourceLocation.#ctor">
+            <summary>
+            This constructor must be public for OM manipulation
+            </summary>
+        </member>
+        <member name="F:Microsoft.Localization.OSLEBot.Core.DataSource.DataSourcePackages.SourceLocation.locationData">
+            <summary>
+            Details about the current location.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.DataSource.DataSourcePackages.SourceLocation.GetSchema">
+            <summary>
+            Not supported. Member of IXmlSerializable interface.
+            </summary>
+            <exception cref="T:System.NotImplementedException">Always thrown as this method is not implemented.</exception>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.DataSource.DataSourcePackages.SourceLocation.ReadXml(System.Xml.XmlReader)">
+            <summary>
+            Reads an XML node, whose name is "SourceLocation" and contains either Path node with file path to an LCL file
+            or MiscData node with a dictionary of key/value pairs.
+            </summary>
+            <param name="reader">Reader whose position is at SourceLocation</param>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.DataSource.DataSourcePackages.SourceLocation.WriteXml(System.Xml.XmlWriter)">
+            <summary>
+            Not implemented currently.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.DataSource.DataSourcePackages.SourceLocation.Equals(Microsoft.Localization.OSLEBot.Core.DataSource.DataSourcePackages.SourceLocation)">
+            <summary>
+            Compares whether the <see cref="P:Microsoft.Localization.OSLEBot.Core.DataSource.DataSourcePackages.SourceLocation.Value"/> of this <see cref="T:Microsoft.Localization.OSLEBot.Core.DataSource.DataSourcePackages.SourceLocation"/> is the same as the <see cref="P:Microsoft.Localization.OSLEBot.Core.DataSource.DataSourcePackages.SourceLocation.Value"/> value of the <paramref name="other"/> location.
+            </summary>
+            <param name="other"><see cref="T:Microsoft.Localization.OSLEBot.Core.DataSource.DataSourcePackages.SourceLocation"/> we want to compare with this location.</param>
+            <returns>True if locations are equal. False otherwise.</returns>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.DataSource.DataSourcePackages.SourceLocation.ToString">
+            <summary>
+            Reveals the data source location.
+            <para/>If location is not available, it returns a string: "Location not set".
+            </summary>
+        </member>
+        <member name="P:Microsoft.Localization.OSLEBot.Core.DataSource.DataSourcePackages.SourceLocation.Value">
+            <summary>
+            Value of this source location node.
+            <para/>Currently it can be either a path location of an LCL file or a misc dictionary object of type: <see cref="T:Microsoft.Localization.OSLEBot.Core.Misc.ConfigDictionary"/>
+            <para/>To initialize this value, call ReadXml() by providing an XML string of a SourceLocation node with appropriate data.
+            <para/>Now, you can also specify either a <see cref="T:System.String"/> value to indicate file path or of <see cref="T:Microsoft.Localization.OSLEBot.Core.Misc.ConfigDictionary"/> to specify property dictionary with custom property values.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.Output.XmlOutputWriter.Validate(System.String)">
+            <summary>
+            Validate the output against an XML Schema
+            </summary>
+            <param name="pathToSchema">Full path to the schema file.</param>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.Output.XmlOutputWriter.ValidateXmls(System.String,System.String[])">
+            <summary>
+            Read the specified xml files and validate against the schema
+            </summary>
+            <param name="pathToSchema">Path to XML Schema file</param>
+            <param name="Xmls">Paths to XML files to be validated</param>
+            <returns>True if all Xml files are valid.</returns>
+        </member>
+        <member name="T:Microsoft.Localization.OSLEBot.Core.Output.OutputItem">
+            <summary>
+            Output of a single call to Check().
+            </summary>
+        </member>
+        <member name="P:Microsoft.Localization.OSLEBot.Core.Output.OutputEntryForOneWholeCOWithAllRules.CO">
+            <summary>
+            CO on which this rule has been run.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Localization.OSLEBot.Core.Output.OutputEntryForOneRule">
+            <summary>
+            This is a result of a <seealso cref="P:Microsoft.Localization.OSLEBot.Core.Output.OutputEntryForOneRule.Rule"/> having been applied to a <seealso cref="T:Microsoft.Localization.OSLEBot.Core.Engine.ClassificationObject"/>
+            <seealso cref="T:Microsoft.Localization.OSLEBot.Core.Output.OutputEntryForOneRule"/> must contain at least one <seealso cref="T:Microsoft.Localization.OSLEBot.Core.Output.OutputItem"/>
+            </summary>
+        </member>
+        <member name="F:Microsoft.Localization.OSLEBot.Core.Output.OutputEntryForOneRule.OutputItems">
+            <summary>
+            Output details for each of the calls to <see cref="P:Microsoft.Localization.OSLEBot.Core.Output.OutputEntryForOneRule.Rule"/>.Check().
+            </summary>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.Output.OutputEntryForOneRule.AddItem(Microsoft.Localization.OSLEBot.Core.Output.OutputItem)">
+            <summary>
+            Adds single entry of output to the result.
+            </summary>
+            <remarks>This method is called by the engine after every call to Rule.Check().</remarks>
+            <param name="oi">Result of single Rule.Check() call.</param>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.Output.OutputEntryForOneRule.SetTrueOrFalse">
+            <summary>
+            Calculates the overall result of running the rule on a single CO.
+            </summary>
+            <remarks>The values of each Check() result are AND'ed to create the overall result.
+            That is, if all Check() calls returned True, then the result for the whole rule is set to True.
+            </remarks>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.Output.OutputEntryForOneRule.CleanUpOperands">
+            <summary>
+            Removes all OutputItems that act as operands.
+            </summary>
+            <remarks>
+            Call this method before sending <see cref="T:Microsoft.Localization.OSLEBot.Core.Output.OutputEntryForOneRule"/> to output writers.
+            </remarks>
+        </member>
+        <member name="P:Microsoft.Localization.OSLEBot.Core.Output.OutputEntryForOneRule.Rule">
+            <summary>
+            Details of the rule which created the output entry.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Localization.OSLEBot.Core.Output.OutputEntryForOneRule.Result">
+            <summary>
+            What is the summary result of rule running on the CO.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Localization.OSLEBot.Core.Output.OutputEntryForOneRule.Severity">
+            <summary>
+            Gets the severity of the entire Rule. This is the highest severity from all checks that evaluated true.
+            Returns CheckSeverity.Normal if there are no checks matched.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Localization.OSLEBot.Core.Output.OutputEntryForOneRule.RuleResult">
+            <summary>
+            Stores and computes Rule's result.
+            </summary>
+            <remarks>
+            This class also contains the complete logic of how to treat AND and OR operators.
+            </remarks>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.Output.OutputStore.#ctor(Microsoft.Localization.OSLEBot.Core.Engine.OSLEBotEngine)">
+            <summary>
+            Initialize storage for output. This class is responsible for passing all output from the engine activity
+            to individual, specialized output writers.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Localization.OSLEBot.Core.Output.OutputStore.QueueLock">
+            <summary>
+            Used to control access to the queue.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.Output.OutputStore.FlushOutput(System.Collections.Generic.IEnumerable{Microsoft.Localization.OSLEBot.Core.Engine.ClassificationObject})">
+            <summary>
+            Scans all Classification Objects and flushes their output using registered Output Writers
+            </summary>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.Output.OutputStore.FlushOutput_old">
+            <summary>
+            Initiates any registered output writers to write any output for Classification Objects that might have accumulated
+            so far. Returns after the entire output queue has been cleared.
+            Method is thread safe and does not block the queue for the entire period of output writing, so other threads
+            may be adding output concurently and method will keep flushing until there queue is empty.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Localization.OSLEBot.Core.Engine.OSLEBotEngine">
+            <summary>
+            Main class that contains most logic of OSLEBot core.
+            </summary>
+            <seealso cref="T:Microsoft.Localization.OSLEBot.Core.Engine.EngineConfig"/>
+        </member>
+        <member name="F:Microsoft.Localization.OSLEBot.Core.Engine.OSLEBotEngine._coProcessingStartTime">
+            <summary>
+            Timer used to debug the performance. Initialized in <see cref="M:Microsoft.Localization.OSLEBot.Core.Engine.OSLEBotEngine.BeginProcessClassificationObjects"/>
+            </summary>
+        </member>
+        <member name="F:Microsoft.Localization.OSLEBot.Core.Engine.OSLEBotEngine._coLoaded">
+            <summary>
+            How many objects added for processing by 2nd thread.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Localization.OSLEBot.Core.Engine.OSLEBotEngine._propertyAdapters">
+            <summary>
+            Maps instances of Property Adapters to Classification Object type they support.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Localization.OSLEBot.Core.Engine.OSLEBotEngine._coAdapters">
+            <summary>
+            DataAdapters are stored here; mapped from ClassificationObject type they create to a list of instances of adapters.
+            There can be more than one type of data adapter producing the same CO type, as they may cover different data source combinations.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Localization.OSLEBot.Core.Engine.OSLEBotEngine._dataSourcePackages">
+            <summary>
+            The queue of DataSourcePackage objects that needs to be provided to OSLEBot Engine;
+            </summary>
+        </member>
+        <member name="F:Microsoft.Localization.OSLEBot.Core.Engine.OSLEBotEngine._spaces">
+            <summary>
+            Stores instances of Space for each type of Classification Object loaded by the engine.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Localization.OSLEBot.Core.Engine.OSLEBotEngine._coTypes">
+            <summary>
+            ClassificationObject types known to the engine. These are configured using OSLEBot config.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Localization.OSLEBot.Core.Engine.OSLEBotEngine._outputWriters">
+            <summary>
+            Stores instances of output writers as defined in engine config.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Localization.OSLEBot.Core.Engine.OSLEBotEngine._engineConfiguration">
+            <summary>
+            Engine config specified during construction time. Engine then organizes the creation of Spaces and COs based on the packages
+            </summary>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.Engine.OSLEBotEngine.#ctor(Microsoft.Localization.OSLEBot.Core.Engine.EngineConfig)">
+            <summary>
+            New constructor created by PiotrCi.
+            This tests using XML configuration packages.
+            This constructor is independent from the 0-args constructor and is incompatible with the older model!
+            </summary>
+            <param name="configuration">Configuration read from disk or created in memory</param>
+        </member>
+        <member name="F:Microsoft.Localization.OSLEBot.Core.Engine.OSLEBotEngine.AsimoAssemblyResolver">
+            <summary>
+            Reference to <see cref="T:Microsoft.Practices.AssemblyManagement.AssemblyResolver"/> used by OSLEBot to resolve its references.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.Engine.OSLEBotEngine.InitLogging">
+            <summary>
+            Initializes internal logging mechanism.
+            Used for debugging purposes.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.Engine.OSLEBotEngine.StopLogging">
+            <summary>
+            Stops internal logging mechanism.
+            Used for debugging purposes of Asimo.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.Engine.OSLEBotEngine.Cleanup">
+            <summary>
+            Cleans up the instance of OSLEBotEngine. Used to flush all referenced objects to make sure memory doesn't grow 
+            indefinitely (known bug) when multiple instances of bot are created in the same process.
+            This method is to be called by the bot client.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.Engine.OSLEBotEngine.WaitForJobFinish">
+            <summary>
+            Waits for all processing threads started by an instance of bot to complete.
+            <list type="ol"><listheader>This includes:</listheader>
+            <item>Waiting for all rules to finish processing</item>
+            <item>Waiting for all output writers to complete output and flush it to backing store</item>
+            </list>
+            </summary>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.Engine.OSLEBotEngine.StartRun">
+            <summary>
+            Starts executing the Engine based on the config data provided in the constructor. Returns immediately with false if engine is already running.
+            </summary>
+            <returns>True if engine has been started. False if engine was already running.</returns>
+            <exception cref="T:Microsoft.Localization.OSLEBot.Exceptions.OSLEBotEngineInitializationException">Thrown when:
+            <para/>there is no rules registered for execution
+            <para/>or expected data source provider is not available
+            <para/>or where there is no primary data source
+            <para/>or when data source instance could not be initialized properly. This could happen - for example - if a file comprising the datasource does not exist.
+            <para/>Inner exception is of type <see cref="T:Microsoft.Localization.OSLEBot.Exceptions.OSLEBotException"/> and contains more details about the specific cause of failure.
+            </exception>
+        </member>
+        <member name="F:Microsoft.Localization.OSLEBot.Core.Engine.OSLEBotEngine._dataSourceProviders">
+            <summary>
+            DataSourceProviders are stored here; mapped from Data Source type name they create to instance of provider.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.Engine.OSLEBotEngine.RegisterDataSourceProviders">
+            <summary>
+            Creates instances of data source provides based on the DataSourceProvider assemblies and stores them in a dictionary
+            </summary>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.Engine.OSLEBotEngine.Finalize">
+            <summary>
+            Clean up by making sure logger sinks that are no longer used, are unregistered.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.Engine.OSLEBotEngine.StartProcessing">
+            <summary>
+            Starts processing based on the supplied configuration.
+            </summary>
+            <exception cref="T:Microsoft.Localization.OSLEBot.Exceptions.OSLEBotEngineInitializationException">Thrown from <see cref="M:Microsoft.Localization.OSLEBot.Core.Engine.OSLEBotEngine.LoadAndQueueCOs"/> when:
+            <para/>expected data source provider is not available
+            <para/>or where there is no primary data source
+            <para/>or when data source instance could not be initialized properly. This could happen - for example - if a file comprising the datasource does not exist.
+            <para/>Inner exception is of type <see cref="T:Microsoft.Localization.OSLEBot.Exceptions.OSLEBotException"/> and contains more details about the specific cause of failure.
+            </exception>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.Engine.OSLEBotEngine.PrintPerfDataToLog">
+            <summary>
+            Prints info from Rule and Regex Performance monitors to log
+            </summary>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.Engine.OSLEBotEngine.LoadAndQueueCOs">
+            <summary>
+            This is the second thread of OSLEBotEngine. It communicates with
+            Classification Object and Space factories in order to load objects from
+            data packages.
+            It also does all the required pre-processing on objects, such as marking objects
+            for processing.
+            It then starts Enigne3rdThread in order to start Classification Object processing by rules
+            </summary>
+            <exception cref="T:Microsoft.Localization.OSLEBot.Exceptions.OSLEBotEngineInitializationException">Thrown when:
+            <para/>expected data source provider is not available
+            <para/>or where there is no primary data source
+            <para/>or when data source instance could not be initialized properly. This could happen - for example - if a file comprising the datasource does not exist.
+            <para/>Inner exception is of type <see cref="T:Microsoft.Localization.OSLEBot.Exceptions.OSLEBotException"/> and contains more details about the specific cause of failure.
+            </exception>
+        </member>
+        <member name="P:Microsoft.Localization.OSLEBot.Core.Engine.OSLEBotEngine.StringCache">
+            <summary>
+            All engines share the same StringCache so any code can call cache without referencing 
+            a particular engine instance which simplifies coding. However, any engine can clean the cache at any time
+            so engines should not rely on cache preserving values.
+            Also, multiple engines should not really run at the same time...
+            </summary>
+        </member>
+        <member name="E:Microsoft.Localization.OSLEBot.Core.Engine.OSLEBotEngine.EngineCleanup">
+            <summary>
+            Register for this event in order to be able to execute cleanup code when Engine is cleaning up.
+            Static helper caches and other non-instance fields should be cleaned up when this event is fired
+            to enable multiple OSLEBotEngine runs in one CLR session.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Localization.OSLEBot.Core.Engine.OSLEBotEngine.CoProcessingDone">
+            <summary>
+            Event that gets signalled by the engine when processing of all ClassificationObjects has been completed. Output writing may still be in progress.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Localization.OSLEBot.Core.Engine.OSLEBotEngine.AllOutputFinished">
+            <summary>
+            Event that gets signalled by the engine when output writing to all output writers has finished. This means that all OSLEBotEngine tasks have been completed.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Localization.OSLEBot.Core.Engine.OSLEBotEngine.EngineLoggedErrors">
+            <summary>
+            Set by any engine thread that encounters an exception.
+            Exec can query engine to see if errors have been reported by the time all threads finished
+            to determine return result of the exec.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Localization.OSLEBot.Core.Engine.OSLEBotEngine.CurrentRuleManager">
+            <summary>
+            Gets a reference to RuleManager owned by this engine.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Localization.OSLEBot.Core.Misc.ConfigDictionary">
+            <summary>
+            Custom configuration dictionary, storing a list of key-value string pairs.
+            <para/>Can be used by OSLEBot configuration piece to pass in custom properties classification objects of a particular data source (<see cref="T:Microsoft.Localization.OSLEBot.Core.DataSource.DataSourcePackages.DataSourceInfo"/>) should have.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.Misc.ConfigDictionary.#ctor(System.Xml.XmlNode)">
+            <summary>
+            Create a config dictionary based on a chunk of XML.
+            "Name" attribute becomes Key and text element becomes string value.
+            </summary>
+            <param name="node">Must contain a list of XML nodes with a "Name" attribute and a text value.</param>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.Misc.ConfigDictionary.#ctor">
+            <summary>
+            Default constructor.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.Misc.ConfigDictionary.AddParams(System.Xml.XmlNode)">
+            <summary>
+            Adds parameters from the specified XmlNode.
+            <para/>This node is expected to cotnain a list of XmL nodes with "Name" attribute and a text value.
+            <para/>From the nodes, each "Name" attribute is treated as key (property name), wherease text value of the node is treated as value (property value). Then the key-value pair is added to this dictionary.
+            </summary>
+            <param name="node">Must contain a list of XML nodes with a "Name" attribute and a text value.</param>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.Misc.ConfigDictionary.Equals(System.Object)">
+            <summary>
+            Determines whether the specific <paramref name="other"/> object is considered as equal to this instance.
+            </summary>
+            <param name="other">The other object to compare</param>
+            <returns>True if this object and the other object are considered equal (may or may not be the same object).</returns>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.Misc.ConfigDictionary.Equals(Microsoft.Localization.OSLEBot.Core.Misc.ConfigDictionary)">
+            <summary>
+            Compares the contents of keys and values of this <see cref="T:Microsoft.Localization.OSLEBot.Core.Misc.ConfigDictionary"/> with the <paramref name="other"/> dictionary to determine whether they contain exactly the same configuration.
+            </summary>
+            <param name="other">The other <see cref="T:Microsoft.Localization.OSLEBot.Core.Misc.ConfigDictionary"/> to compare</param>
+            <returns>True if both dictionaries are equivalent (contain exactly the same key-value pairs). False otherwise.</returns>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.Misc.ConfigDictionary.GetHashCode">
+            <summary>
+            Returns a hash code for this ConfigDictionary.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.KnowledgeBase.Rule.RegisterEvents">
+            <summary>
+            Called by Rule's constructor.
+            This call makes the Rule aware of events fired by RuleManager, thus making the rule active.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.KnowledgeBase.Rule.UnregisterEvents">
+            <summary>
+            May be called by RuleManager when deregistering the rule from the manager.
+            Effectively this unsubscribes the rule from events fired by RuleManager,
+            thus making the rule inactive.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Localization.OSLEBot.Core.KnowledgeBase.Rule.filteringExpression">
+            <summary>
+            Default filtering expression allows all objects.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.KnowledgeBase.Rule.ClassifyOneObject(Microsoft.Localization.OSLEBot.Core.Engine.ClassificationObject)">
+            <summary>
+            This method will be called by the engine (via RuleManager) for every
+            <see cref="T:Microsoft.Localization.OSLEBot.Core.Engine.ClassificationObject"/> that enters the engine's processing pipe.
+            NOTE: by design, one rule can only be processing one CO at a time! in multi thread scenario the same rule
+            must not run on more than 1 thread!
+            </summary>
+            <param name="co">ClassificationObject to classify</param>
+        </member>
+        <member name="F:Microsoft.Localization.OSLEBot.Core.KnowledgeBase.Rule._mc">
+            <summary>
+            This is used to cache the instance of a message creator to be used for messages passed as strings vs.
+            create one each time we call the method bleow.
+            THREAD UNSAFE and based on an asumption that only one instance of a Rule executes at the same time which is the case now.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.KnowledgeBase.Rule.Reset">
+            <summary>
+            Resets static fields used internally for caching.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Localization.OSLEBot.Core.KnowledgeBase.Rule.filteringMethods">
+            <summary>
+            Caches the compiled filtering expressions defined in Engine Config
+            </summary>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.KnowledgeBase.Rule.GetFilteringMethod(System.String)">
+            <summary>
+            Compiles the filtering expression into a filtering method or returns a cached method if it has already been compiled
+            </summary>
+            <param name="filteringExpression">The lambda expression to be used for filtering.</param>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.KnowledgeBase.Rule.Init">
+            <summary>
+            Override this method in your class if your Rule requires initialization code.
+            </summary>
+            <remarks>
+            This method will be called on your rule object once before any call to Run() is made.
+            </remarks>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.KnowledgeBase.Rule.Cleanup">
+            <summary>
+            Override this method in your class if your Rule requires cleanup code.
+            </summary>
+            <remarks>
+            This method will be called on your rule object once after the last call to Run() and before termination of the engine.
+            </remarks>
+        </member>
+        <member name="E:Microsoft.Localization.OSLEBot.Core.KnowledgeBase.Rule.RuleStartsProcessingObject">
+            <summary>
+            Event called by rule directly before the execution of the Run() method.
+            Created to allow performance tracking by RuleManager.
+            </summary>
+        </member>
+        <member name="E:Microsoft.Localization.OSLEBot.Core.KnowledgeBase.Rule.RuleFinishedProcessingObject">
+            <summary>
+            Event called by rule directly after the execution of the Run() method.
+            Created to allow performance tracking by RuleManager.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Localization.OSLEBot.Core.KnowledgeBase.Rule.TypeOfClassificationObject">
+            <summary>
+            type of Classification Object the rule applies to.
+            this is used as a temp solution for rules to not look at objects of other types
+            </summary>
+        </member>
+        <member name="P:Microsoft.Localization.OSLEBot.Core.KnowledgeBase.Rule.CurrentCO">
+            <summary>
+            Current Classification Object being processed by the rule
+            </summary>
+        </member>
+        <member name="P:Microsoft.Localization.OSLEBot.Core.KnowledgeBase.Rule.ExpressionCaster">
+            <summary>
+            This delegate is used to cast Filtering Expressions of type
+            Func&lt;T:ClassificationOjbect, bool&gt; to Func&lt;ClassificationObject, bool&gt;
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Microsoft.Localization.OSLEBot.Core.KnowledgeBase.Rule.ExpressionCasting`1">
+            <summary>
+            Allows unified casting of expressions
+            </summary>
+            <typeparam name="T">Name of the Classification Object type whose expression is to be casted</typeparam>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.KnowledgeBase.Rule.ExpressionCasting`1.ExpressionCast(System.Object)">
+            <summary>
+            Casts from COExpression T to Func T, bool
+            </summary>
+            <param name="expr"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Microsoft.Localization.OSLEBot.Core.Engine.EngineConfig">
+            <summary>
+            Main class that stores OSLEBotCore configuration.
+            Can be deserialized from a disk file or constructed using Object model.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.Engine.EngineConfig.AddDataSourceProvider(Microsoft.Localization.OSLEBot.Core.Engine.TypeSpecification)">
+            <summary>
+            Adds new item to <see cref="P:Microsoft.Localization.OSLEBot.Core.Engine.EngineConfig.DataSourceProviderTypes"/> list.
+            <remarks>
+            DataSourceProvider types to be used by engine to talk to specific types of data sources.
+            <para/>To work with LCX, two types are required:
+            <para/><list type="ol">
+            <item>Microsoft.Localization.OSLEBot.DataSources.LcxDataSource</item>
+            <item>Microsoft.Localization.OSLEBot.DataSources.ConfigDictionaryDataSource</item>
+            </list>
+            <para/>Both of them are located in "LocResource" assembly
+            </remarks>
+            </summary>
+            <param name="provider">New data source provider specification</param>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.Engine.EngineConfig.AddDataSourceProvider(System.String,System.String)">
+            <summary>
+            Adds new item to <see cref="P:Microsoft.Localization.OSLEBot.Core.Engine.EngineConfig.DataSourceProviderTypes"/> list.
+            </summary>
+            <param name="typeName">Type described by the newly added <see cref="T:Microsoft.Localization.OSLEBot.Core.Engine.TypeSpecification"/></param>
+            <param name="assemblyName">Assembly containing the described type</param>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.Engine.EngineConfig.AddDataSourceProvider(System.Type)">
+            <summary>
+            Adds new item to <see cref="P:Microsoft.Localization.OSLEBot.Core.Engine.EngineConfig.DataSourceProviderTypes"/> list. Assembly name will be guessed from the type information contained in <paramref name="providerType"/>.
+            </summary>
+            <param name="providerType">Type described by the newly added <see cref="T:Microsoft.Localization.OSLEBot.Core.Engine.TypeSpecification"/></param>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.Engine.EngineConfig.AddDataSourceProvider``1">
+            <summary>
+            Adds new item to <see cref="P:Microsoft.Localization.OSLEBot.Core.Engine.EngineConfig.DataSourceProviderTypes"/> list. Assembly name will be guessed from the type information contained in <typeparamref name="TProvider"/>.
+            </summary>
+            <typeparam name="TProvider">Type described by the newly added <see cref="T:Microsoft.Localization.OSLEBot.Core.Engine.TypeSpecification"/></typeparam>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.Engine.EngineConfig.AddClassificationObject(Microsoft.Localization.OSLEBot.Core.Engine.TypeSpecification)">
+            <summary>
+            Adds new item to <see cref="P:Microsoft.Localization.OSLEBot.Core.Engine.EngineConfig.COTypes"/> list.
+            <remarks>
+            ClassificationObject types to be used by engine to talk to specific types of data sources.
+            <para/>To work with LCX, one type is required:
+            <para/><list type="ol">
+            <item>Microsoft.Localization.OSLEBot.ClassificationObjects.LocResource</item>
+            </list>
+            <para/>It is located in LocResource assembly.
+            </remarks>
+            </summary>
+            <param name="coTypeSpecification">New data source provider specification</param>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.Engine.EngineConfig.AddClassificationObject(System.String,System.String)">
+            <summary>
+            Adds new item to <see cref="P:Microsoft.Localization.OSLEBot.Core.Engine.EngineConfig.COTypes"/> list.
+            </summary>
+            <param name="typeName">Type described by the newly added <see cref="T:Microsoft.Localization.OSLEBot.Core.Engine.TypeSpecification"/></param>
+            <param name="assemblyName">Assembly containing the described type</param>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.Engine.EngineConfig.AddClassificationObject(System.Type)">
+            <summary>
+            Adds new item to <see cref="P:Microsoft.Localization.OSLEBot.Core.Engine.EngineConfig.COTypes"/> list. Assembly name will be guessed from the type information contained in <paramref name="coType"/>.
+            </summary>
+            <param name="coType">Type to be added to <see cref="P:Microsoft.Localization.OSLEBot.Core.Engine.EngineConfig.COTypes"/></param>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.Engine.EngineConfig.AddClassificationObject``1">
+            <summary>
+            Adds new item to <see cref="P:Microsoft.Localization.OSLEBot.Core.Engine.EngineConfig.COTypes"/> list. Assembly name will be guessed from the type information contained in <typeparamref name="TObject"/>.
+            </summary>
+            <typeparam name="TObject">Type to be added to <see cref="P:Microsoft.Localization.OSLEBot.Core.Engine.EngineConfig.COTypes"/></typeparam>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.Engine.EngineConfig.AddPropertyAdapter(Microsoft.Localization.OSLEBot.Core.Engine.TypeSpecification)">
+            <summary>
+            Adds new item to <see cref="P:Microsoft.Localization.OSLEBot.Core.Engine.EngineConfig.PropertyAdapterTypes"/> list.
+            <remarks>
+            PropertyAdapter types to be used by engine to retrieve values of properties in universal OSLEBot format.
+            <para/>To work with LCX, two adapter types are required:
+            <para/><list type="ol">
+            <item>Microsoft.Localization.OSLEBot.DataSource.LocResourcePropertyProviders.LocItemPropertyAdapter</item>
+            <item>Microsoft.Localization.OSLEBot.DataSource.LocResourcePropertyProviders.ConfigDictPropertyAdapter</item>
+            </list>
+            <para/>Both are located in LocResource assembly
+            </remarks>
+            </summary>
+            <param name="adapter">New property adapter specification</param>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.Engine.EngineConfig.AddPropertyAdapter(System.String,System.String)">
+            <summary>
+            Adds new item to <see cref="P:Microsoft.Localization.OSLEBot.Core.Engine.EngineConfig.PropertyAdapterTypes"/> list.
+            </summary>
+            <param name="typeName">Type described by the newly added <see cref="T:Microsoft.Localization.OSLEBot.Core.Engine.TypeSpecification"/></param>
+            <param name="assemblyName">Assembly containing the described type</param>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.Engine.EngineConfig.AddPropertyAdapter(System.Type)">
+            <summary>
+            Adds new item to <see cref="P:Microsoft.Localization.OSLEBot.Core.Engine.EngineConfig.PropertyAdapterTypes"/> list.
+            </summary>
+            <param name="adapterType">Type described by the newly added <see cref="T:Microsoft.Localization.OSLEBot.Core.Engine.TypeSpecification"/></param>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.Engine.EngineConfig.AddPropertyAdapter``1">
+            <summary>
+            Adds new item to <see cref="P:Microsoft.Localization.OSLEBot.Core.Engine.EngineConfig.PropertyAdapterTypes"/> list.
+            </summary>
+            <typeparam name="TAdapter">Type described by the newly added <see cref="T:Microsoft.Localization.OSLEBot.Core.Engine.TypeSpecification"/></typeparam>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.Engine.EngineConfig.AddCOAdapter(Microsoft.Localization.OSLEBot.Core.Engine.TypeSpecification)">
+            <summary>
+            Adds new item to <see cref="P:Microsoft.Localization.OSLEBot.Core.Engine.EngineConfig.COAdapterTypes"/> list.
+            <remarks>
+            ClassificationObjectAdapter types to be used by engine to convert a non-compatible outside-world object type to a generic ClassificationObject structure understood by OSLEBot core.
+            <para/>To work with LCX, one adapter type is required:
+            <para/><list type="ol">
+            <item>Microsoft.Localization.OSLEBot.DataAdapters.LCXLocResourceDataAdapter</item>
+            </list>
+            <para/>This type is located in OSLEBot.LCXDataAdapter assembly
+            </remarks>
+            </summary>
+            <param name="adapter">New CO adapter specification</param>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.Engine.EngineConfig.AddCOAdapter(System.String,System.String)">
+            <summary>
+            Adds new item to <see cref="P:Microsoft.Localization.OSLEBot.Core.Engine.EngineConfig.COAdapterTypes"/> list.
+            </summary>
+            <param name="typeName">Type described by the newly added <see cref="T:Microsoft.Localization.OSLEBot.Core.Engine.TypeSpecification"/></param>
+            <param name="assemblyName">Assembly containing the described type</param>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.Engine.EngineConfig.AddCOAdapter(System.Type)">
+            <summary>
+            Adds new item to <see cref="P:Microsoft.Localization.OSLEBot.Core.Engine.EngineConfig.COAdapterTypes"/> list. Assembly name will be guessed from the type information contained in <paramref name="adapterType"/>.
+            </summary>
+            <param name="adapterType">Type described by the newly added <see cref="T:Microsoft.Localization.OSLEBot.Core.Engine.TypeSpecification"/></param>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.Engine.EngineConfig.AddCOAdapter``1">
+            <summary>
+            Adds new item to <see cref="P:Microsoft.Localization.OSLEBot.Core.Engine.EngineConfig.COAdapterTypes"/> list. Assembly name will be guessed from the type information contained in <typeparamref name="TAdapter"/>.
+            </summary>
+            <typeparam name="TAdapter">Type described by the newly added <see cref="T:Microsoft.Localization.OSLEBot.Core.Engine.TypeSpecification"/></typeparam>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.Engine.EngineConfig.AddBinaryReference(System.String)">
+            <summary>
+            Adds a reference to binary file.
+            <para/>For example: System.Core.dll.
+            </summary>
+            <param name="binaryFile">Path to binary file. May contain environment variables.</param>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.Engine.EngineConfig.AddSourceReference(System.String)">
+            <summary>
+            Adds a reference to binary file.
+            <para/>For example: c:\OSLEBotFunc\Functional.Global\Toolbox\HelperMethods.cs.
+            </summary>
+            <param name="sourceFile">Path to source file. May contain environment variables.</param>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.Engine.EngineConfig.AddRule(Microsoft.Localization.OSLEBot.Core.Engine.RuleContainer)">
+            <summary>
+            Adds new rule definition to <see cref="P:Microsoft.Localization.OSLEBot.Core.Engine.EngineConfig.RuleContainers"/> list.
+            </summary>
+            <param name="newRule">Definition of the new rule</param>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.Engine.EngineConfig.AddRule(System.String,System.String,Microsoft.Localization.OSLEBot.Core.Engine.RuleContainerType)">
+            <summary>
+            Adds new rule definition to <see cref="P:Microsoft.Localization.OSLEBot.Core.Engine.EngineConfig.RuleContainers"/> list.
+            </summary>
+            <param name="pathToFile">Path to main rule file</param>
+            <param name="filter">Default filtering expression. Typically string.Empty</param>
+            <param name="type">Type of the rule</param>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.Engine.EngineConfig.AddDataSourcePackage(Microsoft.Localization.OSLEBot.Core.DataSource.DataSourcePackages.DataSourcePackage)">
+            <summary>
+            Adds new data package definition to <see cref="P:Microsoft.Localization.OSLEBot.Core.Engine.EngineConfig.DataSourcePkgs"/> list.
+            </summary>
+            <param name="newPackage">New package of data to be added</param>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.Engine.EngineConfig.AddAssemblyResolverPaths(System.String[])">
+            <summary>
+            Adds assembly resolver paths to the <see cref="P:Microsoft.Localization.OSLEBot.Core.Engine.EngineConfig.AssemblyResolverPaths"/> list.
+            </summary>
+            <param name="paths">Array of directory names where dynamic rule compiler should look for assemblies used when compiling rule source code</param>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.Engine.EngineConfig.AddTempAssemblyDirectory(System.String)">
+            <summary>
+            Add path to where temporary assemblies are to be saved.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.Engine.EngineConfig.AddOutputConfig(Microsoft.Localization.OSLEBot.Core.Output.OutputWriterConfig)">
+            <summary>
+            Adds configuration for an output writer.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.Engine.EngineConfig.#ctor">
+            <summary>
+            Required for serialization.
+            <para/>Initializes default lists that would otherwise be null.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.Engine.EngineConfig.Deserialize(System.String)">
+            <summary>
+            Offers a convenient method for loading a serialized version of configuration into memory.
+            <para/>This deserialized object can then be passed into OSLEBotEngine at construction to allow for engine configuration to happen.
+            </summary>
+            <param name="pathToXml">Uri or path to Xml file that contains a serialized version of engine configuration.</param>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.Engine.EngineConfig.Deserialize(System.Xml.XmlReader)">
+            <summary>
+            Offers a convenient method for loading a serialized version of configuration into memory.
+            <para/>This deserialized object can then be passed into OSLEBotEngine at construction to allow for engine configuration to happen.
+            </summary>
+            <param name="configXmlReader">XmlReader that is position at the beginning of stream that reads a serialized version of engine configuration.</param>
+        </member>
+        <member name="P:Microsoft.Localization.OSLEBot.Core.Engine.EngineConfig.COTypes">
+            <summary>
+            A list of assembly names that contain ClassificationObject types to be used by engine.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Localization.OSLEBot.Core.Engine.EngineConfig.DataSourceProviderTypes">
+            <summary>
+            A list of assembly names that contain DataSourceProvider types to be used by engine.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Localization.OSLEBot.Core.Engine.EngineConfig.COAdapterTypes">
+            <summary>
+            A list of assembly names that contain ClassificationObjectAdapter types to be used by engine.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Localization.OSLEBot.Core.Engine.EngineConfig.PropertyAdapterTypes">
+            <summary>
+            A list of assembly names that contain PropertyAdapter types to be used by engine.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Localization.OSLEBot.Core.Engine.EngineConfig.DataSourcePkgs">
+            <summary>
+            Packages that define the source for data of the specified types.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Localization.OSLEBot.Core.Engine.EngineConfig.RuleContainers">
+            <summary>
+            List of rule containers (binary or .cs) to be loaded
+            </summary>
+        </member>
+        <member name="P:Microsoft.Localization.OSLEBot.Core.Engine.EngineConfig.BinaryReferences">
+            <summary>
+            References to binary (dll or exe) files that are required to successfully compile rules.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Localization.OSLEBot.Core.Engine.EngineConfig.SourceReferences">
+            <summary>
+            References to source files (*.cs) required to successfully compile rules.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Localization.OSLEBot.Core.Engine.EngineConfig.DefaultFilteringExpression">
+            <summary>
+            Filtering expression tells OSLEBot only to process Classification Objects that match the expression.
+            THis allows you to load all Classifiaction Objects into memory but only process some of them: you can still use all COs
+            and reference them from rules but you narrow down the scope of OSLEBot analysis.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Localization.OSLEBot.Core.Engine.EngineConfig.DisabledRules">
+            <summary>
+            List rules you want to disable, i.e. if multiple rules are stored in an assembly you may want to control which ones are to be ignored
+            </summary>
+        </member>
+        <member name="P:Microsoft.Localization.OSLEBot.Core.Engine.EngineConfig.AssemblyResolverPaths">
+            <summary>
+            List of directory paths containing assemblies required to resolve assembly dependencies when executing all OSLEBot code.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Localization.OSLEBot.Core.Engine.EngineConfig.TempAssemblyDirectory">
+            <summary>
+            Path to a directory where temporary assemblies compiled during OSLEBot run are to be located
+            </summary>
+        </member>
+        <member name="P:Microsoft.Localization.OSLEBot.Core.Engine.EngineConfig.OutputConfigs">
+            <summary>
+            Configuration of output writers to be used by OSLEBot
+            </summary>
+        </member>
+        <member name="P:Microsoft.Localization.OSLEBot.Core.Engine.EngineConfig.EngineLog">
+            <summary>
+            Path to the Log file to be created. This file contains engine performance and debug information.
+            If null, log will not be output to file.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Localization.OSLEBot.Core.Engine.TypeSpecification">
+            <summary>
+            Represents information about a type to be loaded from module.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Localization.OSLEBot.Core.Engine.TypeSpecification.TypeName">
+            <summary>
+            Fully specified type name, including namespaces.
+            <para/>
+            <example>Microsoft.Localization.OSLEBot.DataSources.LcxDataSource</example>
+            </summary>
+        </member>
+        <member name="F:Microsoft.Localization.OSLEBot.Core.Engine.TypeSpecification.ModulePath">
+            <summary>
+            Module path is optional and can be omitted.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Localization.OSLEBot.Core.Engine.TypeSpecification.AssemblyName">
+            <summary>
+            Name of the assembly containing the indicated type.
+            <para/>
+            <example>LocResource - to indicate LocResource.dll</example>
+            <para/>Note that the binary file of the assembly has to be located in the path of the executable.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.Engine.TypeSpecification.GetTypeFromModule">
+            <summary>
+            Creates type information based on type name and assembly.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.Engine.TypeSpecification.CreateSpecification(System.String,System.String)">
+            <summary>
+            Creates a new instance of <see cref="T:Microsoft.Localization.OSLEBot.Core.Engine.TypeSpecification"/> using the type and assembly names as input.
+            </summary>
+            <param name="typeName">Type described by this <see cref="T:Microsoft.Localization.OSLEBot.Core.Engine.TypeSpecification"/></param>
+            <param name="assemblyName">Assembly containing the described type</param>
+            <returns>Type specification</returns>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.Engine.TypeSpecification.ToString">
+            <summary>
+            Shows the type name and assembly name.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Localization.OSLEBot.Core.Engine.RuleContainer">
+            <summary>
+            Stores path to rule module (.dll) or rule source (.cs) and an optional filtering expression.
+            Filtering Expression is used to control what Classification Objects the rule applies to.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Localization.OSLEBot.Core.Engine.RuleContainer.ContainerType">
+            <summary>
+            Type of the rule. Determines whether the rule should be compiled (for Source),
+            or loaded from assembly (for Module).
+            </summary>
+        </member>
+        <member name="F:Microsoft.Localization.OSLEBot.Core.Engine.RuleContainer.FilteringExpression">
+            <summary>
+            Default filtering expression to be applied to this rule.
+            <para/>Allows preliminary filtering of ClassificationObjects before the rule looks at them.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Localization.OSLEBot.Core.Engine.RuleContainer.PathToFile">
+            <summary>
+            Path to the file containing rule definition.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Localization.OSLEBot.Core.Engine.RuleContainerType">
+            <summary>
+            Type of rule container section specified in engine configuration.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Localization.OSLEBot.Core.Engine.RuleContainerType.Module">
+            <summary>
+            Indicates it is a binary module (assembly). For example a dll containing compiled rules.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Localization.OSLEBot.Core.Engine.RuleContainerType.Source">
+            <summary>
+            Indicates this is a source code file that needs to be dynamically compiled by OSLEBot.
+            <para/>For example: Rule.cs file.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Localization.OSLEBot.Core.Properties.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Localization.OSLEBot.Core.Properties.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Localization.OSLEBot.Core.Properties.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Localization.OSLEBot.Core.Properties.Resources.ConfigXMLNameSpace">
+            <summary>
+              Looks up a localized string similar to http://microsoft.com/OSLEBot/EngineConfig.xsd.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Localization.OSLEBot.Core.Properties.Resources.ShortProductName">
+            <summary>
+              Looks up a localized string similar to OSLEBotEngine.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Localization.OSLEBot.Core.Properties.Resources.TemplateDescription">
+            <summary>
+              Looks up a localized string similar to Create rules for OSLEBotEngine using this template..
+            </summary>
+        </member>
+        <member name="T:Microsoft.Localization.OSLEBot.Core.Engine.Space">
+            <summary>
+            Multidimensional space of classification objects. Used by OSLEBot to 'move' between objects of this space.
+            <para/>Objects in such space can be thought of as points in non-Euclidean space.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Localization.OSLEBot.Core.Engine.Space.coHashTable">
+            <summary>
+            Holds references to all COs belonging to the space
+            </summary>
+        </member>
+        <member name="F:Microsoft.Localization.OSLEBot.Core.Engine.Space.dimensions">
+            <summary>
+            Holds all dimensions created so far and manages thread-safe access.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Localization.OSLEBot.Core.Engine.Space.propertyCache">
+            <summary>
+            Serves as cache for all Property objects created by the COs belonging to this space.
+            This serves to purposes: 1). saves memory as Properties with equal values are not multiplied.
+            2). improves performance as Property Equality is checked using Reference Equality between COs.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.Engine.Space.#ctor">
+            <summary>
+            Creates a new instance of space for objects of the specified type.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Localization.OSLEBot.Core.Engine.Space.coAutoNumber">
+            <summary>
+            Used to generate unique Keys for Classification Objects assigned to this space.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.Engine.Space.GenerateUniqueCOKey">
+            <summary>
+            Generates a unique Key for CO in this space.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.Engine.Space.Reset">
+            <summary>
+            Interface that flushes all elements of this space so that it is empty and ready for reuse.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.Engine.Space.GetDimension(System.String)">
+            <summary>
+            Get an existing dimension or build a new one if that dimension does not yet exist.
+            </summary>
+            <param name="name">Name of dimension to get</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.Engine.Space.GetObjectsAt(Microsoft.Localization.OSLEBot.Core.Engine.Properties.Property)">
+            <summary>
+            Get all objects from dimension propertyName at coordinate propertyValue
+            </summary>
+            <param name="property">A Property object used to search for COs</param>
+            <returns>A list of COs with the specified value of the property.</returns>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.Engine.Space.GetDimensionIntersection(System.Collections.Generic.ICollection{Microsoft.Localization.OSLEBot.Core.Engine.Properties.Property})">
+            <summary>
+            Gets an intersection of multiple dimensions at coordinates specified by 
+            properties listed in params.
+            CACHING: Method uses result caching.
+            </summary>
+            <param name="properties"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.Engine.Space.NextPrevious(Microsoft.Localization.OSLEBot.Core.Engine.Properties.Property,System.Int32)">
+            <summary>
+            Get objects from x+/-1 point of the specified dimension.
+            </summary>
+            <param name="x">Value of property dimensionName from which to move next()/previous()</param>
+            <param name="number"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.Engine.Space.Range(Microsoft.Localization.OSLEBot.Core.Engine.Properties.Property,System.Int32,System.Int32)">
+            <summary>
+            Gets all objects from all points in range (mid-before, mid+after) of the specified dimension.
+            This excludes objects belonging to 'mid'
+            CACHING: Method uses result caching.
+            </summary>
+            <param name="mid">Point of dimension to be surrounded by the range</param>
+            <param name="before"></param>
+            <param name="after"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.Localization.OSLEBot.Core.Engine.Space.ToString">
+            <summary>
+            Shows number of elements currently in space.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Localization.OSLEBot.Core.Engine.Space.MethodCache">
+            <summary>
+            Space exposes a method cache that can be used to store results of performance heavy
+            methods. This is placed in the space objects so the cache can live and die with space
+            which makes the most sense.
+            </summary>
+        </member>
+    </members>
+</doc>

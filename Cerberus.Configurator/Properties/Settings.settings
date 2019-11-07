@@ -1,0 +1,38 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Microsoft.Localization.LocSolutions.Cerberus.Configurator.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="DatabaseLocation" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">c:\Users\Artur\Programming\Cerberus\Configuration.xml</Value>
+    </Setting>
+    <Setting Name="AssemblyResolvePaths" Type="System.Collections.Specialized.StringCollection" Scope="Application">
+      <Value Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;ArrayOfString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;string&gt;%OTOOLS%\bin\intl\OSLEBot\Exec&lt;/string&gt;
+  &lt;string&gt;%OTOOLS%\bin\lsbuild6.0&lt;/string&gt;
+  &lt;string&gt;en-US&lt;/string&gt;
+&lt;/ArrayOfString&gt;</Value>
+    </Setting>
+    <Setting Name="MainWindowWidth" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">-1</Value>
+    </Setting>
+    <Setting Name="MainWindowsHeight" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">-1</Value>
+    </Setting>
+    <Setting Name="MainWindowX" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">-1</Value>
+    </Setting>
+    <Setting Name="MainWindowY" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">-1</Value>
+    </Setting>
+    <Setting Name="EnvironmentVariablesForNewChecks" Description="Contains names of environment variables that should be used when adding new checks to configuration to make paths the the checks independent from the absolute locations on the computer where they were added." Type="System.Collections.Specialized.StringCollection" Scope="User">
+      <Value Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;ArrayOfString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;string&gt;OTOOLS&lt;/string&gt;
+  &lt;string&gt;BUILDROOT&lt;/string&gt;
+  &lt;string&gt;INTL_TOOLS&lt;/string&gt;
+  &lt;string&gt;SRCROOT&lt;/string&gt;
+&lt;/ArrayOfString&gt;</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>OSLEBot.LCXDataAdapter</name>
+    </assembly>
+    <members>
+        <member name="M:Microsoft.Localization.OSLEBot.DataAdapters.LCXLocResourceDataAdapter.LoadObjects(Microsoft.Localization.LocDocument,Microsoft.Localization.OSLEBot.Core.Misc.ConfigDictionary)">
+            <summary>
+            The constructor must specify what datasources are expected to be provided to the object factory
+            For example, at this moment all LocResource properties are created from LCX (LocDocument) but some properties (buildNumber, project, etc.)
+            cannot be retrieved from LCX so we need additional datasource(s) (in this case a simple struct with a bunch of strings)
+            </summary>
+            <param name="ld">LocDocument (usually LCL file)</param>
+            <param name="md">Extra params</param>
+            <returns>Objects loaded from the LocDocument and 'flattened', with all properties extracted.</returns>
+        </member>
+    </members>
+</doc>

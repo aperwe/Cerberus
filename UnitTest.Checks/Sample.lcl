@@ -1,0 +1,1091 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LCX SchemaVersion="6.0" Name="accolki.rest" PsrId="245" FileType="1" SrcCul="en-US" TgtCul="de-DE" xmlns="http://schemas.microsoft.com/locstudio/2006/6/lcx">
+  <Props>
+    <Str Name="#label" Val="bld14_3604_1000" />
+    <Str Name="Kii" Val="c75aaf5b-2cf4-4984-9a34-fd2d5b2a29a0" />
+  </Props>
+  <OwnedComments>
+    <Cmt Name="Dev" />
+    <Cmt Name="LcxAdmin" />
+    <Cmt Name="Loc" />
+    <Cmt Name="Rccx" />
+  </OwnedComments>
+  <Item ItemId=";ResTVersion" ItemType="0" PsrId="245" Leaf="false">
+    <Disp Icon="Str" Expand="true" Disp="true" LocTbl="false" Order="53" />
+    <PsrProps>
+      <Str Name="Kii" Val="69d0bef7-3f94-423c-8b18-d667d59d26ba" />
+    </PsrProps>
+    <Item ItemId=";ResTFileVersion" ItemType="0;ResT" PsrId="245" InstFlg="true" Leaf="true">
+      <Str Cat="Text" UsrLk="true">
+        <Val><![CDATA[14.0.3604.1000]]></Val>
+        <Tgt Cat="Text" Orig="New">
+          <Val><![CDATA[14.0.3604.1001 ススプーラ oeunhonauh スプーラ]]></Val>
+        </Tgt>
+      </Str>
+      <Disp Icon="Str" Order="54" />
+      <Cmts>
+        <Cmt Name="Dev"><![CDATA[{Locked}]]></Cmt>
+      </Cmts>
+      <PsrProps>
+        <Str Name="Kii" Val="4d915f26-8f6f-4f38-8f31-87ab003746d9" />
+      </PsrProps>
+    </Item>
+    <Item ItemId=";ResTLanguageTag" ItemType="0;ResT" PsrId="245" InstFlg="true" Leaf="true">
+      <Str Cat="Text" UsrLk="true">
+        <Val><![CDATA[en-US]]></Val>
+        <Tgt Cat="Text" Orig="New">
+          <Val><![CDATA[en-US]]></Val>
+        </Tgt>
+      </Str>
+      <Disp Icon="Str" Order="55" />
+      <Cmts>
+        <Cmt Name="Dev"><![CDATA[DO NOT LOCALIZE. The value of this resource will match the current language tag when generating the localized version of this file. {Locked}]]></Cmt>
+      </Cmts>
+      <PsrProps>
+        <Str Name="Kii" Val="2970ff21-e744-4ad1-8378-1edbb554ea1d" />
+      </PsrProps>
+    </Item>
+  </Item>
+  <Item ItemId=";STT_AccOlkError" ItemType="0" PsrId="245" Leaf="false">
+    <Disp Icon="Str" Expand="true" Disp="true" LocTbl="false" Order="36" />
+    <PsrProps>
+      <Str Name="Kii" Val="735f55e9-d1df-4f9d-a18a-5293699b12eb" />
+    </PsrProps>
+    <Item ItemId=";idsDCAllRowFail" ItemType="0;ResT" PsrId="245" InstFlg="true" Leaf="true">
+      <Str Cat="Text">
+        <Val><![CDATA[The following rows in the message were not exported to Microsoft Access 2010. One or more new rows and the following existing rows from e-mail message: ]]></Val>
+        <Tgt Cat="Text" Stat="Loc" Appr="Approved" Orig="PrevVer">
+          <Val><![CDATA[Die folgenden ススプーラ oeunhonauh スプーラ Zeilen der Nachricht wurden nicht nach Microsoft Access exportiert. Mindestens eine neue Zeile und die folgenden vorhandenen Zeilen aus der E-Mail-Nachricht: ]]></Val>
+        </Tgt>
+        <Prev Cat="Text">
+          <Val><![CDATA[The following rows in the message were not exported to Microsoft Access. One or more new rows and the following existing rows: ]]></Val>
+        </Prev>
+      </Str>
+      <Disp Icon="Str" Order="50" />
+      <Modified By="raulm" DateTime="2006-10-04T06:24:15Z" />
+      <Cmts>
+        <Cmt Name="Dev"><![CDATA[Error to display if new rows and update rows failed]]></Cmt>
+        <Cmt Name="Loc"><![CDATA[pseudo]]></Cmt>
+      </Cmts>
+      <Props>
+        <Str Name="Custom3" Val="Office12" />
+      </Props>
+      <PsrProps>
+        <Str Name="Kii" Val="6d273679-4494-4137-b509-58923112056a" />
+      </PsrProps>
+    </Item>
+    <Item ItemId=";idsDCAutoPassword" ItemType="0;ResT" PsrId="245" InstFlg="true" Leaf="true">
+      <Str Cat="Text">
+        <Val><![CDATA[bla bla All Rights reserved.]]></Val>
+        <Tgt Cat="Text" Stat="Loc" Appr="Approved" Orig="PrevVer">
+          <Val><![CDATA[Die Access-Datenbank スプーラー auestheouau スプーラist mit einem Kennwort geschützt. Exportieren Sie die Daten manuell nach Microsoft Access.]]></Val>
+        </Tgt>
+      </Str>
+      <Disp Icon="Str" Order="48" />
+      <Modified By="raulm" DateTime="2006-10-04T06:24:15Z" />
+      <Cmts>
+        <Cmt Name="Dev"><![CDATA[We tried to auto export into Access, but there was a password lock.]]></Cmt>
+      </Cmts>
+      <Props>
+        <Str Name="Custom3" Val="Office12" />
+      </Props>
+      <PsrProps>
+        <Str Name="Kii" Val="c5a0bfc9-05b3-4373-b0d9-04130d01a71c" />
+      </PsrProps>
+    </Item>
+    <Item ItemId=";idsDCDBNotFound" ItemType="0;ResT" PsrId="245" InstFlg="true" Leaf="true">
+      <Str Cat="Text">
+        <Val><![CDATA[Cannot find |0. Locate the database and manually export the data.]]></Val>
+        <Tgt Cat="Text" Stat="Loc" Appr="Approved" Orig="PrevVer">
+          <Val><![CDATA['|0' wurde nicht gefunden. |1이 Suchen Sie die Datenbank, und exportieren Sie die Daten manuell.]]></Val>
+        </Tgt>
+        <Prev Cat="Text">
+          <Val><![CDATA[Cannot find |0. Locate the database and manually import the data.]]></Val>
+        </Prev>
+      </Str>
+      <Disp Icon="Str" Order="46" />
+      <Modified By="raulm" DateTime="2006-10-04T06:24:15Z" />
+      <Cmts>
+        <Cmt Name="Dev"><![CDATA[, |0 is the database name, error if we can't find the DB {Placeholder=|0}]]></Cmt>
+      </Cmts>
+      <Props>
+        <Str Name="Custom3" Val="Office12" />
+      </Props>
+      <PsrProps>
+        <Str Name="Kii" Val="6c4ab99f-7e82-4f7a-86dd-4987ef3da493" />
+      </PsrProps>
+    </Item>
+    <Item ItemId=";idsDCDupFailure" ItemType="0;ResT" PsrId="245" InstFlg="true" Leaf="true">
+      <Str Cat="Text">
+        <Val><![CDATA[Cannot add or update data because the data would result in a duplicate value in a field that only accepts unique values.]]></Val>
+        <Tgt Cat="Text" Stat="Loc" Appr="Approved" Orig="PrevVer">
+          <Val><![CDATA[Die Daten können nicht hinzugefügt oder aktualisiert werden, da die Daten in einem Feld, das nur eindeutige Werte akzeptiert, zu doppelten Werten führen würden.]]></Val>
+        </Tgt>
+        <Prev Cat="Text">
+          <Val><![CDATA[This insert or update was denied because the change requested would create a duplicate value in a column that does not allow duplicates.]]></Val>
+        </Prev>
+      </Str>
+      <Disp Icon="Str" Order="45" />
+      <Modified By="raulm" DateTime="2006-10-04T06:24:15Z" />
+      <Cmts>
+        <Cmt Name="Dev"><![CDATA[Don't allow duplicate primary keys error.]]></Cmt>
+      </Cmts>
+      <Props>
+        <Str Name="Custom3" Val="Office12" />
+      </Props>
+      <PsrProps>
+        <Str Name="Kii" Val="7157fbd6-237a-4cf8-99a2-79f9aae2991f" />
+      </PsrProps>
+    </Item>
+    <Item ItemId=";idsDCError" ItemType="0;ResT" PsrId="245" InstFlg="true" Leaf="true">
+      <Str Cat="Text">
+        <Val><![CDATA[An error occurred Office Open XML collecting data using e-mail.]]></Val>
+        <Tgt Cat="Text" Stat="Loc" Appr="Approved" Orig="PrevVer">
+          <Val><![CDATA[Fehler beim Sammeln von Daten per E-Mail.]]></Val>
+        </Tgt>
+        <Prev Cat="Text">
+          <Val><![CDATA[An error occurred during the Data Collection process.]]></Val>
+        </Prev>
+      </Str>
+      <Disp Icon="Str" Order="37" />
+      <Modified By="raulm" DateTime="2006-10-04T06:24:15Z" />
+      <Cmts>
+        <Cmt Name="Dev"><![CDATA[There was an error in the data collection action]]></Cmt>
+      </Cmts>
+      <Props>
+        <Str Name="Custom3" Val="Office12" />
+      </Props>
+      <PsrProps>
+        <Str Name="Kii" Val="01495ff0-32d0-4d42-8b89-a305238ae108" />
+      </PsrProps>
+    </Item>
+    <Item ItemId=";idsDCFailure" ItemType="0;ResT" PsrId="245" InstFlg="true" Leaf="true">
+      <Str Cat="Text">
+        <Val><![CDATA[Failure: ]]></Val>
+        <Tgt Cat="Text" Stat="Loc" Appr="Approved" Orig="PrevVer">
+          <Val><![CDATA[Fehler: ]]></Val>
+        </Tgt>
+      </Str>
+      <Disp Icon="Str" Order="39" />
+      <Modified By="raulm" DateTime="2006-10-04T06:24:15Z" />
+      <Cmts>
+        <Cmt Name="Dev"><![CDATA[Start tag for error to properly data collect]]></Cmt>
+      </Cmts>
+      <Props>
+        <Str Name="Custom3" Val="Office12" />
+      </Props>
+      <PsrProps>
+        <Str Name="Kii" Val="43d40014-d0b7-42e4-aba3-e6a77e614e0f" />
+      </PsrProps>
+    </Item>
+    <Item ItemId=";idsDCGenericFailure" ItemType="0;ResT" PsrId="245" InstFlg="true" Leaf="true">
+      <Str Cat="Text">
+        <Val><![CDATA[Cannot add data to the specified database. Try again later.]]></Val>
+        <Tgt Cat="Text" Stat="Loc" Appr="Approved" Orig="PrevVer">
+          <Val><![CDATA[Daten können der angegebenen Datenbank nicht hinzugefügt werden. Versuchen Sie es später erneut.]]></Val>
+        </Tgt>
+        <Prev Cat="Text">
+          <Val><![CDATA[Unable to insert or update data into the specified database.]]></Val>
+        </Prev>
+      </Str>
+      <Disp Icon="Str" Order="42" />
+      <Modified By="raulm" DateTime="2006-10-04T06:24:15Z" />
+      <Cmts>
+        <Cmt Name="Dev"><![CDATA[There was an unspecified error when we tried to data collect]]></Cmt>
+      </Cmts>
+      <Props>
+        <Str Name="Custom3" Val="Office12" />
+      </Props>
+      <PsrProps>
+        <Str Name="Kii" Val="b69be615-de87-4bfa-8ec9-e9cddccacd48" />
+      </PsrProps>
+    </Item>
+    <Item ItemId=";idsDCLimitToListFailure" ItemType="0;ResT" PsrId="245" InstFlg="true" Leaf="true">
+      <Str Cat="Text">
+        <Val><![CDATA[The value you entered isn't an item in the list of choices. Enter the number that corresponds to an item from the list, or enter text that matches one of the listed items.]]></Val>
+        <Tgt Cat="Text" Stat="Loc" Appr="Approved" Orig="PrevVer">
+          <Val><![CDATA[Der eingegebene Wert ist kein Element der Auswahlliste. Geben Sie die Nummer ein, die einem Element der Liste entspricht, oder geben Sie Text ein, der mit einem der aufgeführten Elemente übereinstimmt.]]></Val>
+        </Tgt>
+      </Str>
+      <Disp Icon="Str" Order="40" />
+      <Modified By="raulm" DateTime="2006-10-04T06:24:15Z" />
+      <Cmts>
+        <Cmt Name="Dev"><![CDATA[Error if LimitToList is tur]]></Cmt>
+      </Cmts>
+      <Props>
+        <Str Name="Custom3" Val="Office12" />
+      </Props>
+      <PsrProps>
+        <Str Name="Kii" Val="69fc62e9-f5a5-44e0-877f-c83fec7f2bf0" />
+      </PsrProps>
+    </Item>
+    <Item ItemId=";idsDCMappingFailure" ItemType="0;ResT" PsrId="245" InstFlg="true" Leaf="true">
+      <Str Cat="Text">
+        <Val><![CDATA[Cannot find the information necessary to complete processing in the specified database.]]></Val>
+        <Tgt Cat="Text" Stat="Loc" Appr="Approved" Orig="PrevVer">
+          <Val><![CDATA[Die zum Abschließen der Verarbeitung in der angegebenen Datenbank erforderlichen Informationen wurden nicht gefunden.]]></Val>
+        </Tgt>
+        <Prev Cat="Text">
+          <Val><![CDATA[You cannot perform data collection on this form because a matching request cannot be found. ]]></Val>
+        </Prev>
+      </Str>
+      <Disp Icon="Str" Order="43" />
+      <Modified By="raulm" DateTime="2006-10-04T06:24:15Z" />
+      <Cmts>
+        <Cmt Name="Dev"><![CDATA[We couldn't find the mapping information in the database]]></Cmt>
+      </Cmts>
+      <Props>
+        <Str Name="Custom3" Val="Office12" />
+      </Props>
+      <PsrProps>
+        <Str Name="Kii" Val="bb6c7029-7cb8-4cfd-9de4-d28038721efb" />
+      </PsrProps>
+    </Item>
+    <Item ItemId=";idsDCMultRows" ItemType="0;ResT" PsrId="245" InstFlg="true" Leaf="true">
+      <Str Cat="Text">
+        <Val><![CDATA[The settings for collecting data using e-mail for this form do not permit forms with multiple rows. Review the form and then manually export this data to Microsoft Office Access.]]></Val>
+        <Tgt Cat="Text" Stat="Loc" Appr="Approved" Orig="PrevVer">
+          <Val><![CDATA[In den Einstellungen für das Sammeln von Daten per E-Mail für dieses Formular sind keine Formulare mit mehreren Zeilen zulässig. Überprüfen Sie das Formular, und exportieren Sie diese Daten dann manuell nach Microsoft Office Access.]]></Val>
+        </Tgt>
+        <Prev Cat="Text">
+          <Val><![CDATA[The settings for this Data Collection do not permit forms with multiple rows. Review the form and then manually export this data to Microsoft Office Access.]]></Val>
+        </Prev>
+      </Str>
+      <Disp Icon="Str" Order="49" />
+      <Modified By="raulm" DateTime="2006-10-04T06:24:15Z" />
+      <Cmts>
+        <Cmt Name="Dev"><![CDATA[Error message if they've disal]]></Cmt>
+      </Cmts>
+      <Props>
+        <Str Name="Custom3" Val="Office12" />
+      </Props>
+      <PsrProps>
+        <Str Name="Kii" Val="49b0a2f5-fc1b-4890-a558-10b43ee641da" />
+      </PsrProps>
+    </Item>
+    <Item ItemId=";idsDCNewRowFail" ItemType="0;ResT" PsrId="245" InstFlg="true" Leaf="true">
+      <Str Cat="Text">
+        <Val><![CDATA[The (!testTokenOK) following rows in the message were not exported to Microsoft Access. One or more new rows.]]></Val>
+        <Tgt Cat="Text" Stat="Loc" Appr="Approved" Orig="PrevVer">
+          <Val><![CDATA[Die (!testTokenOK) folgenden Zeilen der Nachricht wurden nicht nach Microsoft Access exportiert. Mindestens eine neue Zeile:]]></Val>
+        </Tgt>
+      </Str>
+      <Disp Icon="Str" Order="52" />
+      <Modified By="raulm" DateTime="2006-10-04T06:24:15Z" />
+      <Cmts>
+        <Cmt Name="Dev"><![CDATA[Error to display if new rows failed]]></Cmt>
+      </Cmts>
+      <Props>
+        <Str Name="Custom3" Val="Office12" />
+      </Props>
+      <PsrProps>
+        <Str Name="Kii" Val="a44da637-0cfa-4bcd-b552-75d4f0e60ab2" />
+      </PsrProps>
+    </Item>
+    <Item ItemId=";idsDCSchemaFailure" ItemType="0;ResT" PsrId="245" InstFlg="true" Leaf="true">
+      <Str Cat="Text">
+        <Val><![CDATA[Cannot (!testTokenSyntax) process this e-mail message. The form in this e-mail message is either corrupt or has been modified.]]></Val>
+        <Tgt Cat="Text" Stat="Loc" Appr="Approved" Orig="PrevVer">
+          <Val><![CDATA[Die (testTokenSyntax) E-Mail-Nachricht kann nicht verarbeitet werden. Das Formular in der E-Mail-Nachricht ist beschädigt oder wurde geändert.]]></Val>
+        </Tgt>
+        <Prev Cat="Text">
+          <Val><![CDATA[Unable to perform data collection since the form schema has been modified or corrupted.]]></Val>
+        </Prev>
+      </Str>
+      <Disp Icon="Str" Order="41" />
+      <Modified By="raulm" DateTime="2006-10-04T06:24:15Z" />
+      <Cmts>
+        <Cmt Name="Dev"><![CDATA[Since the data collection form couldn't be parsed, use this error]]></Cmt>
+      </Cmts>
+      <Props>
+        <Str Name="Custom3" Val="Office12" />
+      </Props>
+      <PsrProps>
+        <Str Name="Kii" Val="f226d5d7-6dfd-4b08-97e6-70531dd28ca3" />
+      </PsrProps>
+    </Item>
+    <Item ItemId=";idsDCSuccess" ItemType="0;ResT" PsrId="245" InstFlg="true" Leaf="true">
+      <Str Cat="Text">
+        <Val><![CDATA[Collecting (!testTokenMisspelled) data using e-mail was successful.]]></Val>
+        <Tgt Cat="Text" Stat="Loc" Appr="Approved" Orig="PrevVer">
+          <Val><![CDATA[Das Sammeln (!testTkoenMisspled) von Daten per E-Mail war erfolgreich.]]></Val>
+        </Tgt>
+        <Prev Cat="Text">
+          <Val><![CDATA[The Data Collection operation was successful.]]></Val>
+        </Prev>
+      </Str>
+      <Disp Icon="Str" Order="38" />
+      <Modified By="raulm" DateTime="2006-10-04T06:24:15Z" />
+      <Cmts>
+        <Cmt Name="Dev"><![CDATA[We succeeded in our data collection]]></Cmt>
+      </Cmts>
+      <Props>
+        <Str Name="Custom3" Val="Office12" />
+      </Props>
+      <PsrProps>
+        <Str Name="Kii" Val="5b15599a-d80b-44e9-8b8d-d5faa797661a" />
+      </PsrProps>
+    </Item>
+    <Item ItemId=";idsDCUpdateRowFail" ItemType="0;ResT" PsrId="245" InstFlg="true" Leaf="true">
+      <Str Cat="Text">
+        <Val><![CDATA[The following (!testTokenRemoved) rows in the message were not exported to Microsoft Access. Existing rows from e-mail message: ]]></Val>
+        <Tgt Cat="Text" Stat="Loc" Appr="Approved" Orig="PrevVer">
+          <Val><![CDATA[Die folgenden Zeilen der Nachricht wurden nicht nach Microsoft Access exportiert. Vorhandene Zeilen aus der E-Mail-Nachricht: ]]></Val>
+        </Tgt>
+        <Prev Cat="Text">
+          <Val><![CDATA[The following rows in the message were not exported to Microsoft Access. Existing rows: ]]></Val>
+        </Prev>
+      </Str>
+      <Disp Icon="Str" Order="51" />
+      <Modified By="raulm" DateTime="2006-10-04T06:24:15Z" />
+      <Cmts>
+        <Cmt Name="Dev"><![CDATA[Error to display if update rows failed]]></Cmt>
+      </Cmts>
+      <Props>
+        <Str Name="Custom3" Val="Office12" />
+      </Props>
+      <PsrProps>
+        <Str Name="Kii" Val="275d8bef-1944-4724-bf1f-5ee7bcd05629" />
+      </PsrProps>
+    </Item>
+    <Item ItemId=";idsDCXmlFailure" ItemType="0;ResT" PsrId="245" InstFlg="true" Leaf="true">
+      <Str Cat="Text">
+        <Val><![CDATA[This message (!testToken) contains a form you need to fill out. When you are done, send it to the sender of this e-mail message.]]></Val>
+        <Tgt Cat="Text" Stat="Loc" Appr="Approved" Orig="PrevVer">
+          <Val><![CDATA[Die Nachricht (!testToken) enthält ein Formular, das Sie ausfüllen müssen. Senden (!testTokenAdded) Sie das Formular anschließend an den Absender der E-Mail-Nachricht.]]></Val>
+        </Tgt>
+        <Prev Cat="Text">
+          <Val><![CDATA[This message contains a form sent out to collect data via e-mail. Click, Fill out this form to enter data and reply to this email.]]></Val>
+        </Prev>
+      </Str>
+      <Disp Icon="Str" Order="47" />
+      <Modified By="raulm" DateTime="2006-10-04T06:24:15Z" />
+      <Cmts>
+        <Cmt Name="Dev"><![CDATA[Error if there was no Xml attachment, but an Xsn was found]]></Cmt>
+      </Cmts>
+      <Props>
+        <Str Name="Custom3" Val="Office12" />
+      </Props>
+      <PsrProps>
+        <Str Name="Kii" Val="a7686ba4-aeb6-45bc-bd83-c2f168f4d864" />
+      </PsrProps>
+    </Item>
+    <Item ItemId=";idsLockFailure" ItemType="0;ResT" PsrId="245" InstFlg="true" Leaf="true">
+      <Str Cat="Text">
+        <Val><![CDATA[Cannot open |0 for exporting data because the database is already in use. Manually process the replies after the database becomes available.]]></Val>
+        <Tgt Cat="Text" Stat="Loc" Appr="Approved" Orig="PrevVer">
+          <Val><![CDATA['|0' kann zum Exportieren von Daten nicht geöffnet werden, da die Datenbank bereits verwendet wird. Verarbeiten Sie die Antworten manuell, wenn die Datenbank wieder zur Verfügung steht.]]></Val>
+        </Tgt>
+        <Prev Cat="Text">
+          <Val><![CDATA[Cannot open |0 for importing data because the database is already in use. Manually process the replies after the database becomes available.]]></Val>
+        </Prev>
+      </Str>
+      <Disp Icon="Str" Order="44" />
+      <Modified By="raulm" DateTime="2006-10-04T06:24:15Z" />
+      <Cmts>
+        <Cmt Name="Dev"><![CDATA[, data collection failed since there was an exclusi {Placeholder=|0}]]></Cmt>
+      </Cmts>
+      <Props>
+        <Str Name="Custom3" Val="Office12" />
+      </Props>
+      <PsrProps>
+        <Str Name="Kii" Val="035c5188-2e6a-49b1-85eb-a40899974be4" />
+      </PsrProps>
+    </Item>
+  </Item>
+  <Item ItemId=";STT_AccOlkStrings" ItemType="0" PsrId="245" Leaf="false">
+    <Disp Icon="Str" Expand="true" Disp="true" LocTbl="false" Order="1" />
+    <PsrProps>
+      <Str Name="Kii" Val="d7904a3b-747b-4720-af65-34c14300fb3c" />
+    </PsrProps>
+    <Item ItemId=";idsDCCancel" ItemType="0;ResT" PsrId="245" InstFlg="true" Leaf="true">
+      <Str Cat="Text">
+        <Val><![CDATA[Cancel]]></Val>
+        <Tgt Cat="Text" Stat="Loc" Appr="Approved" Orig="PrevVer">
+          <Val><![CDATA[Abbrechen]]></Val>
+        </Tgt>
+      </Str>
+      <Disp Icon="Str" Order="19" />
+      <Modified By="raulm" DateTime="2006-10-04T06:24:15Z" />
+      <Cmts>
+        <Cmt Name="Dev"><![CDATA[Cancel button text]]></Cmt>
+      </Cmts>
+      <Props>
+        <Str Name="Custom3" Val="Office12" />
+      </Props>
+      <PsrProps>
+        <Str Name="Kii" Val="87804c75-0439-453e-bf28-4976535f3b9c" />
+      </PsrProps>
+    </Item>
+    <Item ItemId=";idsDCDefaultActionPress" ItemType="0;ResT" PsrId="245" InstFlg="true" Leaf="true">
+      <Str Cat="Text">
+        <Val><![CDATA[Press]]></Val>
+        <Tgt Cat="Text" Stat="Loc" Appr="Approved" Orig="PrevVer">
+          <Val><![CDATA[Drücken]]></Val>
+        </Tgt>
+      </Str>
+      <Disp Icon="Str" Order="27" />
+      <Modified By="raulm" DateTime="2006-10-04T06:24:15Z" />
+      <Cmts>
+        <Cmt Name="Dev"><![CDATA[For MSAA Accessibility]]></Cmt>
+      </Cmts>
+      <Props>
+        <Str Name="Custom3" Val="Office12" />
+      </Props>
+      <PsrProps>
+        <Str Name="Kii" Val="c6cdd918-8aa6-4a33-8dfa-097194f28706" />
+      </PsrProps>
+    </Item>
+    <Item ItemId=";idsDCErrorMsg" ItemType="0;ResT" PsrId="245" InstFlg="true" Leaf="true">
+      <Str Cat="Text">
+        <Val><![CDATA[Cannot export data due to errors.]]></Val>
+        <Tgt Cat="Text" Stat="Loc" Appr="Approved" Orig="PrevVer">
+          <Val><![CDATA[Die Daten können aufgrund von Fehlern nicht exportiert werden.]]></Val>
+        </Tgt>
+        <Prev Cat="Text">
+          <Val><![CDATA[Cannot import data due to errors.]]></Val>
+        </Prev>
+      </Str>
+      <Disp Icon="Str" Order="11" />
+      <Modified By="raulm" DateTime="2006-10-04T06:24:15Z" />
+      <Cmts>
+        <Cmt Name="Dev"><![CDATA[Failed manual export.]]></Cmt>
+      </Cmts>
+      <Props>
+        <Str Name="Custom3" Val="Office12" />
+      </Props>
+      <PsrProps>
+        <Str Name="Kii" Val="15bd0185-1c4c-4634-b453-b9f63a22537b" />
+      </PsrProps>
+    </Item>
+    <Item ItemId=";idsDCExportDate" ItemType="0;ResT" PsrId="245" InstFlg="true" Leaf="true">
+      <Str Cat="Text">
+        <Val><![CDATA[Date:]]></Val>
+        <Tgt Cat="Text" Stat="Loc" Appr="Approved" Orig="PrevVer">
+          <Val><![CDATA[Datum:]]></Val>
+        </Tgt>
+      </Str>
+      <Disp Icon="Str" Order="24" />
+      <Modified By="raulm" DateTime="2006-10-04T06:24:15Z" />
+      <Cmts>
+        <Cmt Name="Dev"><![CDATA[Date received]]></Cmt>
+      </Cmts>
+      <Props>
+        <Str Name="Custom3" Val="Office12" />
+      </Props>
+      <PsrProps>
+        <Str Name="Kii" Val="89159dad-b925-4316-939c-68669c88a12d" />
+      </PsrProps>
+    </Item>
+    <Item ItemId=";idsDCExportFormName" ItemType="0;ResT" PsrId="245" InstFlg="true" Leaf="true">
+      <Str Cat="Text">
+        <Val><![CDATA[http://microsoft.com/1033]]></Val>
+        <Tgt Cat="Text" Stat="Loc" Appr="Approved" Orig="PrevVer">
+          <Val><![CDATA[http://microsoft.com/1033]]></Val>
+        </Tgt>
+      </Str>
+      <Disp Icon="Str" Order="23" />
+      <Modified By="raulm" DateTime="2006-10-04T06:24:15Z" />
+      <Cmts>
+        <Cmt Name="Dev"><![CDATA[Name of the form]]></Cmt>
+      </Cmts>
+      <Props>
+        <Str Name="Custom3" Val="Office12" />
+      </Props>
+      <PsrProps>
+        <Str Name="Kii" Val="e22b07bb-bb60-4522-8bcc-c6b08c671f93" />
+      </PsrProps>
+    </Item>
+    <Item ItemId=";idsDCExportFrom" ItemType="0;ResT" PsrId="245" InstFlg="true" Leaf="true">
+      <Str Cat="Text">
+        <Val><![CDATA[From:]]></Val>
+        <Tgt Cat="Text" Stat="Loc" Appr="Approved" Orig="PrevVer">
+          <Val><![CDATA[Von:]]></Val>
+        </Tgt>
+      </Str>
+      <Disp Icon="Str" Order="22" />
+      <Modified By="raulm" DateTime="2006-10-04T06:24:15Z" />
+      <Cmts>
+        <Cmt Name="Dev"><![CDATA[Who the email is from]]></Cmt>
+      </Cmts>
+      <Props>
+        <Str Name="Custom3" Val="Office12" />
+      </Props>
+      <PsrProps>
+        <Str Name="Kii" Val="35f31cd5-c43a-4be0-bb50-a9437375eaa5" />
+      </PsrProps>
+    </Item>
+    <Item ItemId=";idsDCExportItemTooltipMSAA" ItemType="0;ResT" PsrId="245" InstFlg="true" Leaf="true">
+      <Str Cat="Text">
+        <Val><![CDATA[Row |0]]></Val>
+        <Tgt Cat="Text" Stat="Loc" Appr="Approved" Orig="PrevVer">
+          <Val><![CDATA[Zeile |0]]></Val>
+        </Tgt>
+      </Str>
+      <Disp Icon="Str" Order="26" />
+      <Modified By="raulm" DateTime="2006-10-04T06:24:15Z" />
+      <Cmts>
+        <Cmt Name="Dev"><![CDATA[, |0 for row number {Placeholder=|0}]]></Cmt>
+      </Cmts>
+      <Props>
+        <Str Name="Custom3" Val="Office12" />
+      </Props>
+      <PsrProps>
+        <Str Name="Kii" Val="085b6e19-3bc3-49f5-a9a6-7e486080e79e" />
+      </PsrProps>
+    </Item>
+    <Item ItemId=";idsDCExportText" ItemType="0;ResT" PsrId="245" InstFlg="true" Leaf="true">
+      <Str Cat="Text">
+        <Val><![CDATA[The following data will be added to the Access database:]]></Val>
+        <Tgt Cat="Text" Stat="Loc" Appr="Approved" Orig="PrevVer">
+          <Val><![CDATA[Die folgenden Daten werden der Access-Datenbank hinzugefügt:]]></Val>
+        </Tgt>
+        <Prev Cat="Text">
+          <Val><![CDATA[Below is the data from the designated reply that will be exported to Microsoft Access]]></Val>
+        </Prev>
+      </Str>
+      <Disp Icon="Str" Order="21" />
+      <Modified By="raulm" DateTime="2006-10-04T06:24:15Z" />
+      <Cmts>
+        <Cmt Name="Dev"><![CDATA[Explanatory text for export dialog]]></Cmt>
+      </Cmts>
+      <Props>
+        <Str Name="Custom3" Val="Office12" />
+      </Props>
+      <PsrProps>
+        <Str Name="Kii" Val="754150aa-abeb-4d12-ba0e-f88f0790aed7" />
+      </PsrProps>
+    </Item>
+    <Item ItemId=";idsDCExportTitle" ItemType="0;ResT" PsrId="245" InstFlg="true" Leaf="true">
+      <Str Cat="Text">
+        <Val><![CDATA[Export data to Microsoft Access]]></Val>
+        <Tgt Cat="Text" Stat="Loc" Appr="Approved" Orig="PrevVer">
+          <Val><![CDATA[Daten nach Microsoft Access exportieren]]></Val>
+        </Tgt>
+        <Prev Cat="Text">
+          <Val><![CDATA[Add data to Microsoft Access]]></Val>
+        </Prev>
+      </Str>
+      <Disp Icon="Str" Order="20" />
+      <Modified By="raulm" DateTime="2006-10-04T06:24:15Z" />
+      <Cmts>
+        <Cmt Name="Dev"><![CDATA[Title for Data Collection export dialog]]></Cmt>
+      </Cmts>
+      <Props>
+        <Str Name="Custom3" Val="Office12" />
+      </Props>
+      <PsrProps>
+        <Str Name="Kii" Val="6ea0554a-895e-41dc-8815-e70266efd9b4" />
+      </PsrProps>
+    </Item>
+    <Item ItemId=";idsDCExportTooltipMSAA" ItemType="0;ResT" PsrId="245" InstFlg="true" Leaf="true">
+      <Str Cat="Text">
+        <Val><![CDATA[E-mail details]]></Val>
+        <Tgt Cat="Text" Stat="Loc" Appr="Approved" Orig="PrevVer">
+          <Val><![CDATA[Details zur E-Mail]]></Val>
+        </Tgt>
+      </Str>
+      <Disp Icon="Str" Order="25" />
+      <Modified By="raulm" DateTime="2006-10-04T06:24:15Z" />
+      <Cmts>
+        <Cmt Name="Dev"><![CDATA[Tooltip for listview]]></Cmt>
+      </Cmts>
+      <Props>
+        <Str Name="Custom3" Val="Office12" />
+      </Props>
+      <PsrProps>
+        <Str Name="Kii" Val="c463c787-63a2-4dee-b595-731fd2e55d4b" />
+      </PsrProps>
+    </Item>
+    <Item ItemId=";idsDCOK" ItemType="0;ResT" PsrId="245" InstFlg="true" Leaf="true">
+      <Str Cat="Text">
+        <Val><![CDATA[OK]]></Val>
+        <Tgt Cat="Text" Stat="Loc" Appr="Approved" Orig="PrevVer" Confidence="100">
+          <Val><![CDATA[OK]]></Val>
+        </Tgt>
+      </Str>
+      <Disp Icon="Str" Order="18" />
+      <Modified By="raulm" DateTime="2006-10-04T06:24:15Z" />
+      <Cmts>
+        <Cmt Name="Dev"><![CDATA[OK button text]]></Cmt>
+      </Cmts>
+      <Props>
+        <Str Name="Custom3" Val="Office12" />
+      </Props>
+      <PsrProps>
+        <Str Name="Kii" Val="42be7eba-7ed0-4858-9be8-f98976f2da4d" />
+      </PsrProps>
+    </Item>
+    <Item ItemId=";idsDCPassAuth" ItemType="0;ResT" PsrId="245" InstFlg="true" Leaf="true">
+      <Str Cat="Text">
+        <Val><![CDATA[Authorization]]></Val>
+        <Tgt Cat="Text" Stat="Loc" Appr="Approved" Orig="PrevVer">
+          <Val><![CDATA[Autorisierung]]></Val>
+        </Tgt>
+      </Str>
+      <Disp Icon="Str" Order="16" />
+      <Modified By="raulm" DateTime="2006-10-04T06:24:15Z" />
+      <Cmts>
+        <Cmt Name="Dev"><![CDATA[Label for groupbox for authorization information]]></Cmt>
+      </Cmts>
+      <Props>
+        <Str Name="Custom3" Val="Office12" />
+      </Props>
+      <PsrProps>
+        <Str Name="Kii" Val="0a4e5c47-a534-494c-959b-ae2c4373cd9a" />
+      </PsrProps>
+    </Item>
+    <Item ItemId=";idsDCPassPassword" ItemType="0;ResT" PsrId="245" InstFlg="true" Leaf="true">
+      <Str Cat="Text">
+        <Val><![CDATA[&Password:]]></Val>
+        <Tgt Cat="Text" Stat="Loc" Appr="Approved" Orig="PrevVer">
+          <Val><![CDATA[&Kennwort:]]></Val>
+        </Tgt>
+      </Str>
+      <Disp Icon="Str" Order="17" />
+      <Modified By="raulm" DateTime="2006-10-04T06:24:15Z" />
+      <Cmts>
+        <Cmt Name="Dev"><![CDATA[Label for password entry]]></Cmt>
+      </Cmts>
+      <Props>
+        <Str Name="Custom3" Val="Office12" />
+      </Props>
+      <PsrProps>
+        <Str Name="Kii" Val="2a5c5808-9cd0-4e4a-a85a-31cf3acaf417" />
+      </PsrProps>
+    </Item>
+    <Item ItemId=";idsDCPassText" ItemType="0;ResT" PsrId="245" InstFlg="true" Leaf="true">
+      <Str Cat="Text">
+        <Val><![CDATA[|0 is protected with a password. Enter a valid password to export your data into the database.]]></Val>
+        <Tgt Cat="Text" Stat="Loc" Appr="Approved" Orig="PrevVer">
+          <Val><![CDATA['|0' ist mit einem Kennwort geschützt. Geben Sie ein gültiges Kennwort ein, um die Daten in die Datenbank zu exportieren.]]></Val>
+        </Tgt>
+        <Prev Cat="Text">
+          <Val><![CDATA[|0 is protected with a password. Enter a valid password to import your data into the database.]]></Val>
+        </Prev>
+      </Str>
+      <Disp Icon="Str" Order="15" />
+      <Modified By="raulm" DateTime="2006-10-04T06:24:15Z" />
+      <Cmts>
+        <Cmt Name="Dev"><![CDATA[, |0 is the path to the database that needs a password to be opened {Placeholder=|0}]]></Cmt>
+      </Cmts>
+      <Props>
+        <Str Name="Custom3" Val="Office12" />
+      </Props>
+      <PsrProps>
+        <Str Name="Kii" Val="761b2bb6-4c84-4e4f-88d5-225ce5ca027c" />
+      </PsrProps>
+    </Item>
+    <Item ItemId=";idsDCPassTitle" ItemType="0;ResT" PsrId="245" InstFlg="true" Leaf="true">
+      <Str Cat="Text">
+        <Val><![CDATA[Database logon information]]></Val>
+        <Tgt Cat="Text" Stat="Loc" Appr="Approved" Orig="PrevVer">
+          <Val><![CDATA[Anmeldeinformationen für die Datenbank]]></Val>
+        </Tgt>
+        <Prev Cat="Text">
+          <Val><![CDATA[Login information for Microsoft Access database]]></Val>
+        </Prev>
+      </Str>
+      <Disp Icon="Str" Order="14" />
+      <Modified By="raulm" DateTime="2006-10-04T06:24:15Z" />
+      <Cmts>
+        <Cmt Name="Dev"><![CDATA[Title for the password dialog]]></Cmt>
+      </Cmts>
+      <Props>
+        <Str Name="Custom3" Val="Office12" />
+      </Props>
+      <PsrProps>
+        <Str Name="Kii" Val="f9995bb0-2ee8-498c-a62b-2f3a8907e626" />
+      </PsrProps>
+    </Item>
+    <Item ItemId=";idsDCSuccessMsg" ItemType="0;ResT" PsrId="245" InstFlg="true" Leaf="true">
+      <Str Cat="Text">
+        <Val><![CDATA[Data successfully exported to the database.]]></Val>
+        <Tgt Cat="Text" Stat="Loc" Appr="Approved" Orig="PrevVer">
+          <Val><![CDATA[Die Daten wurden erfolgreich in die Datenbank exportiert.]]></Val>
+        </Tgt>
+        <Prev Cat="Text">
+          <Val><![CDATA[Your data has been successfully imported.]]></Val>
+        </Prev>
+      </Str>
+      <Disp Icon="Str" Order="10" />
+      <Modified By="raulm" DateTime="2006-10-04T06:24:15Z" />
+      <Cmts>
+        <Cmt Name="Dev"><![CDATA[Successfull manual export.]]></Cmt>
+      </Cmts>
+      <Props>
+        <Str Name="Custom3" Val="Office12" />
+      </Props>
+      <PsrProps>
+        <Str Name="Kii" Val="5e5f46f0-9785-4b92-af9c-20d002007358" />
+      </PsrProps>
+    </Item>
+    <Item ItemId=";idsDCValueWithHint" ItemType="0;ResT" PsrId="245" InstFlg="true" Leaf="true">
+      <Str Cat="Text" UsrLk="true">
+        <Val><![CDATA[|0 (|1)]]></Val>
+        <Props>
+          <Str Name="$S" Val="Moravia" />
+          <Str Name="$T" Val="Moravia" />
+        </Props>
+        <Tgt Cat="Text" Orig="New">
+          <Val><![CDATA[|0 (|1)]]></Val>
+          <Props>
+            <Str Name="$S" Val="Moravia" />
+            <Str Name="$T" Val="Moravia" />
+          </Props>
+        </Tgt>
+      </Str>
+      <Disp Icon="Str" Order="28" />
+      <Modified By="raulm" DateTime="2006-10-04T06:24:15Z" />
+      <Cmts>
+        <Cmt Name="Dev"><![CDATA[, |0 for the hint value, |1 for the actual value {Placeholder=|0}]]></Cmt>
+        <Cmt Name="Loc"><![CDATA[{Locked} {NoLocRule}]]></Cmt>
+      </Cmts>
+      <Props>
+        <Str Name="Custom3" Val="14.0.3503.1000" />
+      </Props>
+      <PsrProps>
+        <Str Name="Kii" Val="fa34c398-3875-4faf-8066-c2cf8dba5154" />
+      </PsrProps>
+    </Item>
+    <Item ItemId=";idsEXExecutePrompt" ItemType="0;ResT" PsrId="245" InstFlg="true" Leaf="true">
+      <Str Cat="Text">
+        <Val><![CDATA[Do you want to run the export operation described in |0 specification stored in |1?]]></Val>
+        <Tgt Cat="Text" Stat="Loc" Appr="Approved" Orig="PrevVer">
+          <Val><![CDATA[Möchten Sie den in der Spezifikation '|0' beschriebenen, in '|1' gespeicherten Exportvorgang ausführen?]]></Val>
+        </Tgt>
+      </Str>
+      <Disp Icon="Str" Order="32" />
+      <Modified By="raulm" DateTime="2006-10-04T06:24:15Z" />
+      <Cmts>
+        <Cmt Name="Dev"><![CDATA[, |0 is the specification name to be exeucted and |1 is the path to the database containing the spe {Placeholder=|0,|1}]]></Cmt>
+      </Cmts>
+      <Props>
+        <Str Name="Custom3" Val="Office12" />
+      </Props>
+      <PsrProps>
+        <Str Name="Kii" Val="62907b76-ffcf-4277-993a-4be94a3ab895" />
+      </PsrProps>
+    </Item>
+    <Item ItemId=";idsExport" ItemType="0;ResT" PsrId="245" InstFlg="true" Leaf="true">
+      <Str Cat="Text">
+        <Val><![CDATA[E&xport data to Microsoft Office Access]]></Val>
+        <Tgt Cat="Text" Stat="Loc" Appr="Approved" Orig="PseudoLoc">
+          <Val><![CDATA[Daten オートダイヤラ nach Microsoft Office Access e&xportieren]]></Val>
+        </Tgt>
+        <Prev Cat="Text">
+          <Val><![CDATA[E&xport data to Microsoft Access]]></Val>
+        </Prev>
+      </Str>
+      <Disp Icon="Str" Order="9" />
+      <Modified By="raulm" DateTime="2006-10-04T06:24:15Z" />
+      <Cmts>
+        <Cmt Name="Dev"><![CDATA[Label for button to manually export data collection info]]></Cmt>
+      </Cmts>
+      <Props>
+        <Str Name="Custom3" Val="Office12" />
+      </Props>
+      <PsrProps>
+        <Str Name="Kii" Val="d14d7ebc-4cac-4f6c-bbb4-9326de89a13a" />
+      </PsrProps>
+    </Item>
+    <Item ItemId=";idsFalse" ItemType="0;ResT" PsrId="245" InstFlg="true" Leaf="true">
+      <Str Cat="Text">
+        <Val><![CDATA[false]]></Val>
+        <Tgt Cat="Text" Stat="Loc" Appr="Approved" Orig="PrevVer">
+          <Val><![CDATA[falsch オートダイヤラー]]></Val>
+        </Tgt>
+      </Str>
+      <Disp Icon="Str" Order="7" />
+      <Modified By="raulm" DateTime="2006-10-04T06:24:15Z" />
+      <Cmts>
+        <Cmt Name="Dev"><![CDATA[{Dependency=Substring,msain.dll|idsDCHintBooleanHtmlTrue}{Dependency=Substring,msain.dll|idsDCRequiredHintBooleanHtmlTrue}]]></Cmt>
+        <Cmt Name="Loc"><![CDATA[{Dependency=Master, idsFalse}]]></Cmt>
+      </Cmts>
+      <Props>
+        <Str Name="Custom3" Val="Office12" />
+      </Props>
+      <PsrProps>
+        <Str Name="Kii" Val="84424736-cafe-432c-a1f3-09b00a6012d9" />
+      </PsrProps>
+    </Item>
+    <Item ItemId=";idsIMEXExportBttn" ItemType="0;ResT" PsrId="245" InstFlg="true" Leaf="true">
+      <Str Cat="Text">
+        <Val><![CDATA[Run Export]]></Val>
+        <Tgt Cat="Text" Stat="Loc" Appr="Approved" Orig="PrevVer">
+          <Val><![CDATA[Export ausführen スーパバイザ]]></Val>
+        </Tgt>
+      </Str>
+      <Disp Icon="Str" Order="34" />
+      <Modified By="raulm" DateTime="2006-10-04T06:24:15Z" />
+      <Cmts>
+        <Cmt Name="Dev"><![CDATA[label for export button.]]></Cmt>
+      </Cmts>
+      <Props>
+        <Str Name="Custom3" Val="Office12" />
+      </Props>
+      <PsrProps>
+        <Str Name="Kii" Val="2049c6f7-48fe-4802-98f5-03025cdff6e3" />
+      </PsrProps>
+    </Item>
+    <Item ItemId=";idsIMEXExportTitle" ItemType="0;ResT" PsrId="245" InstFlg="true" Leaf="true">
+      <Str Cat="Text">
+        <Val><![CDATA[Export data from Microsoft Access]]></Val>
+        <Tgt Cat="Text" Stat="Loc" Appr="Approved" Orig="PrevVer">
+          <Val><![CDATA[Daten aus Microsoft Access exportieren スーパーバイザー]]></Val>
+        </Tgt>
+      </Str>
+      <Disp Icon="Str" Order="29" />
+      <Modified By="raulm" DateTime="2006-10-04T06:24:15Z" />
+      <Cmts>
+        <Cmt Name="Dev"><![CDATA[Title for the message box to execute an export task.]]></Cmt>
+      </Cmts>
+      <Props>
+        <Str Name="Custom3" Val="Office12" />
+      </Props>
+      <PsrProps>
+        <Str Name="Kii" Val="0da25e74-41c2-4a0a-9806-9a0a4825d390" />
+      </PsrProps>
+    </Item>
+    <Item ItemId=";idsIMEXImportBttn" ItemType="0;ResT" PsrId="245" InstFlg="true" Leaf="true">
+      <Str Cat="Text">
+        <Val><![CDATA[Run Import]]></Val>
+        <Tgt Cat="Text" Stat="Loc" Appr="Approved" Orig="PrevVer">
+          <Val><![CDATA[Import ausführen]]></Val>
+        </Tgt>
+      </Str>
+      <Disp Icon="Str" Order="33" />
+      <Modified By="raulm" DateTime="2006-10-04T06:24:15Z" />
+      <Cmts>
+        <Cmt Name="Dev"><![CDATA[label for import button.]]></Cmt>
+      </Cmts>
+      <Props>
+        <Str Name="Custom3" Val="Office12" />
+      </Props>
+      <PsrProps>
+        <Str Name="Kii" Val="6fb9c7fa-07f0-44dd-bb78-83e8ccc979e7" />
+      </PsrProps>
+    </Item>
+    <Item ItemId=";idsIMEXImportTitle" ItemType="0;ResT" PsrId="245" InstFlg="true" Leaf="true">
+      <Str Cat="Text">
+        <Val><![CDATA[Import data into Microsoft Access]]></Val>
+        <Tgt Cat="Text" Stat="Loc" Appr="Approved" Orig="PrevVer">
+          <Val><![CDATA[Daten in Microsoft Access importieren]]></Val>
+        </Tgt>
+      </Str>
+      <Disp Icon="Str" Order="30" />
+      <Modified By="raulm" DateTime="2006-10-04T06:24:15Z" />
+      <Cmts>
+        <Cmt Name="Dev"><![CDATA[Title for the message box to execute an import task.]]></Cmt>
+      </Cmts>
+      <Props>
+        <Str Name="Custom3" Val="Office12" />
+      </Props>
+      <PsrProps>
+        <Str Name="Kii" Val="e8e845cc-b2d7-4a75-a47b-8a5310f17b13" />
+      </PsrProps>
+    </Item>
+    <Item ItemId=";idsIMEXNoDB" ItemType="0;ResT" PsrId="245" InstFlg="true" Leaf="true">
+      <Str Cat="Text">
+        <Val><![CDATA[Cannot find |0. Verify the path and file name of the database, then try again.]]></Val>
+        <Tgt Cat="Text" Stat="Loc" Appr="Approved" Orig="PrevVer">
+          <Val><![CDATA['|0' wurde nicht gefunden. Überprüfen Sie den Pfad und den Dateinamen der Datenbank, und versuchen Sie es dann erneut.]]></Val>
+        </Tgt>
+      </Str>
+      <Disp Icon="Str" Order="35" />
+      <Modified By="raulm" DateTime="2006-10-04T06:24:15Z" />
+      <Cmts>
+        <Cmt Name="Dev"><![CDATA[Error message for not finding the database. |0 is the full path to the database {Placeholder=|0}]]></Cmt>
+      </Cmts>
+      <Props>
+        <Str Name="Custom3" Val="Office12" />
+      </Props>
+      <PsrProps>
+        <Str Name="Kii" Val="794b89d1-fb06-47de-9ef1-7e572cf303fa" />
+      </PsrProps>
+    </Item>
+    <Item ItemId=";idsIMExecutePrompt" ItemType="0;ResT" PsrId="245" InstFlg="true" Leaf="true">
+      <Str Cat="Text">
+        <Val><![CDATA[Do you want to run the import operation described in |0 specification stored in |1?]]></Val>
+        <Tgt Cat="Text" Stat="Loc" Appr="Approved" Orig="PrevVer">
+          <Val><![CDATA[Möchten Sie den in der Spezifikation '|0' beschriebenen in '|1' gespeicherten Importvorgang ausführen?]]></Val>
+        </Tgt>
+      </Str>
+      <Disp Icon="Str" Order="31" />
+      <Modified By="raulm" DateTime="2006-10-04T06:24:15Z" />
+      <Cmts>
+        <Cmt Name="Dev"><![CDATA[, |0 is the specification name to be exeucted and |1 is the path to the database containing the spe {Placeholder=|0,|1}]]></Cmt>
+      </Cmts>
+      <Props>
+        <Str Name="Custom3" Val="Office12" />
+      </Props>
+      <PsrProps>
+        <Str Name="Kii" Val="6b107fbf-029a-4e95-b956-0c06f7ad7b57" />
+      </PsrProps>
+    </Item>
+    <Item ItemId=";idsMessageUnprocessed" ItemType="0;ResT" PsrId="245" InstFlg="true" Leaf="true">
+      <Str Cat="Text">
+        <Val><![CDATA[Message unprocessed.]]></Val>
+        <Tgt Cat="Text" Stat="Loc" Appr="Approved" Orig="PrevVer">
+          <Val><![CDATA[Die Nachricht wurde nicht verarbeitet.]]></Val>
+        </Tgt>
+      </Str>
+      <Disp Icon="Str" Order="8" />
+      <Modified By="raulm" DateTime="2006-10-04T06:24:15Z" />
+      <Cmts>
+        <Cmt Name="Dev"><![CDATA[We haven't done anything with the data collection e-mail, but we know it's there.]]></Cmt>
+      </Cmts>
+      <Props>
+        <Str Name="Custom3" Val="Office12" />
+      </Props>
+      <PsrProps>
+        <Str Name="Kii" Val="21cd0c61-ef08-4024-b290-e3c6e89fd17a" />
+      </PsrProps>
+    </Item>
+    <Item ItemId=";idsNo" ItemType="0;ResT" PsrId="245" InstFlg="true" Leaf="true">
+      <Str Cat="Text">
+        <Val><![CDATA[no]]></Val>
+        <Tgt Cat="Text" Stat="Loc" Appr="Approved" Orig="PrevVer" Confidence="100">
+          <Val><![CDATA[Nein]]></Val>
+        </Tgt>
+      </Str>
+      <Disp Icon="Str" Order="3" />
+      <Modified By="raulm" DateTime="2006-10-04T06:24:15Z" />
+      <Cmts>
+        <Cmt Name="Dev"><![CDATA[{Dependency=Substring,msain.dll|idsDCHintBooleanHtmlYes}{Dependency=Substring,msain.dll|idsDCRequiredHintBooleanHtmlYes}]]></Cmt>
+        <Cmt Name="Loc"><![CDATA[{Dependency=Master, idsNo}]]></Cmt>
+      </Cmts>
+      <Props>
+        <Str Name="Custom3" Val="Office12" />
+      </Props>
+      <PsrProps>
+        <Str Name="Kii" Val="dce65f73-2fed-499d-9a7a-8678a7ac02b0" />
+      </PsrProps>
+    </Item>
+    <Item ItemId=";idsOff" ItemType="0;ResT" PsrId="245" InstFlg="true" Leaf="true">
+      <Str Cat="Text">
+        <Val><![CDATA[off]]></Val>
+        <Tgt Cat="Text" Stat="Loc" Appr="Approved" Orig="PrevVer">
+          <Val><![CDATA[aus]]></Val>
+        </Tgt>
+      </Str>
+      <Disp Icon="Str" Order="5" />
+      <Modified By="raulm" DateTime="2006-10-04T06:24:15Z" />
+      <Cmts>
+        <Cmt Name="Dev"><![CDATA[{Dependency=Substring,msain.dll|idsDCHintBooleanHtmlOn}{Dependency=Substring,msain.dll|idsDCRequiredHintBooleanHtmlOn}]]></Cmt>
+        <Cmt Name="Loc"><![CDATA[{Dependency=Master, idsOff}]]></Cmt>
+      </Cmts>
+      <Notes>
+        <Note Name="Loc" Order="0"><![CDATA[LCJ Context of "off" confirmed in issue #453, ]]></Note>
+      </Notes>
+      <Props>
+        <Str Name="Custom3" Val="Office12" />
+      </Props>
+      <PsrProps>
+        <Str Name="Kii" Val="ed88a128-ad6c-472c-9326-67f4ad6ca461" />
+      </PsrProps>
+    </Item>
+    <Item ItemId=";idsOn" ItemType="0;ResT" PsrId="245" InstFlg="true" Leaf="true">
+      <Str Cat="Text">
+        <Val><![CDATA[on]]></Val>
+        <Tgt Cat="Text" Stat="Loc" Appr="Approved" Orig="PrevVer">
+          <Val><![CDATA[an]]></Val>
+        </Tgt>
+      </Str>
+      <Disp Icon="Str" Order="4" />
+      <Modified By="raulm" DateTime="2006-10-04T06:24:15Z" />
+      <Cmts>
+        <Cmt Name="Dev"><![CDATA[{Dependency=Substring,msain.dll|idsDCHintBooleanHtmlOn}{Dependency=Substring,msain.dll|idsDCRequiredHintBooleanHtmlOn}]]></Cmt>
+        <Cmt Name="Loc"><![CDATA[{Dependency=Master, idsOn}]]></Cmt>
+      </Cmts>
+      <Props>
+        <Str Name="Custom3" Val="Office12" />
+      </Props>
+      <PsrProps>
+        <Str Name="Kii" Val="8eef0ef9-0544-448a-b4b6-7bd18de1c916" />
+      </PsrProps>
+    </Item>
+    <Item ItemId=";idsRibbonChunkLabel" ItemType="0;ResT" PsrId="245" InstFlg="true" Leaf="true">
+      <Str Cat="Text">
+        <Val><![CDATA[Microsoft Office Access]]></Val>
+        <Tgt Cat="Text" Stat="Loc" Appr="Approved" Orig="PrevVer">
+          <Val><![CDATA[Microsoft Office Access]]></Val>
+        </Tgt>
+        <Prev Cat="Text">
+          <Val><![CDATA[Microsoft Office Access Outlook Add-in]]></Val>
+        </Prev>
+      </Str>
+      <Disp Icon="Str" Order="12" />
+      <Modified By="raulm" DateTime="2006-10-04T06:24:15Z" />
+      <Cmts>
+        <Cmt Name="Dev"><![CDATA[Label for our ribbon chunk]]></Cmt>
+      </Cmts>
+      <Props>
+        <Str Name="Custom3" Val="Office12" />
+      </Props>
+      <PsrProps>
+        <Str Name="Kii" Val="739a1a92-b783-43f8-a95f-454829413b59" />
+      </PsrProps>
+    </Item>
+    <Item ItemId=";idsRibbonCmdLabel" ItemType="0;ResT" PsrId="245" InstFlg="true" Leaf="true">
+      <Str Cat="Text">
+        <Val>
+          <![CDATA[ (!idspnOfficeConsumer_Long) includes advertising. While using (!idspnOfficeConsumer), personalized advertisements will be displayed in the software.  When you are connected to the Internet and using (!idspnOfficeConsumer), new advertisements will be periodically downloaded from Microsoft. Advertisements in (!idspnOfficeConsumer) applications cannot be turned off, however you can opt-out of personalized advertisements by taking the following steps:]]></Val>
+        <Tgt Cat="Text" Stat="Loc" Appr="Approved" Orig="PrevVer">
+          <Val><![CDATA[ (!idspnOfficeConsumer_Long) تتضمن الإعلانات. عند استخدام (!idspnOfficeConsumer)، سيتم عرض الإعلانات المخصصة في البرنامج. وحين تكون متصلاً بإنترنت وتستخدم (!idspnOfficeConsumer)، سيتم تنزيل إعلانات جديدة بشكل دوري من Microsoft. يتعذر إيقاف تشغيل الإعلانات في تطبيقات(!idspnOfficeConsumer)  لكن يمكنك التراجع عن اختيار الإعلانات المخصصة من خلال اتخاذ الخطوات التالية:]]></Val>
+        </Tgt>
+      </Str>
+      <Disp Icon="Str" Order="13" />
+      <Modified By="raulm" DateTime="2006-10-04T06:24:15Z" />
+      <Cmts>
+        <Cmt Name="Dev"><![CDATA[Label for our ribbon command]]></Cmt>
+      </Cmts>
+      <Props>
+        <Str Name="Custom3" Val="Office12" />
+      </Props>
+      <PsrProps>
+        <Str Name="Kii" Val="d0232ad5-59ec-47e7-8554-9d5323826751" />
+      </PsrProps>
+    </Item>
+    <Item ItemId=";idsTrue" ItemType="0;ResT" PsrId="245" InstFlg="true" Leaf="true">
+      <Str Cat="Text">
+        <Val><![CDATA[true]]></Val>
+        <Tgt Cat="Text" Stat="Loc" Appr="Approved" Orig="PrevVer">
+          <Val><![CDATA[wahr]]></Val>
+        </Tgt>
+      </Str>
+      <Disp Icon="Str" Order="6" />
+      <Modified By="raulm" DateTime="2006-10-04T06:24:15Z" />
+      <Cmts>
+        <Cmt Name="Dev"><![CDATA[{Dependency=Substring,msain.dll|idsDCHintBooleanHtmlTrue}{Dependency=Substring,msain.dll|idsDCRequiredHintBooleanHtmlTrue}]]></Cmt>
+        <Cmt Name="Loc"><![CDATA[{Dependency=Master, idsTrue}]]></Cmt>
+      </Cmts>
+      <Props>
+        <Str Name="Custom3" Val="Office12" />
+      </Props>
+      <PsrProps>
+        <Str Name="Kii" Val="7e5f0591-a1ed-4c96-ad1f-368e314eba6e" />
+      </PsrProps>
+    </Item>
+    <Item ItemId=";idsYes" ItemType="0;ResT" PsrId="245" InstFlg="true" Leaf="true">
+      <Str Cat="Text">
+        <Val><![CDATA[yes]]></Val>
+        <Tgt Cat="Text" Stat="Loc" Appr="Approved" Orig="PrevVer" Confidence="100">
+          <Val><![CDATA[Ja]]></Val>
+        </Tgt>
+      </Str>
+      <Disp Icon="Str" Order="2" />
+      <Modified By="raulm" DateTime="2006-10-04T06:24:15Z" />
+      <Cmts>
+        <Cmt Name="Dev"><![CDATA[{Dependency=Substring,msain.dll|idsDCHintBooleanHtmlYes}{Dependency=Substring,msain.dll|idsDCRequiredHintBooleanHtmlYes}]]></Cmt>
+        <Cmt Name="Loc"><![CDATA[{Dependency=Master, "idsYes"} ]]></Cmt>
+      </Cmts>
+      <Props>
+        <Str Name="Custom3" Val="Office12" />
+      </Props>
+      <PsrProps>
+        <Str Name="Kii" Val="ac501c66-7c43-48a4-94f4-a024d69817e2" />
+      </PsrProps>
+    </Item>
+  </Item>
+</LCX>

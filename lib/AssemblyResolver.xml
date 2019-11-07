@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>AssemblyResolver</name>
+    </assembly>
+    <members>
+        <member name="T:Microsoft.Practices.AssemblyManagement.AssemblyResolver">
+            <summary>
+            Allows runtime assembly resolution in current AppDomain in your application.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Practices.AssemblyManagement.AssemblyResolver.Init">
+            <summary>
+            Initialize Assembly Resolver in the current domain on the current thread.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Practices.AssemblyManagement.AssemblyResolver.Init(System.String[])">
+            <summary>
+            Initialize Assembly Resolver in the current domain on the current thread.
+            </summary>
+            <param name="paths">Paths to search when resolving assemblies. These are added to the set of existing paths, defined in app config.</param>
+        </member>
+        <member name="F:Microsoft.Practices.AssemblyManagement.AssemblyResolver.assemblyResolvePaths">
+            <summary>
+            Paths to search for assemblies
+            </summary>
+        </member>
+        <member name="M:Microsoft.Practices.AssemblyManagement.AssemblyResolver.#ctor(System.String[])">
+            <summary>
+            Creates an instance of AssemblyResolver that is attached to the current AppDomain.
+            After constructing, call Init() to register the specified paths in assembly resolver to allow your application to find assemblies in the provided locations.
+            </summary>
+            <param name="paths">Paths where assemblies need to be searched for.</param>
+        </member>
+        <member name="M:Microsoft.Practices.AssemblyManagement.AssemblyResolver.HandleAssemblyResolve(System.Object,System.ResolveEventArgs)">
+            <summary>
+            Handles AssemblyResolve events within Office build environment.
+            </summary>
+            <param name="sender">The source of the event.</param>
+            <param name="eventArgs">Arguments of the AssemblyResolve event.</param>
+            <returns><see cref="T:System.Reflection.Assembly"/> object that resolves the assembly reference.</returns>
+        </member>
+        <member name="M:Microsoft.Practices.AssemblyManagement.Extensions.AddQuoted(System.Collections.Generic.HashSet{System.String},System.String)">
+            <summary>
+            Adds the specified <paramref name="item"/> string to the set, making it quoted.
+            <para/>For example: if item is 'one', it will be quoted as "one", then added to the set.
+            </summary>
+            <param name="item">String which should be surrounded by quotes (") and added to the set.</param>
+        </member>
+    </members>
+</doc>
